@@ -1,0 +1,168 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BuildQuote India by BITOMANCY – Free Contractor Estimator & Drawing Takeoff</title>
+<meta name="description" content="BuildQuote India, a BITOMANCY product: free construction estimator, drawing takeoff, BOQ and quotation maker for Indian contractors.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%97%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f4ef;--cd:#fff;--ink:#1d2328;--mu:#6b7479;--ac:#c2410c;--ot:#fff;--ln:#e3dfd6;--sf:#faf8f3;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171a;--cd:#1e2327;--ink:#ece9e2;--mu:#98a1a6;--ac:#fb923c;--ot:#1a1005;--ln:#2d343a;--sf:#181c1f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171a;--cd:#1e2327;--ink:#ece9e2;--mu:#98a1a6;--ac:#fb923c;--ot:#1a1005;--ln:#2d343a;--sf:#181c1f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;padding:14px 16px}
+.br{display:flex;gap:10px;align-items:center}.br b{font-size:19px;display:block;line-height:1.2}.br small,.mu{color:var(--mu)}
+.lg{background:var(--ac);color:var(--ot);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:20px}
+.pill{font-size:12px;color:var(--mu);border:1px solid var(--ln);border-radius:99px;padding:3px 10px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);display:flex;gap:6px;align-items:center;overflow-x:auto;padding:8px 16px;border-bottom:1px solid var(--ln)}
+nav button,nav select{white-space:nowrap;flex:none}nav select{width:auto}nav i{font-style:normal;background:var(--ac);color:var(--ot);border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:16px;margin-bottom:14px}.card h3{margin:0 0 10px;font-size:15px}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--ln);background:var(--cd);color:var(--ink);border-radius:8px;padding:8px 12px}
+.on,.pri{background:var(--ac);border-color:var(--ac);color:var(--ot);font-weight:600}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:7px 9px;width:100%}
+label{display:grid;gap:4px;font-size:12px;color:var(--mu);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}.bar select,.bar input[type=range]{width:auto}
+.cvw{overflow:auto;max-height:68vh;border:1px solid var(--ln);border-radius:8px;background:var(--sf)}
+canvas{display:block;width:100%;cursor:crosshair;touch-action:manipulation}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}th{text-align:left;font-size:11px;color:var(--mu);text-transform:uppercase;padding:4px}td{padding:3px}td input{padding:5px 6px;min-width:60px}
+.am,.r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.big{font-size:24px;font-weight:800;color:var(--ac)}
+.mr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--ln)}.mr input{flex:1 1 110px}.mr select{flex:2 1 190px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:99px;z-index:20;opacity:0;transition:.25s;pointer-events:none}
+#toast.s{opacity:1}
+footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color:var(--mu)}footer a{color:var(--ac)}.pf{display:none;font-size:11px;margin-top:10px}
+#ack{position:fixed;inset:0;background:#000a;z-index:30;display:none;align-items:center;justify-content:center;padding:16px}#ack div{background:var(--cd);color:var(--ink);border-radius:14px;padding:20px;max-width:480px;max-height:90vh;overflow:auto}#ack li{margin:6px 0}
+@media print{.pf{display:block!important}footer,#ack{display:none!important}}
+@media print{.np,nav,header .pill{display:none!important}body::before{display:none}main>section{display:none!important}main>#bq{display:block!important}input,textarea,select{border:0;background:none;padding:0;appearance:none}.card{border:0;padding:0}td button{display:none}}
+</style></head><body>
+<header class="np"><div class="br"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><span class="pill">100% free · no login · data stays on your device</span></header>
+<nav><button data-t="tk" class="on">1 Drawing takeoff</button><button data-t="ca">2 Material calculators</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
+<main>
+<section id="tk">
+<div class="card"><div class="bar"><label class="btn on" style="display:inline-block;color:var(--ot)">📐 Upload drawing (JPG / PNG)<input type="file" id="file" accept="image/*" hidden></label>
+<span id="tools"><button data-k="cal" class="on">1 Set scale</button> <button data-k="len">Length</button> <button data-k="area">Area</button> <button data-k="cnt">Count</button> <button data-k="rect">Rectangle</button></span>
+<select id="cu" title="Unit of the known length"><option value="ft">ft</option><option value="m">m</option><option value="in">in</option></select>
+<button id="fin">Finish ⏎</button><button id="und">Undo</button><button id="clr">Clear all</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="ded" style="width:auto">Deduct (openings)</label><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="ort" style="width:auto">Ortho</label><label style="display:flex;gap:6px;align-items:center">Zoom<input type="range" id="zm" min="40" max="300" value="100"></label></div>
+<p id="hint" class="mu" style="margin:0 0 10px"></p><div class="cvw"><canvas id="cv" width="900" height="480"></canvas></div>
+<p class="mu" style="font-size:12px;margin:8px 0 0">PDF drawing? Export or screenshot a page as an image first. Measurements are only as accurate as your scale line, so always verify on site.</p></div>
+<div class="card"><h3>Measurements → BOQ</h3><div class="grid" style="margin-bottom:8px"><label>Wall height (ft)<input id="wh" type="number" value="10"></label><label>Wall thickness (in)<input id="wt" type="number" value="9"></label><label>Slab / PCC depth (in)<input id="dp" type="number" value="5"></label></div><div id="ms"><p class="mu">No measurements yet. Upload a plan, set the scale, then trace walls, rooms or count fixtures.</p></div></div></section>
+
+<section id="ca" hidden><div class="card"><div class="bar" id="ct"></div><div class="grid" id="cf"></div><div class="tw"><table id="cr" style="margin:12px 0"></table></div><button class="pri" id="cadd">Add these materials to BOQ</button><p class="mu" style="font-size:12px">Thumb‑rule quantities (cement 50 kg bag = 0.0347 cum, 5% brick wastage). Indicative only.</p></div></section>
+
+<section id="bq" hidden>
+<div class="card"><h3>Quotation details</h3><div class="grid"><label>Contractor / firm<input data-m="cn"></label><label>Phone<input data-m="cp" inputmode="tel"></label><label>GSTIN (optional)<input data-m="cg"></label><label>Project<input data-m="pn"></label><label>Client<input data-m="cl"></label><label>Site address<input data-m="st"></label><label>Valid for (days)<input data-m="vd" type="number" value="15"></label></div></div>
+<div class="card"><div class="bar np"><select id="cat" style="flex:1 1 220px"></select><button id="addc">+ Add catalog item</button><button id="addb">+ Blank row</button></div>
+<div class="tw"><table><thead><tr><th>Description</th><th>Qty</th><th>Unit</th><th>Material ₹</th><th>Labour ₹</th><th class="r">Amount</th><th class="np"></th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="mu np" style="font-size:12px">All rates are editable and indicative (adjusted by your regional level). Replace them with your local supplier quotes.</p></div>
+<div class="card"><div class="tw"><table style="max-width:460px;margin-left:auto"><tr><td>Subtotal</td><td class="r" id="v0"></td></tr>
+<tr><td>Contingency <input id="pc" type="number" value="3" style="width:64px;display:inline"> %</td><td class="r" id="v1"></td></tr>
+<tr><td>Overhead &amp; profit <input id="po" type="number" value="10" style="width:64px;display:inline"> %</td><td class="r" id="v2"></td></tr>
+<tr><td>GST <select id="pg" style="width:80px;display:inline"><option>0</option><option>5</option><option>12</option><option selected>18</option><option>28</option></select> %</td><td class="r" id="v3"></td></tr>
+<tr><td><b>Grand total</b></td><td class="r big" id="v4"></td></tr></table></div><p id="w" class="mu" style="text-align:right;margin:4px 0 12px"></p>
+<div class="grid"><label>Advance on start %<input id="m0" type="number" value="30"></label><label>Mid‑stage %<input id="m1" type="number" value="40"></label><label>On completion %<input id="m2" type="number" value="30"></label></div><p id="mt" class="mu"></p>
+<label>Terms &amp; conditions<textarea data-m="tc" rows="3">Rates valid for the stated period. Extra work beyond this BOQ will be charged separately. Material price changes beyond 5% may revise this quote. Payment as per the schedule above.</textarea></label></div>
+<div class="bar np"><button class="pri" id="sv">💾 Save quote</button><button id="pr">🖨 Print / Save PDF</button><button id="tsv">Copy for Excel</button><button id="wa">Share on WhatsApp</button><button id="nw">New quote</button></div>
+<p class="pf">Prepared with BuildQuote India, a BITOMANCY product (bitomancy.in). Quantities and rates are indicative estimates, subject to site verification, and are not an engineering design. Taxes and terms are as stated by the issuing contractor.</p></section>
+
+<section id="qe" hidden><div class="card"><h3>Quick house estimate (₹ per sq ft)</h3><div class="grid"><label>Built-up area per floor (sq ft)<input id="qa" type="number" value="1200"></label><label>Floors<input id="qf" type="number" value="1"></label><label>Grade<select id="qg"><option value="1450">Economy</option><option value="1800" selected>Standard</option><option value="2400">Premium</option></select></label><label>Rate ₹/sq ft (editable)<input id="qr" type="number" value="1800"></label></div><div id="qo" style="margin:14px 0"></div><button class="pri" id="qadd">Add this split to BOQ</button><p class="mu" style="font-size:12px">Typical turnkey construction rates, scaled by your regional level. Use for a first ballpark before the detailed takeoff.</p></div></section>
+<section id="sv2" hidden><div class="card"><h3>Saved quotes (this device)</h3><div id="sl"></div><div style="margin-top:14px"><button id="bk">Copy backup of all quotes</button></div><textarea id="rs" rows="2" placeholder="Paste a backup here to restore on this or another device" style="margin:8px 0"></textarea><button id="rsb">Restore</button></div></section>
+</main>
+<footer><p><b>Disclaimer.</b> BuildQuote India is a free estimation aid provided “as is”. All quantities, rates, cost splits and thumb-rule formulas are indicative approximations, not live market prices, engineering designs or a certified bill of quantities. Measurements taken from drawings depend on image quality and the scale you set, and must be verified on site. Structural, load-bearing, reinforcement and mix-design decisions must be made by a licensed structural engineer or architect as per applicable IS codes and local regulations. GST, tax and contract terms are the user’s responsibility; confirm them with a CA or lawyer. The user is solely responsible for every quotation issued using this tool. BITOMANCY gives no warranty and is not liable for any loss, dispute or damage arising from its use. Drawings and quotes are processed and stored only in your browser and are not uploaded to any server. Clearing browser data deletes saved quotes, so keep backups. Not affiliated with any government body.</p>
+<p><b>BuildQuote India</b> is a <a href="https://bitomancy.in" target="_blank" rel="noopener">BITOMANCY</a> product · © 2026 BITOMANCY. All rights reserved.</p></footer>
+<div id="ack"><div><h3 style="margin:0 0 8px">Before you start</h3><p class="mu" style="margin:0">BuildQuote India is a BITOMANCY product. By continuing you agree that:</p><ul><li>All rates and quantities are <b>indicative estimates</b>, not market prices or engineering design.</li><li>Drawing measurements must be <b>verified on site</b>; structural decisions need a licensed engineer.</li><li>You are responsible for the quotations you issue, including GST and terms.</li><li>Your data stays in your browser; BITOMANCY is not liable for losses from use of this tool.</li></ul><button class="pri" id="ackb" style="width:100%">I understand and agree</button></div></div>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],fmt=n=>new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(+n||0),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'),cf=()=>+$('#city').value;
+function toast(m){const t=$('#toast');t.textContent=m;t.className='s';clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='',2200)}
+const W=[['Earthwork excavation','cum',0,350],['PCC 1:4:8','cum',4600,900],['RCC M20 (excl. steel)','cum',6200,1800],['Brickwork','cum',5000,1500],['Plaster 12 mm','sqft',14,14],['Vitrified tile flooring','sqft',75,25],['Putty + primer + 2 coat paint','sqft',14,10],['Waterproofing','sqft',35,15],['Steel reinforcement','kg',66,10],['Electrical point','nos',900,500],['Plumbing point','nos',1200,600],['Flush door with frame','nos',7000,1500],['Aluminium window','sqft',450,100],['Gypsum false ceiling','sqft',55,25],['Granite kitchen platform','rft',1800,400],['Boundary wall','rft',1800,700]];
+const M={cement:['Cement (50 kg bag)','bag',400],sand:['Sand','cum',1500],agg:['Aggregate 20 mm','cum',1400],brick:['Bricks (1st class)','nos',8],steel:['TMT steel','kg',66],tile:['Floor tiles','sqft',55],paint:['Paint','litre',380]};
+const R3=[[1,2,4],[1,1.5,3],[1,1,2]];
+const CA={brick:['Brickwork',[['Wall length (ft)',20],['Height (ft)',10],['Thickness (in)',9],['Openings (sq ft)',0]],a=>{const v=Math.max(0,a[0]*a[1]-a[3])*a[2]/12/35.3147;return[['brick',v*525],['cement',v*1.65],['sand',v*.34]]}],
+conc:['Concrete + steel',[['Length (ft)',20],['Width (ft)',15],['Depth (in)',5],['Mix',1,[['M15 (1:2:4)',0],['M20 (1:1.5:3)',1],['M25 (1:1:2)',2]]],['Steel (% of volume)',1]],a=>{const v=a[0]*a[1]*a[2]/12/35.3147,m=R3[a[3]],s=m[0]+m[1]+m[2],d=v*1.54;return[['cement',d*m[0]/s/.0347],['sand',d*m[1]/s],['agg',d*m[2]/s],['steel',v*a[4]/100*7850]]}],
+plas:['Plaster',[['Area (sq ft)',500],['Thickness (mm)',12],['Mix 1 : (sand)',4]],a=>{const d=a[0]*.0929*a[1]/1000*1.35;return[['cement',d/(1+a[2])/.0347],['sand',d*a[2]/(1+a[2])]]}],
+tile:['Tile flooring',[['Area (sq ft)',200],['Wastage %',8]],a=>[['tile',a[0]*(1+a[1]/100)],['cement',a[0]*.014],['sand',a[0]*.0019]]],
+bbs:['Slab steel (bar bending)',[['Length (ft)',15],['Width (ft)',12],['Main bar dia (mm)',10],['Main spacing (in)',5],['Distribution dia (mm)',8],['Distribution spacing (in)',6],['Layers',1,[['Single layer',1],['Top + bottom',2]]]],a=>{const L=a[0]*.3048,Wd=a[1]*.3048,n1=Math.floor(Wd/(a[3]*.0254))+1,n2=Math.floor(L/(a[5]*.0254))+1;return[['steel',((a[2]**2/162)*n1*L+(a[4]**2/162)*n2*Wd)*a[6]*1.05]]}],
+paint:['Painting',[['Area (sq ft)',1000],['Coats',2],['Coverage (sq ft / litre / coat)',120]],a=>[['paint',a[0]*a[1]/a[2]]]]};
+function W2(n){const a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'],t=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'],b=x=>x<20?a[x]:t[x/10|0]+(x%10?' '+a[x%10]:'');n=Math.round(n);if(!n)return'Zero';let o='';for(const[d,s]of[[1e7,'Crore'],[1e5,'Lakh'],[1e3,'Thousand'],[100,'Hundred']])if(n>=d){const q=Math.floor(n/d);o+=(d==1e7&&q>99?W2(q):b(q))+' '+s+' ';n%=d}return(o+(n?b(n):'')).trim()}
+
+/* tabs */
+function show(t){$$('main>section').forEach(s=>s.hidden=s.id!=(t=='sv'?'sv2':t));$$('nav button[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t==t));if(t=='sv')lst();scrollTo(0,0)}
+$$('nav button[data-t]').forEach(b=>b.onclick=()=>show(b.dataset.t));
+
+/* state */
+let S={m:{},boq:[],p:{c:3,o:10,g:18,a:30,b:40,e:30}},T=0;
+try{const d=JSON.parse(localStorage.getItem('bq_draft'));if(d&&d.boq)S=d}catch(e){}
+function persist(){try{localStorage.setItem('bq_draft',JSON.stringify(S))}catch(e){}}
+function restore(){$$('[data-m]').forEach(i=>{if(S.m[i.dataset.m]!=null)i.value=S.m[i.dataset.m]});[['pc','c'],['po','o'],['pg','g'],['m0','a'],['m1','b'],['m2','e']].forEach(([i,k])=>$('#'+i).value=S.p[k]);rb()}
+$$('[data-m]').forEach(i=>i.oninput=()=>{S.m[i.dataset.m]=i.value;persist()});
+[['pc','c'],['po','o'],['pg','g'],['m0','a'],['m1','b'],['m2','e']].forEach(([i,k])=>$('#'+i).oninput=()=>{S.p[k]=+$('#'+i).value||0;calc()});
+
+/* BOQ */
+$('#cat').innerHTML=W.map((w,i)=>`<option value="${i}">${w[0]} (₹/${w[1]})</option>`).join('');
+function addRow(d,q,u,r,l){S.boq.push({d,q:Math.round(q*100)/100,u,r,l});rb();toast('Added to BOQ ✓')}
+const addW=(i,q)=>{const w=W[i];addRow(w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))};
+$('#addc').onclick=()=>addW(+$('#cat').value,1);$('#addb').onclick=()=>{S.boq.push({d:'',q:1,u:'nos',r:0,l:0});rb()};
+function rb(){$('#tb').innerHTML=S.boq.map((x,i)=>`<tr>${[['d','',140],['q','number',70],['u','',60],['r','number',90],['l','number',90]].map(([k,t])=>`<td><input data-i="${i}" data-k="${k}" ${t?'type=number':''} value="${esc(x[k])}"></td>`).join('')}<td class="am" id="a${i}"></td><td><button data-del="${i}">×</button></td></tr>`).join('')||'<tr><td colspan="7" class="mu">No items yet. Add from the takeoff, calculators or catalog.</td></tr>';calc()}
+$('#tb').oninput=e=>{const i=e.target.dataset.i;if(i==null)return;S.boq[i][e.target.dataset.k]=e.target.value;calc()};
+$('#tb').onclick=e=>{const d=e.target.dataset.del;if(d!=null){S.boq.splice(d,1);rb()}};
+function calc(){let s=0;S.boq.forEach((x,i)=>{const a=(+x.q||0)*((+x.r||0)+(+x.l||0));s+=a;const e=$('#a'+i);if(e)e.textContent='₹'+fmt(a)});const p=S.p,c=s*p.c/100,o=(s+c)*p.o/100,b=s+c+o,g=b*p.g/100;T=b+g;[s,c,o,g,T].forEach((v,i)=>$('#v'+i).textContent='₹'+fmt(v));$('#w').textContent='Rupees '+W2(T)+' only';$('#nb').textContent=S.boq.length;$('#mt').textContent=`Payment: ₹${fmt(T*p.a/100)} advance · ₹${fmt(T*p.b/100)} mid‑stage · ₹${fmt(T*p.e/100)} on completion`+((p.a+p.b+p.e)==100?'':'  (⚠ percentages do not add to 100)');persist()}
+const lines=()=>S.boq.map((x,i)=>`${i+1}. ${x.d} — ${fmt(x.q)} ${x.u} × ₹${fmt((+x.r||0)+(+x.l||0))} = ₹${fmt((+x.q||0)*((+x.r||0)+(+x.l||0)))}`);
+function copy(t){try{navigator.clipboard.writeText(t).then(()=>toast('Copied ✓'),()=>fb(t))}catch(e){fb(t)}}
+function fb(t){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Copied ✓')}catch(e){toast('Copy not available')}a.remove()}
+$('#tsv').onclick=()=>copy('Description\tQty\tUnit\tMaterial\tLabour\tAmount\n'+S.boq.map(x=>[x.d,x.q,x.u,x.r,x.l,(+x.q||0)*((+x.r||0)+(+x.l||0))].join('\t')).join('\n'));
+$('#wa').onclick=()=>{const m=S.m,t=`*Quotation – ${m.pn||'Project'}*\n${m.cn||''} ${m.cp||''}\nClient: ${m.cl||'-'}\n\n${lines().join('\n')}\n\n*Total incl. GST: ₹${fmt(T)}*\n(${W2(T)} rupees only)`;const a=document.createElement('a');a.href='https://wa.me/?text='+encodeURIComponent(t);a.target='_blank';a.rel='noopener';a.click()};
+$('#pr').onclick=()=>{show('bq');print()};
+$('#nw').onclick=()=>{if(S.boq.length&&!confirm('Clear the current quote?'))return;S={m:{},boq:[],p:{c:3,o:10,g:18,a:30,b:40,e:30}};$$('[data-m]').forEach(i=>i.value=i.dataset.m=='vd'?15:i.dataset.m=='tc'?i.value:'');restore()};
+$('#sv').onclick=()=>{let l=[];try{l=JSON.parse(localStorage.getItem('bq_saved'))||[]}catch(e){}l.unshift({id:Date.now(),n:S.m.pn||'Untitled',cl:S.m.cl||'',d:new Date().toLocaleDateString('en-IN'),t:T,S});try{localStorage.setItem('bq_saved',JSON.stringify(l));toast('Saved on this device ✓')}catch(e){toast('Could not save (storage blocked)')}};
+function lst(){let l=[];try{l=JSON.parse(localStorage.getItem('bq_saved'))||[]}catch(e){}$('#sl').innerHTML=l.map(q=>`<div class="mr"><div style="flex:1 1 200px"><b>${esc(q.n)}</b><br><span class="mu">${esc(q.cl||'No client')} · ${q.d}</span></div><b>₹${fmt(q.t)}</b><button data-o="${q.id}">Open</button><button data-x="${q.id}">Delete</button></div>`).join('')||'<p class="mu">No saved quotes yet.</p>';$('#sl').onclick=e=>{const o=e.target.dataset.o,x=e.target.dataset.x;if(o){S=l.find(q=>q.id==o).S;restore();show('bq')}if(x){try{localStorage.setItem('bq_saved',JSON.stringify(l.filter(q=>q.id!=x)))}catch(e){}lst()}}}
+
+/* calculators */
+let cur='brick';
+$('#ct').innerHTML=Object.keys(CA).map(k=>`<button data-c="${k}">${CA[k][0]}</button>`).join('');
+$('#ct').onclick=e=>{if(e.target.dataset.c){cur=e.target.dataset.c;cf2()}};
+function cf2(){$$('#ct button').forEach(b=>b.classList.toggle('on',b.dataset.c==cur));$('#cf').innerHTML=CA[cur][1].map((f,i)=>`<label>${f[0]}${f[2]?`<select data-f="${i}">${f[2].map(o=>`<option value="${o[1]}" ${o[1]==f[1]?'selected':''}>${o[0]}</option>`).join('')}</select>`:`<input data-f="${i}" type="number" value="${f[1]}">`}</label>`).join('');cr()}
+function cvals(){return $$('#cf [data-f]').map(i=>+i.value||0)}
+function cr(){const l=CA[cur][2](cvals());$('#cr').innerHTML='<tr><th>Material</th><th class="r">Quantity</th><th class="r">Est. cost</th></tr>'+l.map(([k,q])=>`<tr><td>${M[k][0]}</td><td class="r">${fmt(q)} ${M[k][1]}</td><td class="r">₹${fmt(q*M[k][2]*cf())}</td></tr>`).join('')}
+$('#cf').oninput=cr;$('#city').onchange=cr;
+$('#cadd').onclick=()=>CA[cur][2](cvals()).forEach(([k,q])=>addRow(M[k][0]+' – '+CA[cur][0],['bag','nos'].includes(M[k][1])?Math.ceil(q):q,M[k][1],Math.round(M[k][2]*cf()),0));
+
+/* drawing takeoff */
+const cv=$('#cv'),cx=cv.getContext('2d'),HT={cal:'Click two ends of a dimension printed on the drawing, then enter its real length.',len:'Click along a wall or run. Press Finish (or Enter / double‑click) to save the length.',area:'Click the corners of a room or slab. Finish to close the shape and save the area.',cnt:'Click each item (door, point, column). Finish to save the count.',rect:'Click two opposite corners of a rectangular room. Tick Deduct to subtract doors/windows/openings.'},COL={len:'#2563eb',area:'#ea580c',cnt:'#dc2626'};
+let img=null,sc=0,tool='cal',pts=[],sh=[];
+const hint=()=>$('#hint').textContent=(sc?'✓ Scale set. ':'⚠ Set scale first. ')+HT[tool];hint();
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{img=i;const k=Math.min(1,2200/i.naturalWidth);cv.width=i.naturalWidth*k;cv.height=i.naturalHeight*k;sc=0;sh=[];pts=[];tool='cal';tl();draw();list();hint()};i.src=r.result};r.readAsDataURL(f)};
+function tl(){$$('#tools button').forEach(b=>b.classList.toggle('on',b.dataset.k==tool))}
+$('#tools').onclick=e=>{if(e.target.dataset.k){fin(true);tool=e.target.dataset.k;pts=[];tl();hint();draw()}};
+$('#zm').oninput=e=>cv.style.width=e.target.value+'%';
+const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]),pl=(p,c)=>p.reduce((s,q,i)=>s+(i?dist(p[i-1],q):0),0)+(c?dist(p[p.length-1],p[0]):0),ar=p=>p.reduce((s,q,i)=>{const n=p[(i+1)%p.length];return s+q[0]*n[1]-n[0]*q[1]},0)/2;
+cv.onclick=e=>{if(!img)return toast('Upload a drawing first');const r=cv.getBoundingClientRect(),p=[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height];
+if(tool!='cal'&&!sc)return toast('Set the scale first (tool 1)');if($('#ort').checked&&pts.length&&tool!='cnt'&&tool!='rect'){const q=pts[pts.length-1];Math.abs(p[0]-q[0])>Math.abs(p[1]-q[1])?p[1]=q[1]:p[0]=q[0]}pts.push(p);if(tool=='rect'&&pts.length==2){const[a,b]=pts;pts=[a,[b[0],a[1]],b,[a[0],b[1]]];tool='area';fin();tool='rect';return}
+if(tool=='cal'&&pts.length==2){const v=parseFloat(prompt('Real length of the line you drew? (number, in the unit selected)'));if(v>0){sc=dist(pts[0],pts[1])/(v*{ft:1,m:3.28084,in:1/12}[$('#cu').value]);toast('Scale set ✓');tool='len';tl();hint()}pts=[]}draw()};
+cv.ondblclick=()=>{pts.pop();fin()};addEventListener('keydown',e=>{if(e.key=='Enter'&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))fin();if(e.key=='Escape'){pts=[];draw()}});
+function fin(q){const n={cnt:1,len:2,area:3}[tool];if(!n||pts.length<n){if(!q)toast('Not enough points');pts=[];draw();return}
+let v=tool=='cnt'?pts.length:tool=='len'?pl(pts)/sc:Math.abs(ar(pts))/sc/sc;if(tool=='area'&&$('#ded').checked)v=-v;sh.push({t:tool,p:pts,v,n:'',i:{len:3,area:5,cnt:9}[tool]});pts=[];draw();list()}
+$('#fin').onclick=()=>fin();$('#und').onclick=()=>{pts.length?pts.pop():sh.pop();draw();list()};$('#clr').onclick=()=>{if(confirm('Remove all measurements?')){sh=[];pts=[];draw();list()}};
+function dot(p,c){cx.fillStyle=c;cx.beginPath();cx.arc(p[0],p[1],Math.max(4,cv.width/220),0,7);cx.fill()}
+function path(p,c,col,fill){cx.strokeStyle=col;cx.lineWidth=Math.max(2,cv.width/450);cx.beginPath();p.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1]));if(c)cx.closePath();if(fill){cx.fillStyle=col+'44';cx.fill()}cx.stroke();p.forEach(q=>dot(q,col))}
+function draw(){cx.clearRect(0,0,cv.width,cv.height);if(img)cx.drawImage(img,0,0,cv.width,cv.height);else{cx.fillStyle='#8a9399';cx.font='22px system-ui';cx.textAlign='center';cx.fillText('Upload a floor plan or drawing image to start measuring',cv.width/2,cv.height/2)}
+sh.forEach((s,k)=>{if(s.t=='cnt')s.p.forEach(q=>dot(q,COL.cnt));else path(s.p,s.t=='area',s.v<0?'#7c3aed':COL[s.t],s.t=='area');const q=s.p[0],t=(s.n||'#'+(k+1))+': '+fmt(s.v);cx.font='bold '+Math.max(13,cv.width/70)+'px system-ui';cx.textAlign='left';const w=cx.measureText(t).width;cx.fillStyle='#000c';cx.fillRect(q[0]+6,q[1]-22,w+8,20);cx.fillStyle='#fff';cx.fillText(t,q[0]+10,q[1]-7)});
+if(pts.length)path(pts,false,tool=='cal'?'#16a34a':COL[tool],false)}
+const UN={len:'rft',area:'sq ft',cnt:'nos'};
+function list(){const sm=k=>fmt(sh.filter(s=>s.t==k).reduce((a,s)=>a+s.v,0));$('#ms').innerHTML=(sh.length?`<p class="mu">Totals: ${sm('len')} rft · ${sm('area')} sq ft net · ${sm('cnt')} nos</p>`:'')+sh.map((s,i)=>`<div class="mr"><span class="dot" style="background:${COL[s.t]}"></span><input data-n="${i}" placeholder="Label e.g. Bedroom 1" value="${esc(s.n)}"><b>${fmt(s.v)} ${UN[s.t]}</b><select data-s="${i}">${W.map((w,j)=>`<option value="${j}" ${j==s.i?'selected':''}>${w[0]} (${w[1]})</option>`).join('')}</select><button class="pri" data-a="${i}">+ BOQ</button><button data-r="${i}">×</button></div>`).join('')||'<p class="mu">No measurements yet. Upload a plan, set the scale, then trace walls, rooms or count fixtures.</p>';draw()}
+function qf(s,u){const H=+$('#wh').value||10,T=(+$('#wt').value||9)/12,D=(+$('#dp').value||5)/12,c=35.3147;
+if(s.t=='cnt')return u=='nos'?s.v:0;if(s.t=='len')return u=='rft'?s.v:u=='sqft'?s.v*H:u=='cum'?s.v*H*T/c:0;return u=='sqft'?s.v:u=='cum'?s.v*D/c:0}
+$('#ms').oninput=e=>{if(e.target.dataset.n!=null){sh[e.target.dataset.n].n=e.target.value;draw()}if(e.target.dataset.s!=null)sh[e.target.dataset.s].i=+e.target.value};
+$('#ms').onclick=e=>{const d=e.target.dataset;if(d.r!=null){sh.splice(d.r,1);list()}if(d.a!=null){const s=sh[d.a],w=W[s.i],q=qf(s,w[1]);if(!q)return toast('This item does not fit that measurement type');addRow((s.n?s.n+' – ':'')+w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))}};
+const SP=[['Excavation & foundation',12],['RCC structure (slabs, beams, columns)',35],['Masonry & plaster',15],['Flooring & tiling',10],['Doors & windows',8],['Electrical',6],['Plumbing & sanitary',7],['Painting',5],['Finishing & misc',2]];
+const qv=()=>{const A=(+$('#qa').value||0)*(+$('#qf').value||1);return[A,A*(+$('#qr').value||0)]};
+function qe(){const[A,t]=qv();$('#qo').innerHTML=`<p><span class="big">₹${fmt(t)}</span><br><span class="mu">${W2(t)} rupees · ${fmt(A)} sq ft total</span></p>`+SP.map(s=>`<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;gap:8px"><span>${s[0]} <span class="mu">${s[1]}%</span></span><b>₹${fmt(t*s[1]/100)}</b></div><div style="height:6px;border-radius:3px;background:var(--ln)"><div style="height:6px;border-radius:3px;background:var(--ac);width:${s[1]*2.5}%"></div></div></div>`).join('')}
+$('#qe').addEventListener('input',e=>{if(e.target.id=='qg')$('#qr').value=Math.round($('#qg').value*cf());qe()});
+$('#city').addEventListener('change',()=>{$('#qr').value=Math.round($('#qg').value*cf());qe()});
+$('#qadd').onclick=()=>{const[,t]=qv();SP.forEach(s=>{const a=t*s[1]/100;addRow(s[0]+' (lump sum)',1,'lot',Math.round(a*.65),Math.round(a*.35))})};
+$('#bk').onclick=()=>copy(localStorage.getItem('bq_saved')||'[]');
+$('#rsb').onclick=()=>{try{const n=JSON.parse($('#rs').value);if(!Array.isArray(n))throw 0;const l=JSON.parse(localStorage.getItem('bq_saved')||'[]');n.forEach(q=>{if(!l.some(x=>x.id==q.id))l.push(q)});localStorage.setItem('bq_saved',JSON.stringify(l));$('#rs').value='';lst();toast('Restored ✓')}catch(e){toast('Invalid backup text')}};
+$('#qr').value=Math.round($('#qg').value*cf());qe();
+try{if(!localStorage.getItem('bq_ack'))$('#ack').style.display='flex'}catch(e){$('#ack').style.display='flex'}
+$('#ackb').onclick=()=>{try{localStorage.setItem('bq_ack','1')}catch(e){}$('#ack').style.display='none'};
+restore();cf2();draw();
+</script></body></html>
