@@ -1,0 +1,244 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BuildQuote India by BITOMANCY – Free Contractor Estimator, Drawing Takeoff, Auto Floor Plan & Vastu</title>
+<meta name="description" content="BuildQuote India, a BITOMANCY product: free construction estimator, drawing takeoff, BOQ and quotation maker for Indian contractors, with an automatic floor plan generator and Vastu check.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%97%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f4ef;--cd:#fff;--ink:#1d2328;--mu:#6b7479;--ac:#c2410c;--ot:#fff;--ln:#e3dfd6;--sf:#faf8f3;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171a;--cd:#1e2327;--ink:#ece9e2;--mu:#98a1a6;--ac:#fb923c;--ot:#1a1005;--ln:#2d343a;--sf:#181c1f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171a;--cd:#1e2327;--ink:#ece9e2;--mu:#98a1a6;--ac:#fb923c;--ot:#1a1005;--ln:#2d343a;--sf:#181c1f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;padding:14px 16px}
+.br{display:flex;gap:10px;align-items:center}.br b{font-size:19px;display:block;line-height:1.2}.br small,.mu{color:var(--mu)}
+.lg{background:var(--ac);color:var(--ot);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:20px}
+.pill{font-size:12px;color:var(--mu);border:1px solid var(--ln);border-radius:99px;padding:3px 10px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);display:flex;gap:6px;align-items:center;overflow-x:auto;padding:8px 16px;border-bottom:1px solid var(--ln)}
+nav button,nav select{white-space:nowrap;flex:none}nav select{width:auto}nav i{font-style:normal;background:var(--ac);color:var(--ot);border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:16px;margin-bottom:14px}.card h3{margin:0 0 10px;font-size:15px}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--ln);background:var(--cd);color:var(--ink);border-radius:8px;padding:8px 12px}
+.on,.pri{background:var(--ac);border-color:var(--ac);color:var(--ot);font-weight:600}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:7px 9px;width:100%}
+label{display:grid;gap:4px;font-size:12px;color:var(--mu);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}.bar select,.bar input[type=range]{width:auto}
+.cvw{overflow:auto;max-height:68vh;border:1px solid var(--ln);border-radius:8px;background:var(--sf)}
+canvas{display:block;width:100%;cursor:crosshair;touch-action:manipulation}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}th{text-align:left;font-size:11px;color:var(--mu);text-transform:uppercase;padding:4px}td{padding:3px}td input{padding:5px 6px;min-width:60px}
+.am,.r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.big{font-size:24px;font-weight:800;color:var(--ac)}
+.mr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--ln)}.mr input{flex:1 1 110px}.mr select{flex:2 1 190px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:99px;z-index:20;opacity:0;transition:.25s;pointer-events:none}
+#toast.s{opacity:1}
+footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color:var(--mu)}footer a{color:var(--ac)}.pf{display:none;font-size:11px;margin-top:10px}
+#ack{position:fixed;inset:0;background:#000a;z-index:30;display:none;align-items:center;justify-content:center;padding:16px}#ack div{background:var(--cd);color:var(--ink);border-radius:14px;padding:20px;max-width:480px;max-height:90vh;overflow:auto}#ack li{margin:6px 0}
+@media print{.pf{display:block!important}footer,#ack{display:none!important}}
+@media print{.np,nav,header .pill{display:none!important}body::before{display:none}main>section{display:none!important}main>#bq{display:block!important}input,textarea,select{border:0;background:none;padding:0;appearance:none}.card{border:0;padding:0}td button{display:none}}
+</style></head><body>
+<header class="np"><div class="br"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><span class="pill">100% free · no login · data stays on your device</span></header>
+<nav><button data-t="tk" class="on">1 Drawing takeoff</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="ca">2 Material calculators</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
+<main>
+<section id="tk">
+<div class="card"><div class="bar"><label class="btn on" style="display:inline-block;color:var(--ot)">📐 Upload drawing (JPG / PNG)<input type="file" id="file" accept="image/*" hidden></label>
+<span id="tools"><button data-k="cal" class="on">1 Set scale</button> <button data-k="len">Length</button> <button data-k="area">Area</button> <button data-k="cnt">Count</button> <button data-k="rect">Rectangle</button></span>
+<select id="cu" title="Unit of the known length"><option value="ft">ft</option><option value="m">m</option><option value="in">in</option></select>
+<button id="fin">Finish ⏎</button><button id="und">Undo</button><button id="clr">Clear all</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="ded" style="width:auto">Deduct (openings)</label><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="ort" style="width:auto">Ortho</label><label style="display:flex;gap:6px;align-items:center">Zoom<input type="range" id="zm" min="40" max="300" value="100"></label></div>
+<p id="hint" class="mu" style="margin:0 0 10px"></p><div class="cvw"><canvas id="cv" width="900" height="480"></canvas></div>
+<p class="mu" style="font-size:12px;margin:8px 0 0">PDF drawing? Export or screenshot a page as an image first. Measurements are only as accurate as your scale line, so always verify on site.</p></div>
+<div class="card"><h3>Measurements → BOQ</h3><div class="grid" style="margin-bottom:8px"><label>Wall height (ft)<input id="wh" type="number" value="10"></label><label>Wall thickness (in)<input id="wt" type="number" value="9"></label><label>Slab / PCC depth (in)<input id="dp" type="number" value="5"></label></div><div id="ms"><p class="mu">No measurements yet. Upload a plan, set the scale, then trace walls, rooms or count fixtures.</p></div></div></section>
+
+<section id="ap" hidden>
+<div class="card"><h3>Auto floor plan + Vastu (enter your plot size)</h3><div class="grid">
+<label>Plot length (depth)<input id="pl" type="number" value="40"></label><label>Plot width (road frontage)<input id="pw" type="number" value="30"></label><label>Unit<select id="pu"><option value="1">Feet</option><option value="3.28084">Metres</option></select></label>
+<label>Floors<select id="pf"><option value="1">Ground only</option><option value="2" selected>G + 1</option><option value="3">G + 2</option><option value="4">G + 3</option></select></label>
+<label>Bedrooms<select id="pb"><option value="2" selected>2 BHK</option><option value="3">3 BHK</option></select></label>
+<label>Road / entrance side<select id="pd"><option value="N">North</option><option value="E" selected>East</option><option value="S">South</option><option value="W">West</option></select></label>
+<label>Front setback (ft)<input id="sf" type="number" value="5"></label><label>Rear setback (ft)<input id="sr" type="number" value="4"></label><label>Side setback (ft)<input id="ss" type="number" value="3"></label></div>
+<div class="bar" style="margin:12px 0 0"><button class="pri" id="apg">⚙ Generate plan</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="apv" style="width:auto">Show Vastu grid</label></div>
+<p class="mu" style="font-size:12px;margin:8px 0 0">North is assumed at the top of the plan; confirm true north with a compass on site. Setbacks are indicative, so follow your local municipal rules. This is a concept layout for discussion, not a sanctioned drawing.</p></div>
+<div class="card" id="apo" hidden><div class="bar" id="aft"></div><div class="cvw"><canvas id="cp" width="900" height="600" style="cursor:default"></canvas></div><div id="aps" style="margin-top:10px"></div><div class="tw"><table id="apt"></table></div>
+<div class="bar" style="margin-top:10px"><button id="apn">⬇ Download plan (PNG)</button><button id="apq">→ Quick estimate</button><button id="apb">+ Add floor / slab / paint areas to BOQ</button></div></div>
+<div class="card"><h3>Vastu check</h3><p class="mu" style="margin:0 0 10px">Auto-filled from the generated plan. You can also set the zone of each item in your own house or drawing to check it.</p><div class="grid" id="vf"></div><div id="vo" style="margin-top:12px"></div></div></section>
+
+<section id="ca" hidden><div class="card"><div class="bar" id="ct"></div><div class="grid" id="cf"></div><div class="tw"><table id="cr" style="margin:12px 0"></table></div><button class="pri" id="cadd">Add these materials to BOQ</button><p class="mu" style="font-size:12px">Thumb‑rule quantities (cement 50 kg bag = 0.0347 cum, 5% brick wastage). Indicative only.</p></div></section>
+
+<section id="bq" hidden>
+<div class="card"><h3>Quotation details</h3><div class="grid"><label>Contractor / firm<input data-m="cn"></label><label>Phone<input data-m="cp" inputmode="tel"></label><label>GSTIN (optional)<input data-m="cg"></label><label>Project<input data-m="pn"></label><label>Client<input data-m="cl"></label><label>Site address<input data-m="st"></label><label>Valid for (days)<input data-m="vd" type="number" value="15"></label></div></div>
+<div class="card"><div class="bar np"><select id="cat" style="flex:1 1 220px"></select><button id="addc">+ Add catalog item</button><button id="addb">+ Blank row</button></div>
+<div class="tw"><table><thead><tr><th>Description</th><th>Qty</th><th>Unit</th><th>Material ₹</th><th>Labour ₹</th><th class="r">Amount</th><th class="np"></th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="mu np" style="font-size:12px">All rates are editable and indicative (adjusted by your regional level). Replace them with your local supplier quotes.</p></div>
+<div class="card"><div class="tw"><table style="max-width:460px;margin-left:auto"><tr><td>Subtotal</td><td class="r" id="v0"></td></tr>
+<tr><td>Contingency <input id="pc" type="number" value="3" style="width:64px;display:inline"> %</td><td class="r" id="v1"></td></tr>
+<tr><td>Overhead &amp; profit <input id="po" type="number" value="10" style="width:64px;display:inline"> %</td><td class="r" id="v2"></td></tr>
+<tr><td>GST <select id="pg" style="width:80px;display:inline"><option>0</option><option>5</option><option>12</option><option selected>18</option><option>28</option></select> %</td><td class="r" id="v3"></td></tr>
+<tr><td><b>Grand total</b></td><td class="r big" id="v4"></td></tr></table></div><p id="w" class="mu" style="text-align:right;margin:4px 0 12px"></p>
+<div class="grid"><label>Advance on start %<input id="m0" type="number" value="30"></label><label>Mid‑stage %<input id="m1" type="number" value="40"></label><label>On completion %<input id="m2" type="number" value="30"></label></div><p id="mt" class="mu"></p>
+<label>Terms &amp; conditions<textarea data-m="tc" rows="3">Rates valid for the stated period. Extra work beyond this BOQ will be charged separately. Material price changes beyond 5% may revise this quote. Payment as per the schedule above.</textarea></label></div>
+<div class="bar np"><button class="pri" id="sv">💾 Save quote</button><button id="pr">🖨 Print / Save PDF</button><button id="tsv">Copy for Excel</button><button id="wa">Share on WhatsApp</button><button id="nw">New quote</button></div>
+<p class="pf">Prepared with BuildQuote India, a BITOMANCY product (bitomancy.in). Quantities and rates are indicative estimates, subject to site verification, and are not an engineering design. Taxes and terms are as stated by the issuing contractor.</p></section>
+
+<section id="qe" hidden><div class="card"><h3>Quick house estimate (₹ per sq ft)</h3><div class="grid"><label>Built-up area per floor (sq ft)<input id="qa" type="number" value="1200"></label><label>Floors<input id="qf" type="number" value="1"></label><label>Grade<select id="qg"><option value="1450">Economy</option><option value="1800" selected>Standard</option><option value="2400">Premium</option></select></label><label>Rate ₹/sq ft (editable)<input id="qr" type="number" value="1800"></label></div><div id="qo" style="margin:14px 0"></div><button class="pri" id="qadd">Add this split to BOQ</button><p class="mu" style="font-size:12px">Typical turnkey construction rates, scaled by your regional level. Use for a first ballpark before the detailed takeoff.</p></div></section>
+<section id="sv2" hidden><div class="card"><h3>Saved quotes (this device)</h3><div id="sl"></div><div style="margin-top:14px"><button id="bk">Copy backup of all quotes</button></div><textarea id="rs" rows="2" placeholder="Paste a backup here to restore on this or another device" style="margin:8px 0"></textarea><button id="rsb">Restore</button></div></section>
+</main>
+<footer><p><b>Disclaimer.</b> BuildQuote India is a free estimation aid provided “as is”. All quantities, rates, cost splits and thumb-rule formulas are indicative approximations, not live market prices, engineering designs or a certified bill of quantities. Measurements taken from drawings depend on image quality and the scale you set, and must be verified on site. Structural, load-bearing, reinforcement and mix-design decisions must be made by a licensed structural engineer or architect as per applicable IS codes and local regulations. GST, tax and contract terms are the user’s responsibility; confirm them with a CA or lawyer. The user is solely responsible for every quotation issued using this tool. BITOMANCY gives no warranty and is not liable for any loss, dispute or damage arising from its use. Drawings and quotes are processed and stored only in your browser and are not uploaded to any server. Clearing browser data deletes saved quotes, so keep backups. Auto-generated floor plans and Vastu checks are concept-level suggestions based on commonly quoted Vastu Shastra guidelines; practitioners differ, and any plan must be verified and sanctioned by a licensed architect or engineer before construction. Not affiliated with any government body.</p>
+<p><b>BuildQuote India</b> is a <a href="https://bitomancy.in" target="_blank" rel="noopener">BITOMANCY</a> product · © 2026 BITOMANCY. All rights reserved.</p></footer>
+<div id="ack"><div><h3 style="margin:0 0 8px">Before you start</h3><p class="mu" style="margin:0">BuildQuote India is a BITOMANCY product. By continuing you agree that:</p><ul><li>All rates and quantities are <b>indicative estimates</b>, not market prices or engineering design.</li><li>Drawing measurements must be <b>verified on site</b>; structural decisions need a licensed engineer.</li><li>You are responsible for the quotations you issue, including GST and terms.</li><li>Your data stays in your browser; BITOMANCY is not liable for losses from use of this tool.</li></ul><button class="pri" id="ackb" style="width:100%">I understand and agree</button></div></div>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],fmt=n=>new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(+n||0),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'),cf=()=>+$('#city').value;
+function toast(m){const t=$('#toast');t.textContent=m;t.className='s';clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='',2200)}
+const W=[['Earthwork excavation','cum',0,350],['PCC 1:4:8','cum',4600,900],['RCC M20 (excl. steel)','cum',6200,1800],['Brickwork','cum',5000,1500],['Plaster 12 mm','sqft',14,14],['Vitrified tile flooring','sqft',75,25],['Putty + primer + 2 coat paint','sqft',14,10],['Waterproofing','sqft',35,15],['Steel reinforcement','kg',66,10],['Electrical point','nos',900,500],['Plumbing point','nos',1200,600],['Flush door with frame','nos',7000,1500],['Aluminium window','sqft',450,100],['Gypsum false ceiling','sqft',55,25],['Granite kitchen platform','rft',1800,400],['Boundary wall','rft',1800,700]];
+const M={cement:['Cement (50 kg bag)','bag',400],sand:['Sand','cum',1500],agg:['Aggregate 20 mm','cum',1400],brick:['Bricks (1st class)','nos',8],steel:['TMT steel','kg',66],tile:['Floor tiles','sqft',55],paint:['Paint','litre',380]};
+const R3=[[1,2,4],[1,1.5,3],[1,1,2]];
+const CA={brick:['Brickwork',[['Wall length (ft)',20],['Height (ft)',10],['Thickness (in)',9],['Openings (sq ft)',0]],a=>{const v=Math.max(0,a[0]*a[1]-a[3])*a[2]/12/35.3147;return[['brick',v*525],['cement',v*1.65],['sand',v*.34]]}],
+conc:['Concrete + steel',[['Length (ft)',20],['Width (ft)',15],['Depth (in)',5],['Mix',1,[['M15 (1:2:4)',0],['M20 (1:1.5:3)',1],['M25 (1:1:2)',2]]],['Steel (% of volume)',1]],a=>{const v=a[0]*a[1]*a[2]/12/35.3147,m=R3[a[3]],s=m[0]+m[1]+m[2],d=v*1.54;return[['cement',d*m[0]/s/.0347],['sand',d*m[1]/s],['agg',d*m[2]/s],['steel',v*a[4]/100*7850]]}],
+plas:['Plaster',[['Area (sq ft)',500],['Thickness (mm)',12],['Mix 1 : (sand)',4]],a=>{const d=a[0]*.0929*a[1]/1000*1.35;return[['cement',d/(1+a[2])/.0347],['sand',d*a[2]/(1+a[2])]]}],
+tile:['Tile flooring',[['Area (sq ft)',200],['Wastage %',8]],a=>[['tile',a[0]*(1+a[1]/100)],['cement',a[0]*.014],['sand',a[0]*.0019]]],
+bbs:['Slab steel (bar bending)',[['Length (ft)',15],['Width (ft)',12],['Main bar dia (mm)',10],['Main spacing (in)',5],['Distribution dia (mm)',8],['Distribution spacing (in)',6],['Layers',1,[['Single layer',1],['Top + bottom',2]]]],a=>{const L=a[0]*.3048,Wd=a[1]*.3048,n1=Math.floor(Wd/(a[3]*.0254))+1,n2=Math.floor(L/(a[5]*.0254))+1;return[['steel',((a[2]**2/162)*n1*L+(a[4]**2/162)*n2*Wd)*a[6]*1.05]]}],
+paint:['Painting',[['Area (sq ft)',1000],['Coats',2],['Coverage (sq ft / litre / coat)',120]],a=>[['paint',a[0]*a[1]/a[2]]]]};
+function W2(n){const a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'],t=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'],b=x=>x<20?a[x]:t[x/10|0]+(x%10?' '+a[x%10]:'');n=Math.round(n);if(!n)return'Zero';let o='';for(const[d,s]of[[1e7,'Crore'],[1e5,'Lakh'],[1e3,'Thousand'],[100,'Hundred']])if(n>=d){const q=Math.floor(n/d);o+=(d==1e7&&q>99?W2(q):b(q))+' '+s+' ';n%=d}return(o+(n?b(n):'')).trim()}
+
+/* tabs */
+function show(t){$$('main>section').forEach(s=>s.hidden=s.id!=(t=='sv'?'sv2':t));$$('nav button[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t==t));if(t=='sv')lst();scrollTo(0,0)}
+$$('nav button[data-t]').forEach(b=>b.onclick=()=>show(b.dataset.t));
+
+/* state */
+let S={m:{},boq:[],p:{c:3,o:10,g:18,a:30,b:40,e:30}},T=0;
+try{const d=JSON.parse(localStorage.getItem('bq_draft'));if(d&&d.boq)S=d}catch(e){}
+function persist(){try{localStorage.setItem('bq_draft',JSON.stringify(S))}catch(e){}}
+function restore(){$$('[data-m]').forEach(i=>{if(S.m[i.dataset.m]!=null)i.value=S.m[i.dataset.m]});[['pc','c'],['po','o'],['pg','g'],['m0','a'],['m1','b'],['m2','e']].forEach(([i,k])=>$('#'+i).value=S.p[k]);rb()}
+$$('[data-m]').forEach(i=>i.oninput=()=>{S.m[i.dataset.m]=i.value;persist()});
+[['pc','c'],['po','o'],['pg','g'],['m0','a'],['m1','b'],['m2','e']].forEach(([i,k])=>$('#'+i).oninput=()=>{S.p[k]=+$('#'+i).value||0;calc()});
+
+/* BOQ */
+$('#cat').innerHTML=W.map((w,i)=>`<option value="${i}">${w[0]} (₹/${w[1]})</option>`).join('');
+function addRow(d,q,u,r,l){S.boq.push({d,q:Math.round(q*100)/100,u,r,l});rb();toast('Added to BOQ ✓')}
+const addW=(i,q)=>{const w=W[i];addRow(w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))};
+$('#addc').onclick=()=>addW(+$('#cat').value,1);$('#addb').onclick=()=>{S.boq.push({d:'',q:1,u:'nos',r:0,l:0});rb()};
+function rb(){$('#tb').innerHTML=S.boq.map((x,i)=>`<tr>${[['d','',140],['q','number',70],['u','',60],['r','number',90],['l','number',90]].map(([k,t])=>`<td><input data-i="${i}" data-k="${k}" ${t?'type=number':''} value="${esc(x[k])}"></td>`).join('')}<td class="am" id="a${i}"></td><td><button data-del="${i}">×</button></td></tr>`).join('')||'<tr><td colspan="7" class="mu">No items yet. Add from the takeoff, calculators or catalog.</td></tr>';calc()}
+$('#tb').oninput=e=>{const i=e.target.dataset.i;if(i==null)return;S.boq[i][e.target.dataset.k]=e.target.value;calc()};
+$('#tb').onclick=e=>{const d=e.target.dataset.del;if(d!=null){S.boq.splice(d,1);rb()}};
+function calc(){let s=0;S.boq.forEach((x,i)=>{const a=(+x.q||0)*((+x.r||0)+(+x.l||0));s+=a;const e=$('#a'+i);if(e)e.textContent='₹'+fmt(a)});const p=S.p,c=s*p.c/100,o=(s+c)*p.o/100,b=s+c+o,g=b*p.g/100;T=b+g;[s,c,o,g,T].forEach((v,i)=>$('#v'+i).textContent='₹'+fmt(v));$('#w').textContent='Rupees '+W2(T)+' only';$('#nb').textContent=S.boq.length;$('#mt').textContent=`Payment: ₹${fmt(T*p.a/100)} advance · ₹${fmt(T*p.b/100)} mid‑stage · ₹${fmt(T*p.e/100)} on completion`+((p.a+p.b+p.e)==100?'':'  (⚠ percentages do not add to 100)');persist()}
+const lines=()=>S.boq.map((x,i)=>`${i+1}. ${x.d} — ${fmt(x.q)} ${x.u} × ₹${fmt((+x.r||0)+(+x.l||0))} = ₹${fmt((+x.q||0)*((+x.r||0)+(+x.l||0)))}`);
+function copy(t){try{navigator.clipboard.writeText(t).then(()=>toast('Copied ✓'),()=>fb(t))}catch(e){fb(t)}}
+function fb(t){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Copied ✓')}catch(e){toast('Copy not available')}a.remove()}
+$('#tsv').onclick=()=>copy('Description\tQty\tUnit\tMaterial\tLabour\tAmount\n'+S.boq.map(x=>[x.d,x.q,x.u,x.r,x.l,(+x.q||0)*((+x.r||0)+(+x.l||0))].join('\t')).join('\n'));
+$('#wa').onclick=()=>{const m=S.m,t=`*Quotation – ${m.pn||'Project'}*\n${m.cn||''} ${m.cp||''}\nClient: ${m.cl||'-'}\n\n${lines().join('\n')}\n\n*Total incl. GST: ₹${fmt(T)}*\n(${W2(T)} rupees only)`;const a=document.createElement('a');a.href='https://wa.me/?text='+encodeURIComponent(t);a.target='_blank';a.rel='noopener';a.click()};
+$('#pr').onclick=()=>{show('bq');print()};
+$('#nw').onclick=()=>{if(S.boq.length&&!confirm('Clear the current quote?'))return;S={m:{},boq:[],p:{c:3,o:10,g:18,a:30,b:40,e:30}};$$('[data-m]').forEach(i=>i.value=i.dataset.m=='vd'?15:i.dataset.m=='tc'?i.value:'');restore()};
+$('#sv').onclick=()=>{let l=[];try{l=JSON.parse(localStorage.getItem('bq_saved'))||[]}catch(e){}l.unshift({id:Date.now(),n:S.m.pn||'Untitled',cl:S.m.cl||'',d:new Date().toLocaleDateString('en-IN'),t:T,S});try{localStorage.setItem('bq_saved',JSON.stringify(l));toast('Saved on this device ✓')}catch(e){toast('Could not save (storage blocked)')}};
+function lst(){let l=[];try{l=JSON.parse(localStorage.getItem('bq_saved'))||[]}catch(e){}$('#sl').innerHTML=l.map(q=>`<div class="mr"><div style="flex:1 1 200px"><b>${esc(q.n)}</b><br><span class="mu">${esc(q.cl||'No client')} · ${q.d}</span></div><b>₹${fmt(q.t)}</b><button data-o="${q.id}">Open</button><button data-x="${q.id}">Delete</button></div>`).join('')||'<p class="mu">No saved quotes yet.</p>';$('#sl').onclick=e=>{const o=e.target.dataset.o,x=e.target.dataset.x;if(o){S=l.find(q=>q.id==o).S;restore();show('bq')}if(x){try{localStorage.setItem('bq_saved',JSON.stringify(l.filter(q=>q.id!=x)))}catch(e){}lst()}}}
+
+/* calculators */
+let cur='brick';
+$('#ct').innerHTML=Object.keys(CA).map(k=>`<button data-c="${k}">${CA[k][0]}</button>`).join('');
+$('#ct').onclick=e=>{if(e.target.dataset.c){cur=e.target.dataset.c;cf2()}};
+function cf2(){$$('#ct button').forEach(b=>b.classList.toggle('on',b.dataset.c==cur));$('#cf').innerHTML=CA[cur][1].map((f,i)=>`<label>${f[0]}${f[2]?`<select data-f="${i}">${f[2].map(o=>`<option value="${o[1]}" ${o[1]==f[1]?'selected':''}>${o[0]}</option>`).join('')}</select>`:`<input data-f="${i}" type="number" value="${f[1]}">`}</label>`).join('');cr()}
+function cvals(){return $$('#cf [data-f]').map(i=>+i.value||0)}
+function cr(){const l=CA[cur][2](cvals());$('#cr').innerHTML='<tr><th>Material</th><th class="r">Quantity</th><th class="r">Est. cost</th></tr>'+l.map(([k,q])=>`<tr><td>${M[k][0]}</td><td class="r">${fmt(q)} ${M[k][1]}</td><td class="r">₹${fmt(q*M[k][2]*cf())}</td></tr>`).join('')}
+$('#cf').oninput=cr;$('#city').onchange=cr;
+$('#cadd').onclick=()=>CA[cur][2](cvals()).forEach(([k,q])=>addRow(M[k][0]+' – '+CA[cur][0],['bag','nos'].includes(M[k][1])?Math.ceil(q):q,M[k][1],Math.round(M[k][2]*cf()),0));
+
+/* drawing takeoff */
+const cv=$('#cv'),cx=cv.getContext('2d'),HT={cal:'Click two ends of a dimension printed on the drawing, then enter its real length.',len:'Click along a wall or run. Press Finish (or Enter / double‑click) to save the length.',area:'Click the corners of a room or slab. Finish to close the shape and save the area.',cnt:'Click each item (door, point, column). Finish to save the count.',rect:'Click two opposite corners of a rectangular room. Tick Deduct to subtract doors/windows/openings.'},COL={len:'#2563eb',area:'#ea580c',cnt:'#dc2626'};
+let img=null,sc=0,tool='cal',pts=[],sh=[];
+const hint=()=>$('#hint').textContent=(sc?'✓ Scale set. ':'⚠ Set scale first. ')+HT[tool];hint();
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{img=i;const k=Math.min(1,2200/i.naturalWidth);cv.width=i.naturalWidth*k;cv.height=i.naturalHeight*k;sc=0;sh=[];pts=[];tool='cal';tl();draw();list();hint()};i.src=r.result};r.readAsDataURL(f)};
+function tl(){$$('#tools button').forEach(b=>b.classList.toggle('on',b.dataset.k==tool))}
+$('#tools').onclick=e=>{if(e.target.dataset.k){fin(true);tool=e.target.dataset.k;pts=[];tl();hint();draw()}};
+$('#zm').oninput=e=>cv.style.width=e.target.value+'%';
+const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]),pl=(p,c)=>p.reduce((s,q,i)=>s+(i?dist(p[i-1],q):0),0)+(c?dist(p[p.length-1],p[0]):0),ar=p=>p.reduce((s,q,i)=>{const n=p[(i+1)%p.length];return s+q[0]*n[1]-n[0]*q[1]},0)/2;
+cv.onclick=e=>{if(!img)return toast('Upload a drawing first');const r=cv.getBoundingClientRect(),p=[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height];
+if(tool!='cal'&&!sc)return toast('Set the scale first (tool 1)');if($('#ort').checked&&pts.length&&tool!='cnt'&&tool!='rect'){const q=pts[pts.length-1];Math.abs(p[0]-q[0])>Math.abs(p[1]-q[1])?p[1]=q[1]:p[0]=q[0]}pts.push(p);if(tool=='rect'&&pts.length==2){const[a,b]=pts;pts=[a,[b[0],a[1]],b,[a[0],b[1]]];tool='area';fin();tool='rect';return}
+if(tool=='cal'&&pts.length==2){const v=parseFloat(prompt('Real length of the line you drew? (number, in the unit selected)'));if(v>0){sc=dist(pts[0],pts[1])/(v*{ft:1,m:3.28084,in:1/12}[$('#cu').value]);toast('Scale set ✓');tool='len';tl();hint()}pts=[]}draw()};
+cv.ondblclick=()=>{pts.pop();fin()};addEventListener('keydown',e=>{if(e.key=='Enter'&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))fin();if(e.key=='Escape'){pts=[];draw()}});
+function fin(q){const n={cnt:1,len:2,area:3}[tool];if(!n||pts.length<n){if(!q)toast('Not enough points');pts=[];draw();return}
+let v=tool=='cnt'?pts.length:tool=='len'?pl(pts)/sc:Math.abs(ar(pts))/sc/sc;if(tool=='area'&&$('#ded').checked)v=-v;sh.push({t:tool,p:pts,v,n:'',i:{len:3,area:5,cnt:9}[tool]});pts=[];draw();list()}
+$('#fin').onclick=()=>fin();$('#und').onclick=()=>{pts.length?pts.pop():sh.pop();draw();list()};$('#clr').onclick=()=>{if(confirm('Remove all measurements?')){sh=[];pts=[];draw();list()}};
+function dot(p,c){cx.fillStyle=c;cx.beginPath();cx.arc(p[0],p[1],Math.max(4,cv.width/220),0,7);cx.fill()}
+function path(p,c,col,fill){cx.strokeStyle=col;cx.lineWidth=Math.max(2,cv.width/450);cx.beginPath();p.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1]));if(c)cx.closePath();if(fill){cx.fillStyle=col+'44';cx.fill()}cx.stroke();p.forEach(q=>dot(q,col))}
+function draw(){cx.clearRect(0,0,cv.width,cv.height);if(img)cx.drawImage(img,0,0,cv.width,cv.height);else{cx.fillStyle='#8a9399';cx.font='22px system-ui';cx.textAlign='center';cx.fillText('Upload a floor plan or drawing image to start measuring',cv.width/2,cv.height/2)}
+sh.forEach((s,k)=>{if(s.t=='cnt')s.p.forEach(q=>dot(q,COL.cnt));else path(s.p,s.t=='area',s.v<0?'#7c3aed':COL[s.t],s.t=='area');const q=s.p[0],t=(s.n||'#'+(k+1))+': '+fmt(s.v);cx.font='bold '+Math.max(13,cv.width/70)+'px system-ui';cx.textAlign='left';const w=cx.measureText(t).width;cx.fillStyle='#000c';cx.fillRect(q[0]+6,q[1]-22,w+8,20);cx.fillStyle='#fff';cx.fillText(t,q[0]+10,q[1]-7)});
+if(pts.length)path(pts,false,tool=='cal'?'#16a34a':COL[tool],false)}
+const UN={len:'rft',area:'sq ft',cnt:'nos'};
+function list(){const sm=k=>fmt(sh.filter(s=>s.t==k).reduce((a,s)=>a+s.v,0));$('#ms').innerHTML=(sh.length?`<p class="mu">Totals: ${sm('len')} rft · ${sm('area')} sq ft net · ${sm('cnt')} nos</p>`:'')+sh.map((s,i)=>`<div class="mr"><span class="dot" style="background:${COL[s.t]}"></span><input data-n="${i}" placeholder="Label e.g. Bedroom 1" value="${esc(s.n)}"><b>${fmt(s.v)} ${UN[s.t]}</b><select data-s="${i}">${W.map((w,j)=>`<option value="${j}" ${j==s.i?'selected':''}>${w[0]} (${w[1]})</option>`).join('')}</select><button class="pri" data-a="${i}">+ BOQ</button><button data-r="${i}">×</button></div>`).join('')||'<p class="mu">No measurements yet. Upload a plan, set the scale, then trace walls, rooms or count fixtures.</p>';draw()}
+function qf(s,u){const H=+$('#wh').value||10,T=(+$('#wt').value||9)/12,D=(+$('#dp').value||5)/12,c=35.3147;
+if(s.t=='cnt')return u=='nos'?s.v:0;if(s.t=='len')return u=='rft'?s.v:u=='sqft'?s.v*H:u=='cum'?s.v*H*T/c:0;return u=='sqft'?s.v:u=='cum'?s.v*D/c:0}
+$('#ms').oninput=e=>{if(e.target.dataset.n!=null){sh[e.target.dataset.n].n=e.target.value;draw()}if(e.target.dataset.s!=null)sh[e.target.dataset.s].i=+e.target.value};
+$('#ms').onclick=e=>{const d=e.target.dataset;if(d.r!=null){sh.splice(d.r,1);list()}if(d.a!=null){const s=sh[d.a],w=W[s.i],q=qf(s,w[1]);if(!q)return toast('This item does not fit that measurement type');addRow((s.n?s.n+' – ':'')+w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))}};
+const SP=[['Excavation & foundation',12],['RCC structure (slabs, beams, columns)',35],['Masonry & plaster',15],['Flooring & tiling',10],['Doors & windows',8],['Electrical',6],['Plumbing & sanitary',7],['Painting',5],['Finishing & misc',2]];
+const qv=()=>{const A=(+$('#qa').value||0)*(+$('#qf').value||1);return[A,A*(+$('#qr').value||0)]};
+function qe(){const[A,t]=qv();$('#qo').innerHTML=`<p><span class="big">₹${fmt(t)}</span><br><span class="mu">${W2(t)} rupees · ${fmt(A)} sq ft total</span></p>`+SP.map(s=>`<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;gap:8px"><span>${s[0]} <span class="mu">${s[1]}%</span></span><b>₹${fmt(t*s[1]/100)}</b></div><div style="height:6px;border-radius:3px;background:var(--ln)"><div style="height:6px;border-radius:3px;background:var(--ac);width:${s[1]*2.5}%"></div></div></div>`).join('')}
+$('#qe').addEventListener('input',e=>{if(e.target.id=='qg')$('#qr').value=Math.round($('#qg').value*cf());qe()});
+$('#city').addEventListener('change',()=>{$('#qr').value=Math.round($('#qg').value*cf());qe()});
+$('#qadd').onclick=()=>{const[,t]=qv();SP.forEach(s=>{const a=t*s[1]/100;addRow(s[0]+' (lump sum)',1,'lot',Math.round(a*.65),Math.round(a*.35))})};
+$('#bk').onclick=()=>copy(localStorage.getItem('bq_saved')||'[]');
+$('#rsb').onclick=()=>{try{const n=JSON.parse($('#rs').value);if(!Array.isArray(n))throw 0;const l=JSON.parse(localStorage.getItem('bq_saved')||'[]');n.forEach(q=>{if(!l.some(x=>x.id==q.id))l.push(q)});localStorage.setItem('bq_saved',JSON.stringify(l));$('#rs').value='';lst();toast('Restored ✓')}catch(e){toast('Invalid backup text')}};
+$('#qr').value=Math.round($('#qg').value*cf());qe();
+try{if(!localStorage.getItem('bq_ack'))$('#ack').style.display='flex'}catch(e){$('#ack').style.display='flex'}
+$('#ackb').onclick=()=>{try{localStorage.setItem('bq_ack','1')}catch(e){}$('#ack').style.display='none'};
+/* auto plan + Vastu */
+const CL={NW:[0,0],N:[1,0],NE:[2,0],W:[0,1],C:[1,1],E:[2,1],SW:[0,2],S:[1,2],SE:[2,2]},DN=['N','NE','E','SE','S','SW','W','NW'],ZL=[['N','North'],['NE','North-East'],['E','East'],['SE','South-East'],['S','South'],['SW','South-West'],['W','West'],['NW','North-West'],['C','Centre']],ZT=Object.fromEntries(ZL),FN=['Ground floor','First floor','Second floor','Third floor'],
+TC={bed:'#dbeafe',mb:'#c7d2fe',liv:'#fef3c7',din:'#fde68a',kit:'#fed7aa',poo:'#fbcfe8',toi:'#a5f3fc',stair:'#e5e7eb',cen:'#f1f5f9',foy:'#fef9c3',lng:'#fef3c7',stu:'#bbf7d0',bal:'#d1fae5'};
+const VR={ent:['Main entrance',15,'N NE E','W NW S','Shift the door towards the NE end of the road-side wall. South and west doors are only average; avoid SW and SE doors.'],
+kit:['Kitchen',15,'SE','NW E','Best in the SE (fire corner) with the cook facing East. Avoid NE, SW and the centre.'],
+mb:['Master bedroom',15,'SW','S W','Best in the SW, bed head towards South or West. Avoid NE, SE and the centre.'],
+poo:['Pooja room',10,'NE','N E','Keep it in the NE (or N / E), facing East or North. Never under a staircase or next to a toilet.'],
+toi:['Toilets (worst placed)',10,'NW W','N S','Best in the NW or W. Avoid NE, SE, SW and the centre.'],
+st:['Staircase',10,'S SW W','NW','Best along the S, W or SW side. Avoid NE and the centre.'],
+liv:['Living room',5,'N NE E','NW W','Best in N, NE or E so morning light enters. Avoid SW and SE.'],
+cen:['Centre (Brahmasthan)',10,'','','Keep the centre open and light (lobby or courtyard). No toilet, kitchen or staircase there.'],
+wat:['Borewell / underground tank',5,'NE','N E','Best in the NE. Avoid S, SW, SE and the centre.'],
+sep:['Septic tank',5,'NW','W N','Best in the NW or W side of the plot, away from NE and the centre.']};
+const vs=(k,v)=>k=='cen'?{o:1,l:.5,x:0}[v]:VR[k][2].split(' ').includes(v)?1:VR[k][3].split(' ').includes(v)?.55:0;
+function tmpl(b,f,u){const sc=f=='W'?'NW':'W',m=u?{NW:['Bedroom','bed'],N:['Family lounge','lng'],NE:['Study','stu'],W:['Bedroom','bed'],C:['Lobby','cen'],E:['Bedroom','bed'],SW:['Master Bedroom','mb'],S:0,SE:['Balcony','bal']}:{NW:['Bedroom','bed'],N:['Dining','din'],NE:[f=='N'||f=='E'?'Foyer & Pooja':'Pooja room','poo'],W:['Entry foyer','foy'],C:['Lobby','cen'],E:['Living','liv'],SW:['Master Bedroom','mb'],S:b>2?['Bedroom','bed']:0,SE:['Kitchen','kit']};
+m[sc]=['Stair + Toilet','st'];if(!u){if(f=='S')m.S=['Entry foyer','foy'];if(f=='W'||(f=='S'&&b>2)){m.N=['Bedroom','bed'];m.E=['Living & Dining','liv']}}
+return Object.keys(CL).filter(k=>m[k]).map(k=>[m[k][0],m[k][1],k=='SW'&&!m.S?[0,2,1,2]:[...CL[k],...CL[k]]])}
+const R=(n,t,[x,y,w,h])=>({n,t,x,y,w,h,a:w*h});
+function zone(r,g){const cx=(r.x+r.w/2-g.bx)/g.bw*2-1,cy=(r.y+r.h/2-g.by)/g.bh*2-1;if(Math.abs(cx)<.34&&Math.abs(cy)<.34)return'C';return DN[(Math.round(Math.atan2(cx,-cy)*4/Math.PI)%8+8)%8]}
+function rooms(b,f,u,g){const X=[0,1,2,3].map(i=>g.bx+g.bw*i/3),Y=[0,1,2,3].map(i=>g.by+g.bh*i/3),o=[];
+tmpl(b,f,u).forEach(([n,t,s])=>{const x=X[s[0]],y=Y[s[1]],w=X[s[2]+1]-x,h=Y[s[3]+1]-y;
+if(t=='st'){const v=h>=w;o.push(R('Toilet','toi',v?[x,y,w,h*.45]:[x,y,w*.45,h]),R('Staircase','stair',v?[x,y+h*.45,w,h*.55]:[x+w*.45,y,w*.55,h]));return}
+const r=R(n,t,[x,y,w,h]);
+if(w>12&&h>10){if(t=='mb'){const q=Math.min(6.5,w*.3),d=Math.min(8,h*.5);r.a-=q*d;o.push(r,R('Attached bath','toi',[x+w-q,y,q,d]));return}
+if(t=='bed'&&s[0]==0&&s[1]==0){const q=Math.min(6,w*.3),d=Math.min(7,h*.45);r.a-=q*d;o.push(r,R('Attached bath','toi',[x,y,q,d]));return}}
+o.push(r)});o.forEach(r=>r.z=zone(r,g));return o}
+/*UI*/
+let PL=null,ci=0;
+$('#vf').innerHTML=Object.keys(VR).map(k=>`<label>${VR[k][0]}<select id="v_${k}"><option value="">— not set —</option>${k=='cen'?'<option value="o">Open / lobby / courtyard</option><option value="l">Living or dining room</option><option value="x">Toilet, kitchen, stair or bedroom</option>':ZL.map(z=>`<option value="${z[0]}">${z[1]}</option>`).join('')}</select></label>`).join('');
+function vastu(){let tw=0,sc=0,h='';Object.keys(VR).forEach(k=>{const v=$('#v_'+k).value;if(!v)return;const r=VR[k],s=vs(k,v);tw+=r[1];sc+=r[1]*s;const vl=k=='cen'?$('#v_cen').selectedOptions[0].text:ZT[v];
+h+=`<div class="mr"><span>${s==1?'✅':s?'🟡':'❌'}</span><div style="flex:1 1 240px"><b>${r[0]}</b>: ${vl} <span class="mu">· ${s==1?'ideal':s?'acceptable':'not recommended'}</span>${s<1?`<br><span class="mu">${r[4]}</span>`:''}</div></div>`});
+if(PL){const q=Math.max(PL.L,PL.Wd)/Math.min(PL.L,PL.Wd);h+=`<div class="mr"><span>${q>2?'🟡':'✅'}</span><div><b>Plot shape</b>: 1 : ${q.toFixed(1)} <span class="mu">· ${q>2?'very long plots are less preferred':'regular rectangle, good'}</span></div></div>`}
+const p=tw?Math.round(sc/tw*100):0,lb=p>=80?'Excellent':p>=60?'Good, with small fixes':p>=40?'Average':'Needs correction';
+$('#vo').innerHTML=tw?`<p style="margin:0 0 6px"><span class="big">${p}/100</span> <b>${lb}</b></p><div style="height:6px;border-radius:3px;background:var(--ln);margin-bottom:6px"><div style="height:6px;border-radius:3px;background:var(--ac);width:${p}%"></div></div>`+h+'<p class="mu" style="font-size:12px">Vastu is traditional guidance, not a legal or structural requirement, and practitioners differ. Use the score as a checklist and consult a qualified Vastu expert for important decisions.</p>':'<p class="mu">Pick a zone for each item above (or generate a plan) to see the Vastu report.</p>'}
+function vfill(){const R0=PL.fl[0],z=t=>(R0.find(r=>r.t==t)||{}).z||'',T=R0.filter(r=>r.t=='toi').map(r=>r.z).sort((a,b)=>vs('toi',a)-vs('toi',b))[0]||'';
+Object.entries({ent:PL.f=='N'||PL.f=='E'?'NE':PL.f,kit:z('kit'),mb:z('mb'),poo:z('poo'),toi:T,st:z('stair'),liv:z('liv'),cen:'o',wat:'NE',sep:'NW'}).forEach(([k,v])=>$('#v_'+k).value=v)}
+function drawPlan(){const c=$('#cp'),x=c.getContext('2d'),{X,Y,g,f}=PL,s=Math.min(780/X,700/Y),M=64,p=v=>M+v*s;c.width=X*s+2*M;c.height=Y*s+2*M;
+x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.fillStyle='#ecfccb';x.fillRect(M,M,X*s,Y*s);
+const rd={N:[M,M-46,X*s,40],S:[M,p(Y)+6,X*s,40],E:[p(X)+6,M,40,Y*s],W:[M-46,M,40,Y*s]}[f];x.fillStyle='#cbd5e1';x.fillRect(...rd);
+x.fillStyle='#475569';x.font='bold 13px system-ui';x.textAlign='center';x.textBaseline='middle';x.save();x.translate(rd[0]+rd[2]/2,rd[1]+rd[3]/2);if(f=='E'||f=='W')x.rotate(-Math.PI/2);x.fillText('ROAD',0,0);x.restore();
+x.setLineDash([8,5]);x.strokeStyle='#65a30d';x.lineWidth=2;x.strokeRect(M,M,X*s,Y*s);x.setLineDash([]);
+const F=PL.fl[ci];F.forEach(r=>{x.fillStyle=TC[r.t]||'#fff';x.fillRect(p(r.x),p(r.y),r.w*s,r.h*s);x.strokeStyle='#334155';x.lineWidth=2;x.strokeRect(p(r.x),p(r.y),r.w*s,r.h*s)});
+F.forEach(r=>{const z=Math.max(9,Math.min(14,r.w*s/7.5)),a=p(r.x+r.w/2),b=p(r.y+r.h/2);x.fillStyle='#0f172a';x.font=`bold ${z}px system-ui`;x.fillText(r.n,a,b-z*.6);x.font=`${z-1}px system-ui`;x.fillText(`${r.w.toFixed(1)} × ${r.h.toFixed(1)} ft`,a,b+z*.7)});
+if($('#apv').checked){x.strokeStyle='#c2410c';x.setLineDash([4,4]);x.lineWidth=1;for(let i=1;i<3;i++){x.beginPath();x.moveTo(p(g.bx+g.bw*i/3),p(g.by));x.lineTo(p(g.bx+g.bw*i/3),p(g.by+g.bh));x.moveTo(p(g.bx),p(g.by+g.bh*i/3));x.lineTo(p(g.bx+g.bw),p(g.by+g.bh*i/3));x.stroke()}x.setLineDash([]);x.fillStyle='#c2410c';x.font='bold 12px system-ui';x.textAlign='left';Object.entries(CL).forEach(([k,[a,b]])=>x.fillText(k,p(g.bx+g.bw*a/3)+4,p(g.by+g.bh*b/3)+10));x.textAlign='center'}
+if(!ci){const d={N:[g.bx+g.bw*5/6,g.by],E:[g.bx+g.bw,g.by+g.bh/6],S:[g.bx+g.bw/2,g.by+g.bh],W:[g.bx,g.by+g.bh/2]}[f],h=f=='N'||f=='S',ex=f=='E'?p(X):f=='W'?M:p(d[0]),ey=f=='N'?M:f=='S'?p(Y):p(d[1]);
+x.strokeStyle=x.fillStyle='#c2410c';x.lineWidth=3;x.beginPath();x.moveTo(p(d[0]),p(d[1]));x.lineTo(ex,ey);x.stroke();h?x.fillRect(p(d[0])-2*s,p(d[1])-4,4*s,8):x.fillRect(p(d[0])-4,p(d[1])-2*s,8,4*s);x.font='bold 11px system-ui';x.fillText('MAIN ENTRY',(p(d[0])+ex)/2+(h?44:0),(p(d[1])+ey)/2+(h?0:-12))}
+x.fillStyle='#0f172a';x.beginPath();x.moveTo(30,8);x.lineTo(40,34);x.lineTo(30,28);x.lineTo(20,34);x.fill();x.font='bold 13px system-ui';x.fillText('N',30,46);
+x.fillStyle='#334155';x.fillText(`${FN[ci]} · plot ${fmt(PL.L)} × ${fmt(PL.Wd)} ft · BuildQuote India`,c.width/2,c.height-8)}
+function planUI(){const{X,Y,g,fs,fl:F}=PL,A=X*Y,fp=g.bw*g.bh,rs=F[ci],sm=rs.filter(r=>['bed','mb','liv','kit'].includes(r.t)&&Math.min(r.w,r.h)<8);
+$('#aft').innerHTML=F.map((_,i)=>`<button data-fl="${i}" class="${i==ci?'on':''}">${FN[i]}</button>`).join('');drawPlan();
+$('#aps').innerHTML=`<p style="margin:0 0 6px">Plot <b>${fmt(PL.L)} × ${fmt(PL.Wd)} ft</b> = ${fmt(A)} sq ft · Building footprint <b>${fmt(g.bw)} × ${fmt(g.bh)} ft</b> = ${fmt(fp)} sq ft (${Math.round(fp/A*100)}% of plot) · Total built-up <b>${fmt(fp*fs)} sq ft</b></p>`+(sm.length?`<p style="margin:0 0 6px;color:#b45309">⚠ Small rooms: ${sm.map(r=>`${r.n} ${fmt(r.w)}×${fmt(r.h)} ft`).join(', ')}. Try 2 BHK, smaller setbacks or a larger plot.</p>`:'')+(ci==fs-1?'<p class="mu" style="margin:0 0 6px">Roof: keep the overhead water tank on the SW / W side and the open terrace on the N / NE side.</p>':'');
+$('#apt').innerHTML='<tr><th>Room</th><th>Size (ft)</th><th class="r">Area sq ft</th><th>Vastu zone</th></tr>'+rs.map(r=>`<tr><td>${r.n}</td><td>${fmt(r.w)} × ${fmt(r.h)}</td><td class="r">${fmt(r.a)}</td><td>${ZT[r.z]}</td></tr>`).join('')}
+$('#apg').onclick=()=>{const u=+$('#pu').value,L=(+$('#pl').value||0)*u,Wd=(+$('#pw').value||0)*u,fs=+$('#pf').value,b=+$('#pb').value,f=$('#pd').value,sf=+$('#sf').value||0,sr=+$('#sr').value||0,ss=+$('#ss').value||0;
+if(L<18||Wd<18)return toast('Plot should be at least 18 × 18 ft');
+const X=f=='N'||f=='S'?Wd:L,Y=f=='N'||f=='S'?L:Wd,e={N:[sf,sr,ss,ss],S:[sr,sf,ss,ss],E:[ss,ss,sr,sf],W:[ss,ss,sf,sr]}[f],g={bx:e[2],by:e[0],bw:X-e[2]-e[3],bh:Y-e[0]-e[1]};
+if(g.bw<14||g.bh<14)return toast('Setbacks leave too little building area');
+PL={X,Y,g,f,b,fs,L,Wd,fl:[...Array(fs)].map((_,i)=>rooms(b,f,i>0,g))};ci=0;$('#apo').hidden=false;planUI();vfill();vastu();$('#apo').scrollIntoView({behavior:'smooth'})};
+$('#aft').onclick=e=>{if(e.target.dataset.fl!=null){ci=+e.target.dataset.fl;planUI()}};
+$('#apv').onchange=()=>PL&&drawPlan();$('#vf').onchange=vastu;
+$('#apn').onclick=()=>{const a=document.createElement('a');a.href=$('#cp').toDataURL('image/png');a.download='floor-plan-'+FN[ci].split(' ')[0].toLowerCase()+'.png';a.click()};
+$('#apq').onclick=()=>{$('#qa').value=Math.round(PL.g.bw*PL.g.bh);$('#qf').value=PL.fs;qe();show('qe')};
+$('#apb').onclick=()=>{const t=PL.g.bw*PL.g.bh*PL.fs;addW(5,Math.round(t));addW(2,+(t*5/12/35.3147).toFixed(2));addW(6,Math.round(t*3))};
+vastu();
+restore();cf2();draw();
+</script></body></html>
