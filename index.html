@@ -36,7 +36,7 @@ footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color
 @media print{.np,nav,header .pill{display:none!important}body::before{display:none}main>section{display:none!important}main>#bq{display:block!important}input,textarea,select{border:0;background:none;padding:0;appearance:none}.card{border:0;padding:0}td button{display:none}}
 </style></head><body>
 <header class="np"><div class="br"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><span class="pill">100% free · no login · data stays on your device</span></header>
-<nav><button data-t="tk" class="on">1 Drawing takeoff</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="ca">2 Material calculators</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
+<nav><button data-t="tk" class="on">1 Drawing takeoff</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="ca">2 Material calculators</button><button data-t="rt">₹ Material rates</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
 <main>
 <section id="tk">
 <div class="card"><div class="bar"><label class="btn on" style="display:inline-block;color:var(--ot)">📐 Upload drawing (JPG / PNG)<input type="file" id="file" accept="image/*" hidden></label>
@@ -46,6 +46,12 @@ footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color
 <p id="hint" class="mu" style="margin:0 0 10px"></p><div class="cvw"><canvas id="cv" width="900" height="480"></canvas></div>
 <p class="mu" style="font-size:12px;margin:8px 0 0">PDF drawing? Export or screenshot a page as an image first. Measurements are only as accurate as your scale line, so always verify on site.</p></div>
 <div class="card"><h3>Measurements → BOQ</h3><div class="grid" style="margin-bottom:8px"><label>Wall height (ft)<input id="wh" type="number" value="10"></label><label>Wall thickness (in)<input id="wt" type="number" value="9"></label><label>Slab / PCC depth (in)<input id="dp" type="number" value="5"></label></div><div id="ms"><p class="mu">No measurements yet. Upload a plan, set the scale, then trace walls, rooms or count fixtures.</p></div></div></section>
+
+<section id="rt" hidden><div class="card"><h3>Material &amp; work rates for your area</h3><p class="mu" style="margin:0 0 10px">Rates differ from place to place. Enter your local supplier and labour rates here; they are used in the material calculators, the drawing takeoff and the BOQ catalog. Leave a box empty to use the default rate (scaled by the regional level chosen at the top). Saved on this device only.</p>
+<label style="max-width:360px">Place / note for these rates (e.g. Patna, Nov 2026)<input id="rtn"></label>
+<h3 style="margin:16px 0 6px">Materials (calculators)</h3><div class="tw"><table id="rtm"></table></div>
+<h3 style="margin:16px 0 6px">Work items (catalog, takeoff and BOQ)</h3><div class="tw"><table id="rtw"></table></div>
+<div class="bar" style="margin-top:12px"><button id="rtx">Reset all to default rates</button></div></div></section>
 
 <section id="ap" hidden>
 <div class="card"><h3>Auto floor plan + Vastu (enter your plot size)</h3><div class="grid">
@@ -60,7 +66,7 @@ footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color
 <div class="bar" style="margin-top:10px"><button id="apn">⬇ Download plan (PNG)</button><button id="apq">→ Quick estimate</button><button id="apb">+ Add floor / slab / paint areas to BOQ</button></div></div>
 <div class="card"><h3>Vastu check</h3><p class="mu" style="margin:0 0 10px">Auto-filled from the generated plan. You can also set the zone of each item in your own house or drawing to check it.</p><div class="grid" id="vf"></div><div id="vo" style="margin-top:12px"></div></div></section>
 
-<section id="ca" hidden><div class="card"><div class="bar" id="ct"></div><div class="grid" id="cf"></div><div class="tw"><table id="cr" style="margin:12px 0"></table></div><button class="pri" id="cadd">Add these materials to BOQ</button><p class="mu" style="font-size:12px">Thumb‑rule quantities (cement 50 kg bag = 0.0347 cum, 5% brick wastage). Indicative only.</p></div></section>
+<section id="ca" hidden><div class="card"><div class="bar" id="ct"></div><div class="grid" id="cf"></div><div class="tw"><table id="cr" style="margin:12px 0"></table></div><button class="pri" id="cadd">Add these materials to BOQ</button><p class="mu" style="font-size:12px">Thumb‑rule quantities (cement 50 kg bag = 0.0347 cum, 5% brick wastage). Indicative only. Rates come from the ₹ Material rates tab.</p></div></section>
 
 <section id="bq" hidden>
 <div class="card"><h3>Quotation details</h3><div class="grid"><label>Contractor / firm<input data-m="cn"></label><label>Phone<input data-m="cp" inputmode="tel"></label><label>GSTIN (optional)<input data-m="cg"></label><label>Project<input data-m="pn"></label><label>Client<input data-m="cl"></label><label>Site address<input data-m="st"></label><label>Valid for (days)<input data-m="vd" type="number" value="15"></label></div></div>
@@ -113,7 +119,7 @@ $$('[data-m]').forEach(i=>i.oninput=()=>{S.m[i.dataset.m]=i.value;persist()});
 /* BOQ */
 $('#cat').innerHTML=W.map((w,i)=>`<option value="${i}">${w[0]} (₹/${w[1]})</option>`).join('');
 function addRow(d,q,u,r,l){S.boq.push({d,q:Math.round(q*100)/100,u,r,l});rb();toast('Added to BOQ ✓')}
-const addW=(i,q)=>{const w=W[i];addRow(w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))};
+const addW=(i,q)=>{const w=W[i];addRow(w[0],q,w[1],Math.round(wr(i)),Math.round(wl(i)))};
 $('#addc').onclick=()=>addW(+$('#cat').value,1);$('#addb').onclick=()=>{S.boq.push({d:'',q:1,u:'nos',r:0,l:0});rb()};
 function rb(){$('#tb').innerHTML=S.boq.map((x,i)=>`<tr>${[['d','',140],['q','number',70],['u','',60],['r','number',90],['l','number',90]].map(([k,t])=>`<td><input data-i="${i}" data-k="${k}" ${t?'type=number':''} value="${esc(x[k])}"></td>`).join('')}<td class="am" id="a${i}"></td><td><button data-del="${i}">×</button></td></tr>`).join('')||'<tr><td colspan="7" class="mu">No items yet. Add from the takeoff, calculators or catalog.</td></tr>';calc()}
 $('#tb').oninput=e=>{const i=e.target.dataset.i;if(i==null)return;S.boq[i][e.target.dataset.k]=e.target.value;calc()};
@@ -135,9 +141,9 @@ $('#ct').innerHTML=Object.keys(CA).map(k=>`<button data-c="${k}">${CA[k][0]}</bu
 $('#ct').onclick=e=>{if(e.target.dataset.c){cur=e.target.dataset.c;cf2()}};
 function cf2(){$$('#ct button').forEach(b=>b.classList.toggle('on',b.dataset.c==cur));$('#cf').innerHTML=CA[cur][1].map((f,i)=>`<label>${f[0]}${f[2]?`<select data-f="${i}">${f[2].map(o=>`<option value="${o[1]}" ${o[1]==f[1]?'selected':''}>${o[0]}</option>`).join('')}</select>`:`<input data-f="${i}" type="number" value="${f[1]}">`}</label>`).join('');cr()}
 function cvals(){return $$('#cf [data-f]').map(i=>+i.value||0)}
-function cr(){const l=CA[cur][2](cvals());$('#cr').innerHTML='<tr><th>Material</th><th class="r">Quantity</th><th class="r">Est. cost</th></tr>'+l.map(([k,q])=>`<tr><td>${M[k][0]}</td><td class="r">${fmt(q)} ${M[k][1]}</td><td class="r">₹${fmt(q*M[k][2]*cf())}</td></tr>`).join('')}
+function cr(){const l=CA[cur][2](cvals());$('#cr').innerHTML='<tr><th>Material</th><th class="r">Quantity</th><th class="r">Est. cost</th></tr>'+l.map(([k,q])=>`<tr><td>${M[k][0]}</td><td class="r">${fmt(q)} ${M[k][1]}</td><td class="r">₹${fmt(q*mr(k))}</td></tr>`).join('')}
 $('#cf').oninput=cr;$('#city').onchange=cr;
-$('#cadd').onclick=()=>CA[cur][2](cvals()).forEach(([k,q])=>addRow(M[k][0]+' – '+CA[cur][0],['bag','nos'].includes(M[k][1])?Math.ceil(q):q,M[k][1],Math.round(M[k][2]*cf()),0));
+$('#cadd').onclick=()=>CA[cur][2](cvals()).forEach(([k,q])=>addRow(M[k][0]+' – '+CA[cur][0],['bag','nos'].includes(M[k][1])?Math.ceil(q):q,M[k][1],Math.round(mr(k)),0));
 
 /* drawing takeoff */
 const cv=$('#cv'),cx=cv.getContext('2d'),HT={cal:'Click two ends of a dimension printed on the drawing, then enter its real length.',len:'Click along a wall or run. Press Finish (or Enter / double‑click) to save the length.',area:'Click the corners of a room or slab. Finish to close the shape and save the area.',cnt:'Click each item (door, point, column). Finish to save the count.',rect:'Click two opposite corners of a rectangular room. Tick Deduct to subtract doors/windows/openings.'},COL={len:'#2563eb',area:'#ea580c',cnt:'#dc2626'};
@@ -165,7 +171,7 @@ function list(){const sm=k=>fmt(sh.filter(s=>s.t==k).reduce((a,s)=>a+s.v,0));$('
 function qf(s,u){const H=+$('#wh').value||10,T=(+$('#wt').value||9)/12,D=(+$('#dp').value||5)/12,c=35.3147;
 if(s.t=='cnt')return u=='nos'?s.v:0;if(s.t=='len')return u=='rft'?s.v:u=='sqft'?s.v*H:u=='cum'?s.v*H*T/c:0;return u=='sqft'?s.v:u=='cum'?s.v*D/c:0}
 $('#ms').oninput=e=>{if(e.target.dataset.n!=null){sh[e.target.dataset.n].n=e.target.value;draw()}if(e.target.dataset.s!=null)sh[e.target.dataset.s].i=+e.target.value};
-$('#ms').onclick=e=>{const d=e.target.dataset;if(d.r!=null){sh.splice(d.r,1);list()}if(d.a!=null){const s=sh[d.a],w=W[s.i],q=qf(s,w[1]);if(!q)return toast('This item does not fit that measurement type');addRow((s.n?s.n+' – ':'')+w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))}};
+$('#ms').onclick=e=>{const d=e.target.dataset;if(d.r!=null){sh.splice(d.r,1);list()}if(d.a!=null){const s=sh[d.a],w=W[s.i],q=qf(s,w[1]);if(!q)return toast('This item does not fit that measurement type');addRow((s.n?s.n+' – ':'')+w[0],q,w[1],Math.round(wr(s.i)),Math.round(wl(s.i)))}};
 const SP=[['Excavation & foundation',12],['RCC structure (slabs, beams, columns)',35],['Masonry & plaster',15],['Flooring & tiling',10],['Doors & windows',8],['Electrical',6],['Plumbing & sanitary',7],['Painting',5],['Finishing & misc',2]];
 const qv=()=>{const A=(+$('#qa').value||0)*(+$('#qf').value||1);return[A,A*(+$('#qr').value||0)]};
 function qe(){const[A,t]=qv();$('#qo').innerHTML=`<p><span class="big">₹${fmt(t)}</span><br><span class="mu">${W2(t)} rupees · ${fmt(A)} sq ft total</span></p>`+SP.map(s=>`<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;gap:8px"><span>${s[0]} <span class="mu">${s[1]}%</span></span><b>₹${fmt(t*s[1]/100)}</b></div><div style="height:6px;border-radius:3px;background:var(--ln)"><div style="height:6px;border-radius:3px;background:var(--ac);width:${s[1]*2.5}%"></div></div></div>`).join('')}
@@ -240,5 +246,20 @@ $('#apn').onclick=()=>{const a=document.createElement('a');a.href=$('#cp').toDat
 $('#apq').onclick=()=>{$('#qa').value=Math.round(PL.g.bw*PL.g.bh);$('#qf').value=PL.fs;qe();show('qe')};
 $('#apb').onclick=()=>{const t=PL.g.bw*PL.g.bh*PL.fs;addW(5,Math.round(t));addW(2,+(t*5/12/35.3147).toFixed(2));addW(6,Math.round(t*3))};
 vastu();
+/* custom local rates */
+let RT={m:{},w:{},n:''};try{RT=Object.assign(RT,JSON.parse(localStorage.getItem('bq_rates')))}catch(e){}
+const rsv=()=>{try{localStorage.setItem('bq_rates',JSON.stringify(RT))}catch(e){}},
+mr=k=>RT.m[k]!=null?+RT.m[k]:M[k][2]*cf(),
+wr=i=>RT.w[i]&&RT.w[i][0]!=null?+RT.w[i][0]:W[i][2]*cf(),
+wl=i=>RT.w[i]&&RT.w[i][1]!=null?+RT.w[i][1]:W[i][3]*cf();
+function rtUI(){const g=(v,d,a)=>`<input type="number" min="0" ${a} value="${v!=null?v:''}" placeholder="${Math.round(d)}">`;
+$('#rtm').innerHTML='<tr><th>Material</th><th>Unit</th><th>Your rate ₹</th><th class="r">Default ₹</th></tr>'+Object.keys(M).map(k=>`<tr><td>${M[k][0]}</td><td>${M[k][1]}</td><td>${g(RT.m[k],M[k][2]*cf(),`data-rm="${k}"`)}</td><td class="r mu">${fmt(M[k][2]*cf())}</td></tr>`).join('');
+$('#rtw').innerHTML='<tr><th>Work item</th><th>Unit</th><th>Material ₹</th><th>Labour ₹</th></tr>'+W.map((w,i)=>`<tr><td>${w[0]}</td><td>${w[1]}</td><td>${g(RT.w[i]&&RT.w[i][0],w[2]*cf(),`data-rw="${i}" data-p="0"`)}</td><td>${g(RT.w[i]&&RT.w[i][1],w[3]*cf(),`data-rw="${i}" data-p="1"`)}</td></tr>`).join('');$('#rtn').value=RT.n||''}
+$('#rt').oninput=e=>{const t=e.target,v=t.value===''?null:+t.value;
+if(t.dataset.rm){v==null?delete RT.m[t.dataset.rm]:RT.m[t.dataset.rm]=v}
+else if(t.dataset.rw!=null){const i=t.dataset.rw,a=RT.w[i]||[null,null];a[+t.dataset.p]=v;if(a[0]==null&&a[1]==null)delete RT.w[i];else RT.w[i]=a}
+else if(t.id=='rtn')RT.n=t.value;rsv();cr()};
+$('#rtx').onclick=()=>{if(confirm('Reset all custom rates to the defaults?')){RT={m:{},w:{},n:RT.n};rsv();rtUI();cr()}};
+$('#city').addEventListener('change',rtUI);rtUI();
 restore();cf2();draw();
 </script></body></html>
