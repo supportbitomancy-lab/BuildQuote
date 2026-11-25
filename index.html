@@ -1,326 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>BuildQuote India – Estimator, Drawing Takeoff & Quotation Maker</title>
-<meta name="description" content="Free construction estimator, drawing takeoff, BOQ and quotation maker for Indian architects and contractors. Custom firm branding and custom rates. Data stays on your device.">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BuildQuote India by BITOMANCY – Free Contractor Estimator, Drawing Takeoff, Auto Floor Plan & Vastu</title>
+<meta name="description" content="BuildQuote India, a BITOMANCY product: free construction estimator, drawing takeoff, BOQ and quotation maker for Indian contractors, with an automatic floor plan generator and Vastu check.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%97%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <style>
-:root{--ink:#12263A;--bg:#EEF1F2;--card:#fff;--ln:#D3DBE0;--ac:#F2B01E;--ok:#1F7A74;--bad:#B3382C;--mut:#5B6B79}
-*{box-sizing:border-box}
-body{margin:0;font:15px/1.5 'Instrument Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:env(safe-area-inset-bottom)}
-h1,h2,h3{font-family:'Bricolage Grotesque','Instrument Sans',sans-serif;margin:0 0 .5rem;letter-spacing:-.01em}
-header{background:var(--ink);color:#fff;padding:14px 20px 20px;position:relative;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(90deg,var(--ac) 0 2px,transparent 2px 10px)}
-.logo{width:40px;height:40px;background:var(--ac);border-radius:4px;display:grid;place-items:center;color:var(--ink);font:800 20px 'Bricolage Grotesque'}
-header h1{font-size:1.3rem;margin:0}header small{color:#B8C7D4;display:block}
-header .r{margin-left:auto;display:flex;gap:10px;align-items:center;font-size:.85rem}
-nav{display:flex;gap:2px;overflow-x:auto;background:#fff;border-bottom:1px solid var(--ln);padding:0 12px;position:sticky;top:0;z-index:5}
-nav button{background:none;border:0;padding:13px 14px;font:600 .92rem inherit;font-family:inherit;color:var(--mut);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
-nav button.on{color:var(--ink);border-bottom-color:var(--ac)}
-main{max-width:1100px;margin:0 auto;padding:18px 14px 60px}
-section{display:none}section.on{display:block}
-.card{background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:16px;margin-bottom:16px}
-.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
-label{display:block;font-size:.82rem;color:var(--mut);font-weight:500}
-input,select,textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--ln);border-radius:6px;background:#fff;color:var(--ink);margin-top:3px}
-input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
-input[type=checkbox]{width:auto;margin-right:6px}input[type=color]{padding:2px;height:38px}
-button.b{background:var(--ink);color:#fff;border:0;border-radius:6px;padding:9px 14px;font:600 .9rem inherit;font-family:inherit;cursor:pointer}
-button.b.y{background:var(--ac);color:var(--ink)}button.b.o{background:#fff;color:var(--ink);border:1px solid var(--ln)}button.b.d{background:#fff;color:var(--bad);border:1px solid var(--ln)}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
-.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
-th,td{padding:6px 8px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:middle}th{font-size:.8rem;color:var(--mut);font-weight:600}
-td input,td select{margin:0;padding:6px 8px}.n{text-align:right}
-.tot{max-width:380px;margin-left:auto}.tot div{display:flex;justify-content:space-between;padding:4px 0}.tot .gt{font:800 1.25rem 'Bricolage Grotesque';border-top:2px solid var(--ink);margin-top:6px;padding-top:8px}
-.mut{color:var(--mut);font-size:.85rem}
-#cvw{overflow:auto;border:1px solid var(--ln);border-radius:6px;background:#dfe5e8;max-height:560px}
-canvas{display:block;width:100%;cursor:crosshair}
-.modal{position:fixed;inset:0;background:rgba(18,38,58,.7);display:none;z-index:20;overflow:auto;padding:20px}.modal.on{display:block}
-.box{background:#fff;max-width:760px;margin:0 auto;padding:22px;border-radius:8px}
-#pv .box{max-width:820px}
-.ok{color:var(--ok);font-weight:600}
-@media print{body>*:not(#pv){display:none!important}#pv{position:static;background:#fff;padding:0;display:block!important}#pv .box{max-width:none;padding:0}.np{display:none!important}}
-</style>
-  <meta name="google-site-verification" content="pK-R7RWy9eAkEin1XxTAbFtpuNyfR0k8a8WJG5ZSgWE" />
-</head>
-<body>
-<header>
-  <div class="logo">▦</div>
-  <div><h1>BuildQuote India</h1><small>A BITOMANCY product · 100% free, no login, data stays on your device</small></div>
-  <div class="r"><label style="color:#B8C7D4">City tier
-    <select data-p="tier" id="tier"></select></label></div>
-</header>
-<nav id="nav">
-  <button data-t="takeoff" class="on">1 Drawing takeoff</button>
-  <button data-t="calc">2 Material calculators</button>
-  <button data-t="quick">Quick estimate</button>
-  <button data-t="boq">3 BOQ & quote</button>
-  <button data-t="saved">Saved quotes <span id="sc">0</span></button>
-  <button data-t="settings">Firm &amp; rates</button>
-</nav>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f4ef;--cd:#fff;--ink:#1d2328;--mu:#6b7479;--ac:#c2410c;--ot:#fff;--ln:#e3dfd6;--sf:#faf8f3;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171a;--cd:#1e2327;--ink:#ece9e2;--mu:#98a1a6;--ac:#fb923c;--ot:#1a1005;--ln:#2d343a;--sf:#181c1f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171a;--cd:#1e2327;--ink:#ece9e2;--mu:#98a1a6;--ac:#fb923c;--ot:#1a1005;--ln:#2d343a;--sf:#181c1f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;padding:14px 16px}
+.br{display:flex;gap:10px;align-items:center}.br b{font-size:19px;display:block;line-height:1.2}.br small,.mu{color:var(--mu)}
+.lg{background:var(--ac);color:var(--ot);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:20px}
+.pill{font-size:12px;color:var(--mu);border:1px solid var(--ln);border-radius:99px;padding:3px 10px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);display:flex;gap:6px;align-items:center;overflow-x:auto;padding:8px 16px;border-bottom:1px solid var(--ln)}
+nav button,nav select{white-space:nowrap;flex:none}nav select{width:auto}nav i{font-style:normal;background:var(--ac);color:var(--ot);border-radius:9px;padding:0 6px;font-size:11px;margin-left:4px}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:16px;margin-bottom:14px}.card h3{margin:0 0 10px;font-size:15px}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--ln);background:var(--cd);color:var(--ink);border-radius:8px;padding:8px 12px}
+.on,.pri{background:var(--ac);border-color:var(--ac);color:var(--ot);font-weight:600}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:7px 9px;width:100%}
+label{display:grid;gap:4px;font-size:12px;color:var(--mu);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}.bar select,.bar input[type=range]{width:auto}
+.cvw{overflow:auto;max-height:68vh;border:1px solid var(--ln);border-radius:8px;background:var(--sf)}
+canvas{display:block;width:100%;cursor:crosshair;touch-action:manipulation}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}th{text-align:left;font-size:11px;color:var(--mu);text-transform:uppercase;padding:4px}td{padding:3px}td input{padding:5px 6px;min-width:60px}
+.am,.r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.big{font-size:24px;font-weight:800;color:var(--ac)}
+.mr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--ln)}.mr input{flex:1 1 110px}.mr select{flex:2 1 190px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:99px;z-index:20;opacity:0;transition:.25s;pointer-events:none}
+#toast.s{opacity:1}
+footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color:var(--mu)}footer a{color:var(--ac)}.pf{display:none;font-size:11px;margin-top:10px}
+#ack{position:fixed;inset:0;background:#000a;z-index:30;display:none;align-items:center;justify-content:center;padding:16px}#ack div{background:var(--cd);color:var(--ink);border-radius:14px;padding:20px;max-width:480px;max-height:90vh;overflow:auto}#ack li{margin:6px 0}
+@media print{.pf{display:block!important}footer,#ack{display:none!important}}
+@media print{.np,nav,header .pill{display:none!important}body::before{display:none}main>section{display:none!important}main>#bq{display:block!important}input,textarea,select{border:0;background:none;padding:0;appearance:none}.card{border:0;padding:0}td button{display:none}}
+</style></head><body>
+<header class="np"><div class="br"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><span class="pill">100% free · no login · data stays on your device</span></header>
+<nav><button data-t="tk" class="on">1 Drawing takeoff</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="ca">2 Material calculators</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
 <main>
+<section id="tk">
+<div class="card"><div class="bar"><label class="btn on" style="display:inline-block;color:var(--ot)">📐 Upload drawing (JPG / PNG)<input type="file" id="file" accept="image/*" hidden></label>
+<span id="tools"><button data-k="cal" class="on">1 Set scale</button> <button data-k="len">Length</button> <button data-k="area">Area</button> <button data-k="cnt">Count</button> <button data-k="rect">Rectangle</button></span>
+<select id="cu" title="Unit of the known length"><option value="ft">ft</option><option value="m">m</option><option value="in">in</option></select>
+<button id="fin">Finish ⏎</button><button id="und">Undo</button><button id="clr">Clear all</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="ded" style="width:auto">Deduct (openings)</label><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="ort" style="width:auto">Ortho</label><label style="display:flex;gap:6px;align-items:center">Zoom<input type="range" id="zm" min="40" max="300" value="100"></label></div>
+<p id="hint" class="mu" style="margin:0 0 10px"></p><div class="cvw"><canvas id="cv" width="900" height="480"></canvas></div>
+<p class="mu" style="font-size:12px;margin:8px 0 0">PDF drawing? Export or screenshot a page as an image first. Measurements are only as accurate as your scale line, so always verify on site.</p></div>
+<div class="card"><h3>Measurements → BOQ</h3><div class="grid" style="margin-bottom:8px"><label>Wall height (ft)<input id="wh" type="number" value="10"></label><label>Wall thickness (in)<input id="wt" type="number" value="9"></label><label>Slab / PCC depth (in)<input id="dp" type="number" value="5"></label></div><div id="ms"><p class="mu">No measurements yet. Upload a plan, set the scale, then trace walls, rooms or count fixtures.</p></div></div></section>
 
-<section id="takeoff" class="on">
-  <div class="card">
-    <h2>Drawing takeoff</h2>
-    <div class="row">
-      <input type="file" id="file" accept="image/*" style="max-width:280px">
-      <button class="b y" id="bScale">Set scale</button>
-      <button class="b o" data-m="length">Length</button>
-      <button class="b o" data-m="area">Area</button>
-      <button class="b o" data-m="count">Count</button>
-      <button class="b" id="bFin">Finish</button>
-      <button class="b o" id="bUndo">Undo point</button>
-      <label><input type="checkbox" id="ortho">Ortho</label>
-      <label><input type="checkbox" id="ded">Deduct (openings)</label>
-    </div>
-    <p class="mut" id="hint">Upload a plan (JPG / PNG). For a PDF, export or screenshot a page as an image first. Click <b>Set scale</b>, click both ends of a known dimension, then enter its real length in feet.</p>
-    <div id="cvw"><canvas id="cv" width="900" height="500"></canvas></div>
-  </div>
-  <div class="card">
-    <h3>Measurements → BOQ</h3>
-    <div class="g">
-      <label>Wall height (ft)<input type="number" data-p="dim.h" step="any"></label>
-      <label>Wall thickness (in)<input type="number" data-p="dim.t" step="any"></label>
-      <label>Slab / PCC depth (in)<input type="number" data-p="dim.d" step="any"></label>
-    </div>
-    <div class="row"><b>Add without a drawing:</b>
-      <select id="mt" style="width:auto"><option value="length">Length (ft)</option><option value="area">Area (sq ft)</option><option value="count">Count</option></select>
-      <input id="ml" placeholder="Label" style="width:160px"><input id="mv" type="number" placeholder="Value" style="width:110px">
-      <button class="b o" id="bMan">Add</button></div>
-    <div class="tw"><table id="mtab"></table></div>
-    <div class="row"><button class="b y" id="bSend">Send mapped items to BOQ</button><button class="b d" id="bClr">Clear all</button></div>
-  </div>
-</section>
+<section id="ap" hidden>
+<div class="card"><h3>Auto floor plan + Vastu (enter your plot size)</h3><div class="grid">
+<label>Plot length (depth)<input id="pl" type="number" value="40"></label><label>Plot width (road frontage)<input id="pw" type="number" value="30"></label><label>Unit<select id="pu"><option value="1">Feet</option><option value="3.28084">Metres</option></select></label>
+<label>Floors<select id="pf"><option value="1">Ground only</option><option value="2" selected>G + 1</option><option value="3">G + 2</option><option value="4">G + 3</option></select></label>
+<label>Bedrooms<select id="pb"><option value="2" selected>2 BHK</option><option value="3">3 BHK</option></select></label>
+<label>Road / entrance side<select id="pd"><option value="N">North</option><option value="E" selected>East</option><option value="S">South</option><option value="W">West</option></select></label>
+<label>Front setback (ft)<input id="sf" type="number" value="5"></label><label>Rear setback (ft)<input id="sr" type="number" value="4"></label><label>Side setback (ft)<input id="ss" type="number" value="3"></label></div>
+<div class="bar" style="margin:12px 0 0"><button class="pri" id="apg">⚙ Generate plan</button><label style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="apv" style="width:auto">Show Vastu grid</label></div>
+<p class="mu" style="font-size:12px;margin:8px 0 0">North is assumed at the top of the plan; confirm true north with a compass on site. Setbacks are indicative, so follow your local municipal rules. This is a concept layout for discussion, not a sanctioned drawing.</p></div>
+<div class="card" id="apo" hidden><div class="bar" id="aft"></div><div class="cvw"><canvas id="cp" width="900" height="600" style="cursor:default"></canvas></div><div id="aps" style="margin-top:10px"></div><div class="tw"><table id="apt"></table></div>
+<div class="bar" style="margin-top:10px"><button id="apn">⬇ Download plan (PNG)</button><button id="apq">→ Quick estimate</button><button id="apb">+ Add floor / slab / paint areas to BOQ</button></div></div>
+<div class="card"><h3>Vastu check</h3><p class="mu" style="margin:0 0 10px">Auto-filled from the generated plan. You can also set the zone of each item in your own house or drawing to check it.</p><div class="grid" id="vf"></div><div id="vo" style="margin-top:12px"></div></div></section>
 
-<section id="calc">
-  <div class="card"><h2>Material calculators</h2>
-    <label style="max-width:320px">Calculator<select id="cs"></select></label>
-    <div class="g" id="cf" style="margin-top:10px"></div>
-    <div class="tw"><table id="cr"></table></div>
-    <div class="row"><button class="b y" id="bCalc">Add materials to BOQ</button></div>
-    <p class="mut">Thumb-rule quantities (50 kg cement = 28.8 bags/cum, standard wastage). Indicative only.</p>
-  </div>
-</section>
+<section id="ca" hidden><div class="card"><div class="bar" id="ct"></div><div class="grid" id="cf"></div><div class="tw"><table id="cr" style="margin:12px 0"></table></div><button class="pri" id="cadd">Add these materials to BOQ</button><p class="mu" style="font-size:12px">Thumb‑rule quantities (cement 50 kg bag = 0.0347 cum, 5% brick wastage). Indicative only.</p></div></section>
 
-<section id="quick">
-  <div class="card"><h2>Quick estimate</h2>
-    <div class="g"><label>Total built-up area (sq ft)<input type="number" id="qa" value="1200"></label>
-    <label>Quality<select id="qq"><option value="basic">Basic</option><option value="standard" selected>Standard</option><option value="premium">Premium</option></select></label></div>
-    <div class="tw"><table id="qt"></table></div>
-    <div class="row"><button class="b y" id="bQuick">Add to BOQ</button></div>
-    <p class="mut">Rate per sq ft and the cost split are editable under Firm &amp; rates.</p>
-  </div>
-</section>
+<section id="bq" hidden>
+<div class="card"><h3>Quotation details</h3><div class="grid"><label>Contractor / firm<input data-m="cn"></label><label>Phone<input data-m="cp" inputmode="tel"></label><label>GSTIN (optional)<input data-m="cg"></label><label>Project<input data-m="pn"></label><label>Client<input data-m="cl"></label><label>Site address<input data-m="st"></label><label>Valid for (days)<input data-m="vd" type="number" value="15"></label></div></div>
+<div class="card"><div class="bar np"><select id="cat" style="flex:1 1 220px"></select><button id="addc">+ Add catalog item</button><button id="addb">+ Blank row</button></div>
+<div class="tw"><table><thead><tr><th>Description</th><th>Qty</th><th>Unit</th><th>Material ₹</th><th>Labour ₹</th><th class="r">Amount</th><th class="np"></th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="mu np" style="font-size:12px">All rates are editable and indicative (adjusted by your regional level). Replace them with your local supplier quotes.</p></div>
+<div class="card"><div class="tw"><table style="max-width:460px;margin-left:auto"><tr><td>Subtotal</td><td class="r" id="v0"></td></tr>
+<tr><td>Contingency <input id="pc" type="number" value="3" style="width:64px;display:inline"> %</td><td class="r" id="v1"></td></tr>
+<tr><td>Overhead &amp; profit <input id="po" type="number" value="10" style="width:64px;display:inline"> %</td><td class="r" id="v2"></td></tr>
+<tr><td>GST <select id="pg" style="width:80px;display:inline"><option>0</option><option>5</option><option>12</option><option selected>18</option><option>28</option></select> %</td><td class="r" id="v3"></td></tr>
+<tr><td><b>Grand total</b></td><td class="r big" id="v4"></td></tr></table></div><p id="w" class="mu" style="text-align:right;margin:4px 0 12px"></p>
+<div class="grid"><label>Advance on start %<input id="m0" type="number" value="30"></label><label>Mid‑stage %<input id="m1" type="number" value="40"></label><label>On completion %<input id="m2" type="number" value="30"></label></div><p id="mt" class="mu"></p>
+<label>Terms &amp; conditions<textarea data-m="tc" rows="3">Rates valid for the stated period. Extra work beyond this BOQ will be charged separately. Material price changes beyond 5% may revise this quote. Payment as per the schedule above.</textarea></label></div>
+<div class="bar np"><button class="pri" id="sv">💾 Save quote</button><button id="pr">🖨 Print / Save PDF</button><button id="tsv">Copy for Excel</button><button id="wa">Share on WhatsApp</button><button id="nw">New quote</button></div>
+<p class="pf">Prepared with BuildQuote India, a BITOMANCY product (bitomancy.in). Quantities and rates are indicative estimates, subject to site verification, and are not an engineering design. Taxes and terms are as stated by the issuing contractor.</p></section>
 
-<section id="boq">
-  <div class="card"><h2>Client &amp; project</h2>
-    <div class="g">
-      <label>Quote no.<input data-p="q.no"></label><label>Date<input type="date" data-p="q.date"></label>
-      <label>Valid for (days)<input type="number" data-p="q.valid"></label>
-      <label>Client name<input data-p="q.client"></label><label>Client address / phone<input data-p="q.caddr"></label>
-      <label>Project / site<input data-p="q.project"></label>
-    </div>
-  </div>
-  <div class="card"><h2>Bill of quantities</h2>
-    <div class="tw"><table id="bt"></table></div>
-    <div class="row"><select id="addsel" style="width:auto;max-width:360px"></select><button class="b o" id="bAddRate">Add item</button><button class="b o" id="bAddC">Add custom line</button></div>
-    <div class="g" style="margin-top:12px">
-      <label>Discount<input type="number" data-p="q.disc"></label>
-      <label>Discount type<select data-p="q.dt"><option value="%">Percent</option><option value="₹">Amount</option></select></label>
-      <label>GST<select data-p="q.gt"><option value="split">CGST + SGST</option><option value="igst">IGST</option><option value="none">No GST</option></select></label>
-      <label>Advance received<input type="number" data-p="q.adv"></label>
-    </div>
-    <label style="margin-top:10px">Notes for this quote<textarea rows="2" data-p="q.notes"></textarea></label>
-    <div class="tot" id="tot" style="margin-top:12px"></div>
-    <div class="row"><button class="b y" id="bPrev">Preview &amp; print / PDF</button><button class="b" id="bSave">Save quote</button><button class="b o" id="bCsv">Export CSV</button><button class="b d" id="bNew">New quote</button></div>
-  </div>
-</section>
-
-<section id="saved"><div class="card"><h2>Saved quotes</h2><div class="tw"><table id="st"></table></div>
-  <div class="row"><button class="b o" id="bExp">Backup all data (JSON)</button><label class="b o" style="cursor:pointer;margin:0">Restore backup<input type="file" id="imp" accept=".json" hidden></label></div>
-  <p class="mut">Quotes live only in this browser. Clearing browser data deletes them, so keep backups.</p></div></section>
-
-<section id="settings">
-  <div class="card"><h2>Your firm</h2><div class="g" id="firm"></div>
-    <div class="row"><label>Logo<input type="file" id="logo" accept="image/*"></label><button class="b d" id="bNoLogo">Remove logo</button></div>
-  </div>
-  <div class="card"><h2>Quote defaults</h2><div class="g" id="qd"></div>
-    <label style="margin-top:10px">Terms &amp; conditions (one per line)<textarea rows="6" data-p="terms"></textarea></label></div>
-  <div class="card"><h2>Custom rates</h2>
-    <p class="mut">Base rates below are for a Tier‑2 city. The city tier multiplier is applied on top when you pick items.</p>
-    <h3>City tier multipliers</h3><div class="g" id="tiers"></div>
-    <h3 style="margin-top:14px">Build cost per sq ft (quick estimate)</h3><div class="g" id="build"></div>
-    <h3 style="margin-top:14px">Cost split %</h3><div class="g" id="split"></div>
-    <h3 style="margin-top:14px">Item rates</h3>
-    <div class="tw"><table id="rt"></table></div>
-    <div class="row"><input id="nn" placeholder="Item name" style="width:220px"><input id="nu" placeholder="Unit (sqft, cum…)" style="width:130px"><input id="nr" type="number" placeholder="Rate ₹" style="width:110px"><button class="b o" id="bAddRt">Add rate</button><button class="b d" id="bReset">Reset rates to default</button></div>
-  </div>
-</section>
-
-<p class="mut" style="padding:0 14px;max-width:1100px;margin:0 auto 30px"><b>Disclaimer.</b> BuildQuote India is a free estimation aid provided “as is”. All quantities, rates, cost splits and thumb rules are indicative approximations, not live market prices, engineering designs or a certified bill of quantities. Drawing measurements depend on image quality and the scale you set and must be verified on site. Structural decisions must be made by a licensed engineer or architect as per applicable IS codes. GST and contract terms are the user’s responsibility. You are solely responsible for every quotation you issue. BITOMANCY gives no warranty and is not liable for any loss, dispute or damage arising from use. Data is stored only in your browser. © 2026 <a href="https://bitomancy.in">BITOMANCY</a>.</p>
+<section id="qe" hidden><div class="card"><h3>Quick house estimate (₹ per sq ft)</h3><div class="grid"><label>Built-up area per floor (sq ft)<input id="qa" type="number" value="1200"></label><label>Floors<input id="qf" type="number" value="1"></label><label>Grade<select id="qg"><option value="1450">Economy</option><option value="1800" selected>Standard</option><option value="2400">Premium</option></select></label><label>Rate ₹/sq ft (editable)<input id="qr" type="number" value="1800"></label></div><div id="qo" style="margin:14px 0"></div><button class="pri" id="qadd">Add this split to BOQ</button><p class="mu" style="font-size:12px">Typical turnkey construction rates, scaled by your regional level. Use for a first ballpark before the detailed takeoff.</p></div></section>
+<section id="sv2" hidden><div class="card"><h3>Saved quotes (this device)</h3><div id="sl"></div><div style="margin-top:14px"><button id="bk">Copy backup of all quotes</button></div><textarea id="rs" rows="2" placeholder="Paste a backup here to restore on this or another device" style="margin:8px 0"></textarea><button id="rsb">Restore</button></div></section>
 </main>
-
-<div class="modal" id="consent"><div class="box"><h2>Before you start</h2>
-<ul><li>All rates and quantities are <b>indicative estimates</b>, not market prices or engineering design.</li><li>Drawing measurements must be <b>verified on site</b>; structural decisions need a licensed engineer.</li><li>You are responsible for quotations you issue, including GST and terms.</li><li>Your data stays in your browser; BITOMANCY is not liable for losses from use of this tool.</li></ul>
-<button class="b y" id="bOk">I understand and agree</button></div></div>
-
-<div class="modal" id="pv"><div class="box"><div class="row np"><button class="b y" onclick="window.print()">Print / Save as PDF</button><button class="b o" id="bClose">Close</button></div><div id="qp"></div></div></div>
-
+<footer><p><b>Disclaimer.</b> BuildQuote India is a free estimation aid provided “as is”. All quantities, rates, cost splits and thumb-rule formulas are indicative approximations, not live market prices, engineering designs or a certified bill of quantities. Measurements taken from drawings depend on image quality and the scale you set, and must be verified on site. Structural, load-bearing, reinforcement and mix-design decisions must be made by a licensed structural engineer or architect as per applicable IS codes and local regulations. GST, tax and contract terms are the user’s responsibility; confirm them with a CA or lawyer. The user is solely responsible for every quotation issued using this tool. BITOMANCY gives no warranty and is not liable for any loss, dispute or damage arising from its use. Drawings and quotes are processed and stored only in your browser and are not uploaded to any server. Clearing browser data deletes saved quotes, so keep backups. Auto-generated floor plans and Vastu checks are concept-level suggestions based on commonly quoted Vastu Shastra guidelines; practitioners differ, and any plan must be verified and sanctioned by a licensed architect or engineer before construction. Not affiliated with any government body.</p>
+<p><b>BuildQuote India</b> is a <a href="https://bitomancy.in" target="_blank" rel="noopener">BITOMANCY</a> product · © 2026 BITOMANCY. All rights reserved.</p></footer>
+<div id="ack"><div><h3 style="margin:0 0 8px">Before you start</h3><p class="mu" style="margin:0">BuildQuote India is a BITOMANCY product. By continuing you agree that:</p><ul><li>All rates and quantities are <b>indicative estimates</b>, not market prices or engineering design.</li><li>Drawing measurements must be <b>verified on site</b>; structural decisions need a licensed engineer.</li><li>You are responsible for the quotations you issue, including GST and terms.</li><li>Your data stays in your browser; BITOMANCY is not liable for losses from use of this tool.</li></ul><button class="pri" id="ackb" style="width:100%">I understand and agree</button></div></div>
+<div id="toast"></div>
 <script>
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const clone=o=>JSON.parse(JSON.stringify(o));
-const R=(id,cat,name,unit,rate)=>({id,cat,name,unit,rate});
-const RATES=[
-R('exc','Works','Earthwork excavation','cum',350),R('pcc','Works','PCC 1:4:8','cum',5200),
-R('rcc','Works','RCC M20 (concrete & labour, excl. steel/shuttering)','cum',7800),R('shut','Works','Shuttering & centering','sqft',55),
-R('stl','Works','Reinforcement steel Fe500 (supply & fix)','kg',85),R('br9','Works','Brickwork 230 mm (9 in)','cum',6500),
-R('br4','Works','Brickwork 115 mm (4.5 in)','sqft',120),R('pli','Works','Internal plaster 12 mm','sqft',38),
-R('ple','Works','External plaster 20 mm','sqft',48),R('flr','Works','Vitrified tile flooring (supply & lay)','sqft',95),
-R('pai','Works','Interior putty + primer + 2 coat emulsion','sqft',24),R('pae','Works','Exterior paint (2 coat)','sqft',20),
-R('wp','Works','Terrace waterproofing','sqft',65),R('door','Works','Flush door with frame & hardware','nos',12000),
-R('win','Works','Aluminium sliding window','sqft',450),R('elec','Works','Electrical point (wiring & switch)','nos',1000),
-R('bath','Works','Bathroom plumbing & sanitary set','nos',55000),R('ceil','Works','False ceiling (POP / gypsum)','sqft',85),
-R('m_cem','Materials','Cement 50 kg bag','bag',390),R('m_sand','Materials','Sand','cum',2100),R('m_agg','Materials','Aggregate 20 mm','cum',1600),
-R('m_brk','Materials','Bricks (red clay)','nos',9),R('m_stl','Materials','Steel Fe500 bars','kg',68),R('m_til','Materials','Vitrified tiles (material)','sqft',55),
-R('m_pnt','Materials','Emulsion paint','litre',380),R('m_prm','Materials','Primer','litre',220),R('m_put','Materials','Wall putty','kg',24)];
-const DEF={tier:'t2',accent:'#F2B01E',prefix:'BQ',next:1,valid:15,gstRate:18,
-firm:{name:'Your Firm Name',tag:'Architects & Builders',addr:'',phone:'',email:'',web:'',gst:'',pro:'',lic:'',logo:''},
-terms:'Payment: 30% advance, 50% on slab completion, 20% on handover.\nRates are valid for the period stated on this quote.\nExtra work beyond the BOQ will be charged separately.\nMaterial price changes beyond 5% may revise rates.\nAll disputes are subject to local jurisdiction.',
-tiers:{metro:1.25,t1:1.1,t2:1,t3:.92,rural:.85},
-tierNames:{metro:'Metro city',t1:'Tier‑1 city',t2:'Tier‑2 city',t3:'Tier‑3 town',rural:'Village / rural'},
-build:{basic:1700,standard:2100,premium:2800},
-split:[['Structure (excavation, RCC, steel)',35],['Masonry & plaster',15],['Flooring & tiling',10],['Doors & windows',10],['Electrical',8],['Plumbing & sanitary',8],['Painting & finishes',7],['Misc. & contingency',7]],
-rates:RATES,dim:{h:10,t:9,d:5},boq:[],saved:[],
-q:{no:'',date:'',valid:15,client:'',caddr:'',project:'',disc:0,dt:'%',gt:'split',adv:0,notes:''},agreed:false};
-const K='buildquote.v2';
-let S=(()=>{try{const s=JSON.parse(localStorage.getItem(K));if(s)return Object.assign(clone(DEF),s,{firm:{...DEF.firm,...s.firm},q:{...DEF.q,...s.q},dim:{...DEF.dim,...s.dim}})}catch(e){}return clone(DEF)})();
-const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
-const get=p=>p.split('.').reduce((o,k)=>o?.[k],S);
-const set=(p,v)=>{const a=p.split('.'),l=a.pop();a.reduce((o,k)=>o[k],S)[l]=v};
-const fmt=n=>(+n||0).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
-const num=(n,d=2)=>(+n||0).toLocaleString('en-IN',{maximumFractionDigits:d});
-const mult=()=>S.tiers[S.tier]??1;
-const rateOf=r=>Math.round(r.rate*mult()*100)/100;
-const byId=id=>S.rates.find(r=>r.id===id);
-function words(n){n=Math.round(n);if(!n)return'Zero';const o=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'],t=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];const b=x=>x<20?o[x]:t[x/10|0]+(x%10?' '+o[x%10]:'');const h=x=>(x>99?o[x/100|0]+' Hundred'+(x%100?' ':''):'')+(x%100?b(x%100):'');let r='';[[1e7,'Crore'],[1e5,'Lakh'],[1e3,'Thousand']].forEach(([d,nm])=>{if(n>=d){r+=h(Math.floor(n/d))+' '+nm+' ';n%=d}});if(n)r+=h(n);return r.trim()}
-const today=()=>new Date().toISOString().slice(0,10);
-function newNo(){return `${S.prefix}-${new Date().getFullYear()}-${String(S.next).padStart(3,'0')}`}
-if(!S.q.no)S.q.no=newNo();if(!S.q.date)S.q.date=today();
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],fmt=n=>new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(+n||0),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'),cf=()=>+$('#city').value;
+function toast(m){const t=$('#toast');t.textContent=m;t.className='s';clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='',2200)}
+const W=[['Earthwork excavation','cum',0,350],['PCC 1:4:8','cum',4600,900],['RCC M20 (excl. steel)','cum',6200,1800],['Brickwork','cum',5000,1500],['Plaster 12 mm','sqft',14,14],['Vitrified tile flooring','sqft',75,25],['Putty + primer + 2 coat paint','sqft',14,10],['Waterproofing','sqft',35,15],['Steel reinforcement','kg',66,10],['Electrical point','nos',900,500],['Plumbing point','nos',1200,600],['Flush door with frame','nos',7000,1500],['Aluminium window','sqft',450,100],['Gypsum false ceiling','sqft',55,25],['Granite kitchen platform','rft',1800,400],['Boundary wall','rft',1800,700]];
+const M={cement:['Cement (50 kg bag)','bag',400],sand:['Sand','cum',1500],agg:['Aggregate 20 mm','cum',1400],brick:['Bricks (1st class)','nos',8],steel:['TMT steel','kg',66],tile:['Floor tiles','sqft',55],paint:['Paint','litre',380]};
+const R3=[[1,2,4],[1,1.5,3],[1,1,2]];
+const CA={brick:['Brickwork',[['Wall length (ft)',20],['Height (ft)',10],['Thickness (in)',9],['Openings (sq ft)',0]],a=>{const v=Math.max(0,a[0]*a[1]-a[3])*a[2]/12/35.3147;return[['brick',v*525],['cement',v*1.65],['sand',v*.34]]}],
+conc:['Concrete + steel',[['Length (ft)',20],['Width (ft)',15],['Depth (in)',5],['Mix',1,[['M15 (1:2:4)',0],['M20 (1:1.5:3)',1],['M25 (1:1:2)',2]]],['Steel (% of volume)',1]],a=>{const v=a[0]*a[1]*a[2]/12/35.3147,m=R3[a[3]],s=m[0]+m[1]+m[2],d=v*1.54;return[['cement',d*m[0]/s/.0347],['sand',d*m[1]/s],['agg',d*m[2]/s],['steel',v*a[4]/100*7850]]}],
+plas:['Plaster',[['Area (sq ft)',500],['Thickness (mm)',12],['Mix 1 : (sand)',4]],a=>{const d=a[0]*.0929*a[1]/1000*1.35;return[['cement',d/(1+a[2])/.0347],['sand',d*a[2]/(1+a[2])]]}],
+tile:['Tile flooring',[['Area (sq ft)',200],['Wastage %',8]],a=>[['tile',a[0]*(1+a[1]/100)],['cement',a[0]*.014],['sand',a[0]*.0019]]],
+bbs:['Slab steel (bar bending)',[['Length (ft)',15],['Width (ft)',12],['Main bar dia (mm)',10],['Main spacing (in)',5],['Distribution dia (mm)',8],['Distribution spacing (in)',6],['Layers',1,[['Single layer',1],['Top + bottom',2]]]],a=>{const L=a[0]*.3048,Wd=a[1]*.3048,n1=Math.floor(Wd/(a[3]*.0254))+1,n2=Math.floor(L/(a[5]*.0254))+1;return[['steel',((a[2]**2/162)*n1*L+(a[4]**2/162)*n2*Wd)*a[6]*1.05]]}],
+paint:['Painting',[['Area (sq ft)',1000],['Coats',2],['Coverage (sq ft / litre / coat)',120]],a=>[['paint',a[0]*a[1]/a[2]]]]};
+function W2(n){const a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'],t=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'],b=x=>x<20?a[x]:t[x/10|0]+(x%10?' '+a[x%10]:'');n=Math.round(n);if(!n)return'Zero';let o='';for(const[d,s]of[[1e7,'Crore'],[1e5,'Lakh'],[1e3,'Thousand'],[100,'Hundred']])if(n>=d){const q=Math.floor(n/d);o+=(d==1e7&&q>99?W2(q):b(q))+' '+s+' ';n%=d}return(o+(n?b(n):'')).trim()}
 
-/* ---------- navigation & binding ---------- */
-$('#nav').onclick=e=>{const t=e.target.closest('button')?.dataset.t;if(!t)return;$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));$$('section').forEach(s=>s.classList.toggle('on',s.id===t));if(t==='takeoff')draw()};
-function go(t){$(`nav button[data-t=${t}]`).click()}
-document.addEventListener('input',e=>{const p=e.target.dataset?.p;if(!p)return;set(p,e.target.type==='number'?+e.target.value:e.target.value);save();if(p.startsWith('q.')||p==='gstRate')rTot();if(p==='tier'){rAll()}});
-function bindVals(){$$('[data-p]').forEach(el=>{const v=get(el.dataset.p);if(el.value!==String(v??''))el.value=v??''})}
-const inp=(p,l,t='text')=>`<label>${l}<input type="${t}" data-p="${p}"></label>`;
-/* ---------- rates & settings ---------- */
-function rSet(){
- $('#tier').innerHTML=Object.entries(S.tierNames).map(([k,n])=>`<option value="${k}">${n} (×${S.tiers[k]})</option>`).join('');
- const f=S.firm;$('#firm').innerHTML=inp('firm.name','Firm name')+inp('firm.tag','Tagline')+inp('firm.pro','Architect / engineer name')+inp('firm.lic','COA / licence no.')+inp('firm.addr','Address')+inp('firm.phone','Phone')+inp('firm.email','Email','email')+inp('firm.web','Website')+inp('firm.gst','GSTIN')+`<label>Quote accent colour<input type="color" data-p="accent"></label>`;
- $('#qd').innerHTML=inp('prefix','Quote number prefix')+inp('next','Next quote number','number')+inp('valid','Default validity (days)','number')+inp('gstRate','GST rate %','number');
- $('#tiers').innerHTML=Object.keys(S.tiers).map(k=>inp('tiers.'+k,S.tierNames[k]+' multiplier','number')).join('');
- $('#build').innerHTML=Object.keys(S.build).map(k=>inp('build.'+k,k+' (₹/sq ft)','number')).join('');
- $('#split').innerHTML=S.split.map((s,i)=>inp('split.'+i+'.1',s[0],'number')).join('');
- rRates();bindVals();
-}
-function rRates(){
- $('#rt').innerHTML='<tr><th>Category</th><th>Item</th><th>Unit</th><th>Rate ₹</th><th></th></tr>'+S.rates.map((r,i)=>`<tr><td>${esc(r.cat)}</td><td><input data-ri="${i}" data-k="name" value="${esc(r.name)}"></td><td><input data-ri="${i}" data-k="unit" value="${esc(r.unit)}" style="width:80px"></td><td><input type="number" data-ri="${i}" data-k="rate" value="${r.rate}" style="width:100px"></td><td><button class="b d" data-rd="${i}">×</button></td></tr>`).join('');
- const opts=S.rates.map(r=>`<option value="${esc(r.id)}">${esc(r.name)} — ₹${num(rateOf(r))}/${esc(r.unit)}</option>`).join('');
- $('#addsel').innerHTML=opts;
-}
-$('#rt').onchange=e=>{const i=e.target.dataset.ri;if(i==null)return;S.rates[i][e.target.dataset.k]=e.target.dataset.k==='rate'?+e.target.value:e.target.value;save();rRates()};
-$('#rt').onclick=e=>{const i=e.target.dataset.rd;if(i==null)return;S.rates.splice(i,1);save();rRates()};
-$('#bAddRt').onclick=()=>{const n=$('#nn').value.trim();if(!n)return;S.rates.push({id:'c'+Date.now(),cat:'Custom',name:n,unit:$('#nu').value.trim()||'nos',rate:+$('#nr').value||0});['#nn','#nu','#nr'].forEach(s=>$(s).value='');save();rRates()};
-$('#bReset').onclick=()=>{if(confirm('Reset all item rates to defaults? Your custom items will be removed.')){S.rates=clone(RATES);save();rRates();rMeas()}};
-$('#logo').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,300/im.width);c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.firm.logo=c.toDataURL('image/png');save()};im.src=URL.createObjectURL(f)};
-$('#bNoLogo').onclick=()=>{S.firm.logo='';save()};
-/* ---------- BOQ ---------- */
-function addLine(d,u,q,r){S.boq.push({d,u,q:Math.round(q*100)/100,r});save();rBoq()}
-function sums(){const sub=S.boq.reduce((a,l)=>a+l.q*l.r,0),q=S.q,disc=q.dt==='%'?sub*q.disc/100:+q.disc||0,tx=Math.max(sub-disc,0),gst=q.gt==='none'?0:tx*S.gstRate/100,gr=tx+gst;return{sub,disc,tx,gst,gr,bal:gr-(+q.adv||0)}}
-function rTot(){const s=sums(),q=S.q;$('#tot').innerHTML=`<div><span>Subtotal</span><span>₹ ${fmt(s.sub)}</span></div>`+(s.disc?`<div><span>Discount</span><span>− ₹ ${fmt(s.disc)}</span></div>`:'')+(q.gt==='split'?`<div><span>CGST ${S.gstRate/2}%</span><span>₹ ${fmt(s.gst/2)}</span></div><div><span>SGST ${S.gstRate/2}%</span><span>₹ ${fmt(s.gst/2)}</span></div>`:q.gt==='igst'?`<div><span>IGST ${S.gstRate}%</span><span>₹ ${fmt(s.gst)}</span></div>`:'')+`<div class="gt"><span>Grand total</span><span>₹ ${fmt(s.gr)}</span></div>`+(+q.adv?`<div><span>Balance due</span><span>₹ ${fmt(s.bal)}</span></div>`:'')}
-function rBoq(){
- $('#bt').innerHTML='<tr><th>#</th><th>Description</th><th>Unit</th><th>Qty</th><th>Rate ₹</th><th class="n">Amount ₹</th><th></th></tr>'+(S.boq.length?S.boq.map((l,i)=>`<tr><td>${i+1}</td><td><input data-bi="${i}" data-k="d" value="${esc(l.d)}"></td><td><input data-bi="${i}" data-k="u" value="${esc(l.u)}" style="width:70px"></td><td><input type="number" step="any" data-bi="${i}" data-k="q" value="${l.q}" style="width:90px"></td><td><input type="number" step="any" data-bi="${i}" data-k="r" value="${l.r}" style="width:100px"></td><td class="n">${fmt(l.q*l.r)}</td><td><button class="b d" data-bd="${i}">×</button></td></tr>`).join(''):'<tr><td colspan="7" class="mut">No items yet. Add from the rate list, send takeoff measurements, or use the calculators.</td></tr>');
- rTot();$('#sc').textContent=S.saved.length;
-}
-$('#bt').onchange=e=>{const i=e.target.dataset.bi;if(i==null)return;const k=e.target.dataset.k;S.boq[i][k]=['q','r'].includes(k)?+e.target.value:e.target.value;save();rBoq()};
-$('#bt').onclick=e=>{const i=e.target.dataset.bd;if(i==null)return;S.boq.splice(i,1);save();rBoq()};
-$('#bAddRate').onclick=()=>{const r=byId($('#addsel').value);if(r)addLine(r.name,r.unit,1,rateOf(r))};
-$('#bAddC').onclick=()=>addLine('Custom item','nos',1,0);
-$('#bCsv').onclick=()=>{const rows=[['#','Description','Unit','Qty','Rate','Amount'],...S.boq.map((l,i)=>[i+1,l.d,l.u,l.q,l.r,(l.q*l.r).toFixed(2)])];const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');dl(S.q.no+'.csv',csv,'text/csv')};
-function dl(n,t,m){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()}
-$('#bSave').onclick=()=>{const rec={id:S.q.no,name:S.q.client||'(no client)',proj:S.q.project,at:S.q.date,total:sums().gr,boq:clone(S.boq),q:clone(S.q)};const i=S.saved.findIndex(x=>x.id===rec.id);if(i>=0)S.saved[i]=rec;else{S.saved.unshift(rec);S.next++}save();rSaved();rBoq();alert('Quote '+rec.id+' saved in this browser.')};
-$('#bNew').onclick=()=>{if(S.boq.length&&!confirm('Start a new quote? Unsaved changes will be lost.'))return;S.boq=[];S.q={...DEF.q,valid:S.valid,no:newNo(),date:today()};save();rBoq();bindVals()};
-function rSaved(){$('#st').innerHTML='<tr><th>Quote</th><th>Client</th><th>Project</th><th>Date</th><th class="n">Total ₹</th><th></th></tr>'+(S.saved.length?S.saved.map((x,i)=>`<tr><td>${esc(x.id)}</td><td>${esc(x.name)}</td><td>${esc(x.proj)}</td><td>${esc(x.at)}</td><td class="n">${fmt(x.total)}</td><td><button class="b o" data-sl="${i}">Open</button> <button class="b d" data-sd="${i}">×</button></td></tr>`).join(''):'<tr><td colspan="6" class="mut">No saved quotes yet.</td></tr>');$('#sc').textContent=S.saved.length}
-$('#st').onclick=e=>{const l=e.target.dataset.sl,d=e.target.dataset.sd;if(l!=null){const x=S.saved[l];S.boq=clone(x.boq);S.q=clone(x.q);save();rBoq();bindVals();go('boq')}if(d!=null&&confirm('Delete this saved quote?')){S.saved.splice(d,1);save();rSaved()}};
-$('#bExp').onclick=()=>dl('buildquote-backup.json',JSON.stringify(S),'application/json');
-$('#imp').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const o=JSON.parse(t);if(!o.rates)throw 0;S=Object.assign(clone(DEF),o);save();location.reload()}catch(x){alert('That file is not a valid BuildQuote backup.')}})};
-/* ---------- preview / print ---------- */
-$('#bPrev').onclick=()=>{
- const f=S.firm,q=S.q,s=sums(),ac=S.accent,v=new Date(q.date);v.setDate(v.getDate()+(+q.valid||0));
- $('#qp').innerHTML=`<div style="font-family:Instrument Sans,system-ui,sans-serif;color:#12263A"><div style="display:flex;gap:14px;align-items:center;border-bottom:4px solid ${esc(ac)};padding-bottom:12px">${f.logo?`<img src="${f.logo}" style="max-height:64px;max-width:160px">`:''}<div style="flex:1"><div style="font:800 1.5rem Bricolage Grotesque,sans-serif">${esc(f.name)}</div><div>${esc(f.tag)}</div><div style="font-size:.85rem">${esc(f.addr)}</div><div style="font-size:.85rem">${[f.phone,f.email,f.web].filter(Boolean).map(esc).join(' · ')}</div>${f.gst?`<div style="font-size:.85rem">GSTIN: ${esc(f.gst)}</div>`:''}</div><div style="text-align:right;font-size:.9rem"><b style="font-size:1.1rem">QUOTATION</b><br>No: ${esc(q.no)}<br>Date: ${esc(q.date)}<br>Valid till: ${v.toISOString().slice(0,10)}</div></div>
- <div style="margin:14px 0"><b>To:</b> ${esc(q.client)||'—'}<br>${esc(q.caddr)}<br><b>Project:</b> ${esc(q.project)||'—'}</div>
- <table style="width:100%;border-collapse:collapse;font-size:.9rem"><tr style="background:${esc(ac)}"><th style="padding:6px;text-align:left">#</th><th style="text-align:left">Description</th><th>Unit</th><th style="text-align:right">Qty</th><th style="text-align:right">Rate ₹</th><th style="text-align:right;padding-right:6px">Amount ₹</th></tr>${S.boq.map((l,i)=>`<tr style="border-bottom:1px solid #ccd"><td style="padding:5px">${i+1}</td><td>${esc(l.d)}</td><td style="text-align:center">${esc(l.u)}</td><td style="text-align:right">${num(l.q)}</td><td style="text-align:right">${fmt(l.r)}</td><td style="text-align:right;padding-right:6px">${fmt(l.q*l.r)}</td></tr>`).join('')}</table>
- <div style="max-width:320px;margin:12px 0 0 auto;font-size:.95rem"><div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>₹ ${fmt(s.sub)}</span></div>${s.disc?`<div style="display:flex;justify-content:space-between"><span>Discount</span><span>− ₹ ${fmt(s.disc)}</span></div>`:''}${q.gt==='split'?`<div style="display:flex;justify-content:space-between"><span>CGST ${S.gstRate/2}%</span><span>₹ ${fmt(s.gst/2)}</span></div><div style="display:flex;justify-content:space-between"><span>SGST ${S.gstRate/2}%</span><span>₹ ${fmt(s.gst/2)}</span></div>`:q.gt==='igst'?`<div style="display:flex;justify-content:space-between"><span>IGST ${S.gstRate}%</span><span>₹ ${fmt(s.gst)}</span></div>`:''}<div style="display:flex;justify-content:space-between;font-weight:800;font-size:1.15rem;border-top:2px solid #12263A;margin-top:4px;padding-top:4px"><span>Grand total</span><span>₹ ${fmt(s.gr)}</span></div>${+q.adv?`<div style="display:flex;justify-content:space-between"><span>Advance received</span><span>₹ ${fmt(q.adv)}</span></div><div style="display:flex;justify-content:space-between"><b>Balance due</b><b>₹ ${fmt(s.bal)}</b></div>`:''}</div>
- <p style="font-size:.9rem"><b>In words:</b> Rupees ${words(s.gr)} Only</p>${q.notes?`<p style="font-size:.9rem"><b>Notes:</b> ${esc(q.notes)}</p>`:''}
- <div style="font-size:.85rem"><b>Terms &amp; conditions</b><ol style="margin:4px 0;padding-left:20px">${S.terms.split('\n').filter(Boolean).map(t=>`<li>${esc(t)}</li>`).join('')}</ol></div>
- <div style="display:flex;justify-content:space-between;margin-top:46px;font-size:.9rem"><div>Client acceptance<br><br>______________</div><div style="text-align:right">For ${esc(f.name)}<br><br>______________<br>${esc(f.pro)}${f.lic?' · '+esc(f.lic):''}</div></div>
- <p style="font-size:.7rem;color:#5B6B79;margin-top:18px">Estimate generated with BuildQuote India by BITOMANCY. Quantities and rates are indicative and subject to site verification.</p></div>`;
- $('#pv').classList.add('on')};
-$('#bClose').onclick=()=>$('#pv').classList.remove('on');
-/* ---------- calculators ---------- */
-const bag=28.8,ft3=.0283168,ft2=.092903;
-const mix=(vol,dry,c,s,g)=>{const t=c+s+g,d=vol*dry;return[['m_cem',d*c/t*bag],['m_sand',d*s/t],...(g?[['m_agg',d*g/t]]:[])]};
-const CALC={
-brick:{n:'Brickwork (mortar 1:6)',f:[['l','Wall length (ft)',30],['h','Height (ft)',10],['t','Thickness (in)',9],['o','Openings (sq ft)',0]],run:v=>{const vol=(v.l*v.h-v.o)*v.t/12*ft3;return[['m_brk',vol*500*1.05],...mix(vol*.27,1.33,1,6,0)]}},
-conc:{n:'Concrete M20 (1:1.5:3)',f:[['l','Length (ft)',20],['b','Width (ft)',15],['d','Depth (in)',5]],run:v=>mix(v.l*v.b*v.d/12*ft3*1.03,1.54,1,1.5,3)},
-plas:{n:'Plaster (1:4)',f:[['a','Area (sq ft)',1000],['t','Thickness (mm)',12]],run:v=>mix(v.a*ft2*v.t/1000*1.1,1.3,1,4,0)},
-tile:{n:'Tile flooring',f:[['a','Area (sq ft)',500],['w','Wastage %',7]],run:v=>[['m_til',v.a*(1+v.w/100)]]},
-paint:{n:'Painting',f:[['a','Wall area (sq ft)',2000],['c','Coats',2]],run:v=>[['m_pnt',v.a*v.c/100],['m_prm',v.a/120],['m_put',v.a*.2]]},
-steel:{n:'Steel (thumb rule)',f:[['a','Built-up area (sq ft)',1200],['k','kg per sq ft',4]],run:v=>[['m_stl',v.a*v.k]]}};
-let cOut=[];
-$('#cs').innerHTML=Object.entries(CALC).map(([k,c])=>`<option value="${k}">${c.n}</option>`).join('');
-function rCalc(){const c=CALC[$('#cs').value];if(document.activeElement.dataset.cf==null)$('#cf').innerHTML=c.f.map(f=>`<label>${f[1]}<input type="number" step="any" data-cf="${f[0]}" value="${f[2]}"></label>`).join('');
- const v={};$$('[data-cf]').forEach(i=>v[i.dataset.cf]=+i.value||0);cOut=c.run(v).map(([id,q])=>[byId(id),q]).filter(x=>x[0]);
- $('#cr').innerHTML='<tr><th>Material</th><th class="n">Quantity</th><th class="n">Rate ₹</th><th class="n">Cost ₹</th></tr>'+cOut.map(([r,q])=>`<tr><td>${esc(r.name)}</td><td class="n">${num(q)} ${esc(r.unit)}</td><td class="n">${fmt(rateOf(r))}</td><td class="n">${fmt(q*rateOf(r))}</td></tr>`).join('')+`<tr><th colspan="3" class="n">Total</th><th class="n">${fmt(cOut.reduce((a,[r,q])=>a+q*rateOf(r),0))}</th></tr>`}
-$('#cs').onchange=()=>{$('#cf').innerHTML='';rCalc()};$('#cf').oninput=rCalc;
-$('#bCalc').onclick=()=>{cOut.forEach(([r,q])=>addLine(r.name,r.unit,q,rateOf(r)));go('boq')};
-/* ---------- quick estimate ---------- */
-function rQuick(){const a=+$('#qa').value||0,t=$('#qq').value,tot=a*S.build[t]*mult();
- $('#qt').innerHTML=`<tr><th>Head</th><th class="n">%</th><th class="n">Amount ₹</th></tr>`+S.split.map(s=>`<tr><td>${esc(s[0])}</td><td class="n">${s[1]}</td><td class="n">${fmt(tot*s[1]/100)}</td></tr>`).join('')+`<tr><th colspan="2" class="n">Total (₹${num(S.build[t]*mult())}/sq ft)</th><th class="n">${fmt(tot)}</th></tr>`;return tot}
-$('#qa').oninput=$('#qq').onchange=rQuick;
-$('#bQuick').onclick=()=>{const a=+$('#qa').value||0,tot=rQuick();S.split.forEach(s=>addLine(`${s[0]} (${a} sq ft, ${$('#qq').value})`,'ls',1,Math.round(tot*s[1]/100)));go('boq')};
-/* ---------- drawing takeoff ---------- */
-const cv=$('#cv'),cx=cv.getContext('2d');let img=null,mode='scale',cur=[],ppf=0,M=[];
-const hints={scale:'Click both ends of a known dimension.',length:'Click points along the wall or run. Double-click or press Finish to end.',area:'Click the corners of the room or area. Double-click or Finish to close it.',count:'Click each item to count (doors, windows, points). Finish to save the group.'};
-$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{img=im;const s=Math.min(1,1400/im.width);cv.width=im.width*s;cv.height=im.height*s;ppf=0;cur=[];M=[];setMode('scale');rMeas();draw()};im.src=URL.createObjectURL(f)};
-function setMode(m){mode=m;cur=[];$('#hint').textContent=hints[m];draw()}
-$('#bScale').onclick=()=>setMode('scale');$$('[data-m]').forEach(b=>b.onclick=()=>{if(!ppf&&b.dataset.m!=='count'&&!M.length)alert('Set the scale first so lengths and areas are real.');setMode(b.dataset.m)});
-function pos(e){const r=cv.getBoundingClientRect();let p=[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height];if($('#ortho').checked&&cur.length&&mode!=='count'){const l=cur[cur.length-1];Math.abs(p[0]-l[0])>Math.abs(p[1]-l[1])?p[1]=l[1]:p[0]=l[0]}return p}
-cv.onclick=e=>{if(!img)return;cur.push(pos(e));if(mode==='scale'&&cur.length===2){const px=Math.hypot(cur[0][0]-cur[1][0],cur[0][1]-cur[1][1]),ft=parseFloat(prompt('Real length of this line in feet?'));if(ft>0){ppf=px/ft;$('#hint').textContent='Scale set. Choose Length, Area or Count to start measuring.'}cur=[]}draw()};
-cv.ondblclick=()=>{cur.pop();fin()};$('#bFin').onclick=fin;$('#bUndo').onclick=()=>{cur.pop();draw()};
-function fin(){if(mode==='length'&&cur.length>1&&ppf){let L=0;for(let i=1;i<cur.length;i++)L+=Math.hypot(cur[i][0]-cur[i-1][0],cur[i][1]-cur[i-1][1]);push('length',L/ppf)}
- if(mode==='area'&&cur.length>2&&ppf){let a=0;cur.forEach((p,i)=>{const n=cur[(i+1)%cur.length];a+=p[0]*n[1]-n[0]*p[1]});push('area',Math.abs(a)/2/ppf/ppf)}
- if(mode==='count'&&cur.length)push('count',cur.length);cur=[];draw()}
-function push(t,v){M.push({t,v,l:({length:'Wall',area:'Room',count:'Item'})[t]+' '+(M.filter(m=>m.t===t).length+1),ded:$('#ded').checked,map:'',pts:cur.slice()});rMeas()}
-$('#bMan').onclick=()=>{const t=$('#mt').value,v=+$('#mv').value;if(!v)return;M.push({t,v,l:$('#ml').value||t,ded:$('#ded').checked,map:'',pts:[]});$('#ml').value=$('#mv').value='';rMeas()};
-const UNITS={length:['rft','sqft','cum'],area:['sqft','cum'],count:['nos']};
-function conv(m,u){const d=S.dim,s=m.ded?-1:1;if(m.t==='length')return s*(u==='rft'?m.v:u==='sqft'?m.v*d.h:m.v*d.h*d.t/12*ft3);if(m.t==='area')return s*(u==='sqft'?m.v:m.v*d.d/12*ft3);return s*m.v}
-function rMeas(){$('#mtab').innerHTML='<tr><th>Label</th><th>Type</th><th class="n">Value</th><th>Deduct</th><th>Map to rate item</th><th></th></tr>'+(M.length?M.map((m,i)=>{const o=S.rates.filter(r=>UNITS[m.t].includes(r.unit)&&r.cat!=='Materials');const rr=byId(m.map);return`<tr><td><input data-mi="${i}" data-k="l" value="${esc(m.l)}"></td><td>${m.t}</td><td class="n">${num(m.v)} ${m.t==='length'?'ft':m.t==='area'?'sq ft':'nos'}</td><td><input type="checkbox" data-mi="${i}" data-k="ded" ${m.ded?'checked':''}></td><td><select data-mi="${i}" data-k="map"><option value="">— not mapped —</option>${o.map(r=>`<option value="${esc(r.id)}" ${r.id===m.map?'selected':''}>${esc(r.name)} (${esc(r.unit)})</option>`).join('')}</select>${rr?`<div class="mut">= ${num(conv(m,rr.unit))} ${esc(rr.unit)}</div>`:''}</td><td><button class="b d" data-md="${i}">×</button></td></tr>`}).join(''):'<tr><td colspan="6" class="mut">No measurements yet. Upload a plan, set the scale and trace walls, rooms or fixtures, or add values manually.</td></tr>')}
-$('#mtab').onchange=e=>{const i=e.target.dataset.mi;if(i==null)return;const k=e.target.dataset.k;M[i][k]=k==='ded'?e.target.checked:e.target.value;rMeas();draw()};
-$('#mtab').onclick=e=>{const i=e.target.dataset.md;if(i==null)return;M.splice(i,1);rMeas();draw()};
-$('#bClr').onclick=()=>{if(confirm('Clear all measurements?')){M=[];cur=[];rMeas();draw()}};
-$('#bSend').onclick=()=>{const g={};M.forEach(m=>{const r=byId(m.map);if(!r)return;g[r.id]=(g[r.id]||0)+conv(m,r.unit)});const ids=Object.keys(g);if(!ids.length){alert('Map at least one measurement to a rate item first.');return}ids.forEach(id=>{const r=byId(id);addLine(r.name+' (from takeoff)',r.unit,Math.max(g[id],0),rateOf(r))});go('boq')};
-function draw(){cx.clearRect(0,0,cv.width,cv.height);if(!img){cx.fillStyle='#5B6B79';cx.font='16px sans-serif';cx.fillText('Upload a drawing image to begin',20,40);return}
- cx.drawImage(img,0,0,cv.width,cv.height);const path=(p,close,col)=>{cx.strokeStyle=col;cx.fillStyle=col;cx.lineWidth=2.5;cx.beginPath();p.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1]));if(close)cx.closePath();cx.stroke();if(close){cx.globalAlpha=.15;cx.fill();cx.globalAlpha=1}p.forEach(q=>{cx.beginPath();cx.arc(q[0],q[1],4,0,7);cx.fill()})};
- M.forEach(m=>{if(m.pts.length)path(m.pts,m.t==='area',m.ded?'#B3382C':m.t==='count'?'#1F7A74':'#12263A')});if(cur.length)path(cur,false,'#F2B01E')}
-/* ---------- consent & init ---------- */
-$('#bOk').onclick=()=>{S.agreed=true;save();$('#consent').classList.remove('on')};
-function rAll(){rSet();rBoq();rSaved();rCalc();rQuick();rMeas();bindVals();$('#tier').value=S.tier}
-rAll();draw();if(!S.agreed)$('#consent').classList.add('on');
-</script>
-</body>
-</html>
+/* tabs */
+function show(t){$$('main>section').forEach(s=>s.hidden=s.id!=(t=='sv'?'sv2':t));$$('nav button[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t==t));if(t=='sv')lst();scrollTo(0,0)}
+$$('nav button[data-t]').forEach(b=>b.onclick=()=>show(b.dataset.t));
+
+/* state */
+let S={m:{},boq:[],p:{c:3,o:10,g:18,a:30,b:40,e:30}},T=0;
+try{const d=JSON.parse(localStorage.getItem('bq_draft'));if(d&&d.boq)S=d}catch(e){}
+function persist(){try{localStorage.setItem('bq_draft',JSON.stringify(S))}catch(e){}}
+function restore(){$$('[data-m]').forEach(i=>{if(S.m[i.dataset.m]!=null)i.value=S.m[i.dataset.m]});[['pc','c'],['po','o'],['pg','g'],['m0','a'],['m1','b'],['m2','e']].forEach(([i,k])=>$('#'+i).value=S.p[k]);rb()}
+$$('[data-m]').forEach(i=>i.oninput=()=>{S.m[i.dataset.m]=i.value;persist()});
+[['pc','c'],['po','o'],['pg','g'],['m0','a'],['m1','b'],['m2','e']].forEach(([i,k])=>$('#'+i).oninput=()=>{S.p[k]=+$('#'+i).value||0;calc()});
+
+/* BOQ */
+$('#cat').innerHTML=W.map((w,i)=>`<option value="${i}">${w[0]} (₹/${w[1]})</option>`).join('');
+function addRow(d,q,u,r,l){S.boq.push({d,q:Math.round(q*100)/100,u,r,l});rb();toast('Added to BOQ ✓')}
+const addW=(i,q)=>{const w=W[i];addRow(w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))};
+$('#addc').onclick=()=>addW(+$('#cat').value,1);$('#addb').onclick=()=>{S.boq.push({d:'',q:1,u:'nos',r:0,l:0});rb()};
+function rb(){$('#tb').innerHTML=S.boq.map((x,i)=>`<tr>${[['d','',140],['q','number',70],['u','',60],['r','number',90],['l','number',90]].map(([k,t])=>`<td><input data-i="${i}" data-k="${k}" ${t?'type=number':''} value="${esc(x[k])}"></td>`).join('')}<td class="am" id="a${i}"></td><td><button data-del="${i}">×</button></td></tr>`).join('')||'<tr><td colspan="7" class="mu">No items yet. Add from the takeoff, calculators or catalog.</td></tr>';calc()}
+$('#tb').oninput=e=>{const i=e.target.dataset.i;if(i==null)return;S.boq[i][e.target.dataset.k]=e.target.value;calc()};
+$('#tb').onclick=e=>{const d=e.target.dataset.del;if(d!=null){S.boq.splice(d,1);rb()}};
+function calc(){let s=0;S.boq.forEach((x,i)=>{const a=(+x.q||0)*((+x.r||0)+(+x.l||0));s+=a;const e=$('#a'+i);if(e)e.textContent='₹'+fmt(a)});const p=S.p,c=s*p.c/100,o=(s+c)*p.o/100,b=s+c+o,g=b*p.g/100;T=b+g;[s,c,o,g,T].forEach((v,i)=>$('#v'+i).textContent='₹'+fmt(v));$('#w').textContent='Rupees '+W2(T)+' only';$('#nb').textContent=S.boq.length;$('#mt').textContent=`Payment: ₹${fmt(T*p.a/100)} advance · ₹${fmt(T*p.b/100)} mid‑stage · ₹${fmt(T*p.e/100)} on completion`+((p.a+p.b+p.e)==100?'':'  (⚠ percentages do not add to 100)');persist()}
+const lines=()=>S.boq.map((x,i)=>`${i+1}. ${x.d} — ${fmt(x.q)} ${x.u} × ₹${fmt((+x.r||0)+(+x.l||0))} = ₹${fmt((+x.q||0)*((+x.r||0)+(+x.l||0)))}`);
+function copy(t){try{navigator.clipboard.writeText(t).then(()=>toast('Copied ✓'),()=>fb(t))}catch(e){fb(t)}}
+function fb(t){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Copied ✓')}catch(e){toast('Copy not available')}a.remove()}
+$('#tsv').onclick=()=>copy('Description\tQty\tUnit\tMaterial\tLabour\tAmount\n'+S.boq.map(x=>[x.d,x.q,x.u,x.r,x.l,(+x.q||0)*((+x.r||0)+(+x.l||0))].join('\t')).join('\n'));
+$('#wa').onclick=()=>{const m=S.m,t=`*Quotation – ${m.pn||'Project'}*\n${m.cn||''} ${m.cp||''}\nClient: ${m.cl||'-'}\n\n${lines().join('\n')}\n\n*Total incl. GST: ₹${fmt(T)}*\n(${W2(T)} rupees only)`;const a=document.createElement('a');a.href='https://wa.me/?text='+encodeURIComponent(t);a.target='_blank';a.rel='noopener';a.click()};
+$('#pr').onclick=()=>{show('bq');print()};
+$('#nw').onclick=()=>{if(S.boq.length&&!confirm('Clear the current quote?'))return;S={m:{},boq:[],p:{c:3,o:10,g:18,a:30,b:40,e:30}};$$('[data-m]').forEach(i=>i.value=i.dataset.m=='vd'?15:i.dataset.m=='tc'?i.value:'');restore()};
+$('#sv').onclick=()=>{let l=[];try{l=JSON.parse(localStorage.getItem('bq_saved'))||[]}catch(e){}l.unshift({id:Date.now(),n:S.m.pn||'Untitled',cl:S.m.cl||'',d:new Date().toLocaleDateString('en-IN'),t:T,S});try{localStorage.setItem('bq_saved',JSON.stringify(l));toast('Saved on this device ✓')}catch(e){toast('Could not save (storage blocked)')}};
+function lst(){let l=[];try{l=JSON.parse(localStorage.getItem('bq_saved'))||[]}catch(e){}$('#sl').innerHTML=l.map(q=>`<div class="mr"><div style="flex:1 1 200px"><b>${esc(q.n)}</b><br><span class="mu">${esc(q.cl||'No client')} · ${q.d}</span></div><b>₹${fmt(q.t)}</b><button data-o="${q.id}">Open</button><button data-x="${q.id}">Delete</button></div>`).join('')||'<p class="mu">No saved quotes yet.</p>';$('#sl').onclick=e=>{const o=e.target.dataset.o,x=e.target.dataset.x;if(o){S=l.find(q=>q.id==o).S;restore();show('bq')}if(x){try{localStorage.setItem('bq_saved',JSON.stringify(l.filter(q=>q.id!=x)))}catch(e){}lst()}}}
+
+/* calculators */
+let cur='brick';
+$('#ct').innerHTML=Object.keys(CA).map(k=>`<button data-c="${k}">${CA[k][0]}</button>`).join('');
+$('#ct').onclick=e=>{if(e.target.dataset.c){cur=e.target.dataset.c;cf2()}};
+function cf2(){$$('#ct button').forEach(b=>b.classList.toggle('on',b.dataset.c==cur));$('#cf').innerHTML=CA[cur][1].map((f,i)=>`<label>${f[0]}${f[2]?`<select data-f="${i}">${f[2].map(o=>`<option value="${o[1]}" ${o[1]==f[1]?'selected':''}>${o[0]}</option>`).join('')}</select>`:`<input data-f="${i}" type="number" value="${f[1]}">`}</label>`).join('');cr()}
+function cvals(){return $$('#cf [data-f]').map(i=>+i.value||0)}
+function cr(){const l=CA[cur][2](cvals());$('#cr').innerHTML='<tr><th>Material</th><th class="r">Quantity</th><th class="r">Est. cost</th></tr>'+l.map(([k,q])=>`<tr><td>${M[k][0]}</td><td class="r">${fmt(q)} ${M[k][1]}</td><td class="r">₹${fmt(q*M[k][2]*cf())}</td></tr>`).join('')}
+$('#cf').oninput=cr;$('#city').onchange=cr;
+$('#cadd').onclick=()=>CA[cur][2](cvals()).forEach(([k,q])=>addRow(M[k][0]+' – '+CA[cur][0],['bag','nos'].includes(M[k][1])?Math.ceil(q):q,M[k][1],Math.round(M[k][2]*cf()),0));
+
+/* drawing takeoff */
+const cv=$('#cv'),cx=cv.getContext('2d'),HT={cal:'Click two ends of a dimension printed on the drawing, then enter its real length.',len:'Click along a wall or run. Press Finish (or Enter / double‑click) to save the length.',area:'Click the corners of a room or slab. Finish to close the shape and save the area.',cnt:'Click each item (door, point, column). Finish to save the count.',rect:'Click two opposite corners of a rectangular room. Tick Deduct to subtract doors/windows/openings.'},COL={len:'#2563eb',area:'#ea580c',cnt:'#dc2626'};
+let img=null,sc=0,tool='cal',pts=[],sh=[];
+const hint=()=>$('#hint').textContent=(sc?'✓ Scale set. ':'⚠ Set scale first. ')+HT[tool];hint();
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{img=i;const k=Math.min(1,2200/i.naturalWidth);cv.width=i.naturalWidth*k;cv.height=i.naturalHeight*k;sc=0;sh=[];pts=[];tool='cal';tl();draw();list();hint()};i.src=r.result};r.readAsDataURL(f)};
+function tl(){$$('#tools button').forEach(b=>b.classList.toggle('on',b.dataset.k==tool))}
+$('#tools').onclick=e=>{if(e.target.dataset.k){fin(true);tool=e.target.dataset.k;pts=[];tl();hint();draw()}};
+$('#zm').oninput=e=>cv.style.width=e.target.value+'%';
+const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]),pl=(p,c)=>p.reduce((s,q,i)=>s+(i?dist(p[i-1],q):0),0)+(c?dist(p[p.length-1],p[0]):0),ar=p=>p.reduce((s,q,i)=>{const n=p[(i+1)%p.length];return s+q[0]*n[1]-n[0]*q[1]},0)/2;
+cv.onclick=e=>{if(!img)return toast('Upload a drawing first');const r=cv.getBoundingClientRect(),p=[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height];
+if(tool!='cal'&&!sc)return toast('Set the scale first (tool 1)');if($('#ort').checked&&pts.length&&tool!='cnt'&&tool!='rect'){const q=pts[pts.length-1];Math.abs(p[0]-q[0])>Math.abs(p[1]-q[1])?p[1]=q[1]:p[0]=q[0]}pts.push(p);if(tool=='rect'&&pts.length==2){const[a,b]=pts;pts=[a,[b[0],a[1]],b,[a[0],b[1]]];tool='area';fin();tool='rect';return}
+if(tool=='cal'&&pts.length==2){const v=parseFloat(prompt('Real length of the line you drew? (number, in the unit selected)'));if(v>0){sc=dist(pts[0],pts[1])/(v*{ft:1,m:3.28084,in:1/12}[$('#cu').value]);toast('Scale set ✓');tool='len';tl();hint()}pts=[]}draw()};
+cv.ondblclick=()=>{pts.pop();fin()};addEventListener('keydown',e=>{if(e.key=='Enter'&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))fin();if(e.key=='Escape'){pts=[];draw()}});
+function fin(q){const n={cnt:1,len:2,area:3}[tool];if(!n||pts.length<n){if(!q)toast('Not enough points');pts=[];draw();return}
+let v=tool=='cnt'?pts.length:tool=='len'?pl(pts)/sc:Math.abs(ar(pts))/sc/sc;if(tool=='area'&&$('#ded').checked)v=-v;sh.push({t:tool,p:pts,v,n:'',i:{len:3,area:5,cnt:9}[tool]});pts=[];draw();list()}
+$('#fin').onclick=()=>fin();$('#und').onclick=()=>{pts.length?pts.pop():sh.pop();draw();list()};$('#clr').onclick=()=>{if(confirm('Remove all measurements?')){sh=[];pts=[];draw();list()}};
+function dot(p,c){cx.fillStyle=c;cx.beginPath();cx.arc(p[0],p[1],Math.max(4,cv.width/220),0,7);cx.fill()}
+function path(p,c,col,fill){cx.strokeStyle=col;cx.lineWidth=Math.max(2,cv.width/450);cx.beginPath();p.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1]));if(c)cx.closePath();if(fill){cx.fillStyle=col+'44';cx.fill()}cx.stroke();p.forEach(q=>dot(q,col))}
+function draw(){cx.clearRect(0,0,cv.width,cv.height);if(img)cx.drawImage(img,0,0,cv.width,cv.height);else{cx.fillStyle='#8a9399';cx.font='22px system-ui';cx.textAlign='center';cx.fillText('Upload a floor plan or drawing image to start measuring',cv.width/2,cv.height/2)}
+sh.forEach((s,k)=>{if(s.t=='cnt')s.p.forEach(q=>dot(q,COL.cnt));else path(s.p,s.t=='area',s.v<0?'#7c3aed':COL[s.t],s.t=='area');const q=s.p[0],t=(s.n||'#'+(k+1))+': '+fmt(s.v);cx.font='bold '+Math.max(13,cv.width/70)+'px system-ui';cx.textAlign='left';const w=cx.measureText(t).width;cx.fillStyle='#000c';cx.fillRect(q[0]+6,q[1]-22,w+8,20);cx.fillStyle='#fff';cx.fillText(t,q[0]+10,q[1]-7)});
+if(pts.length)path(pts,false,tool=='cal'?'#16a34a':COL[tool],false)}
+const UN={len:'rft',area:'sq ft',cnt:'nos'};
+function list(){const sm=k=>fmt(sh.filter(s=>s.t==k).reduce((a,s)=>a+s.v,0));$('#ms').innerHTML=(sh.length?`<p class="mu">Totals: ${sm('len')} rft · ${sm('area')} sq ft net · ${sm('cnt')} nos</p>`:'')+sh.map((s,i)=>`<div class="mr"><span class="dot" style="background:${COL[s.t]}"></span><input data-n="${i}" placeholder="Label e.g. Bedroom 1" value="${esc(s.n)}"><b>${fmt(s.v)} ${UN[s.t]}</b><select data-s="${i}">${W.map((w,j)=>`<option value="${j}" ${j==s.i?'selected':''}>${w[0]} (${w[1]})</option>`).join('')}</select><button class="pri" data-a="${i}">+ BOQ</button><button data-r="${i}">×</button></div>`).join('')||'<p class="mu">No measurements yet. Upload a plan, set the scale, then trace walls, rooms or count fixtures.</p>';draw()}
+function qf(s,u){const H=+$('#wh').value||10,T=(+$('#wt').value||9)/12,D=(+$('#dp').value||5)/12,c=35.3147;
+if(s.t=='cnt')return u=='nos'?s.v:0;if(s.t=='len')return u=='rft'?s.v:u=='sqft'?s.v*H:u=='cum'?s.v*H*T/c:0;return u=='sqft'?s.v:u=='cum'?s.v*D/c:0}
+$('#ms').oninput=e=>{if(e.target.dataset.n!=null){sh[e.target.dataset.n].n=e.target.value;draw()}if(e.target.dataset.s!=null)sh[e.target.dataset.s].i=+e.target.value};
+$('#ms').onclick=e=>{const d=e.target.dataset;if(d.r!=null){sh.splice(d.r,1);list()}if(d.a!=null){const s=sh[d.a],w=W[s.i],q=qf(s,w[1]);if(!q)return toast('This item does not fit that measurement type');addRow((s.n?s.n+' – ':'')+w[0],q,w[1],Math.round(w[2]*cf()),Math.round(w[3]*cf()))}};
+const SP=[['Excavation & foundation',12],['RCC structure (slabs, beams, columns)',35],['Masonry & plaster',15],['Flooring & tiling',10],['Doors & windows',8],['Electrical',6],['Plumbing & sanitary',7],['Painting',5],['Finishing & misc',2]];
+const qv=()=>{const A=(+$('#qa').value||0)*(+$('#qf').value||1);return[A,A*(+$('#qr').value||0)]};
+function qe(){const[A,t]=qv();$('#qo').innerHTML=`<p><span class="big">₹${fmt(t)}</span><br><span class="mu">${W2(t)} rupees · ${fmt(A)} sq ft total</span></p>`+SP.map(s=>`<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;gap:8px"><span>${s[0]} <span class="mu">${s[1]}%</span></span><b>₹${fmt(t*s[1]/100)}</b></div><div style="height:6px;border-radius:3px;background:var(--ln)"><div style="height:6px;border-radius:3px;background:var(--ac);width:${s[1]*2.5}%"></div></div></div>`).join('')}
+$('#qe').addEventListener('input',e=>{if(e.target.id=='qg')$('#qr').value=Math.round($('#qg').value*cf());qe()});
+$('#city').addEventListener('change',()=>{$('#qr').value=Math.round($('#qg').value*cf());qe()});
+$('#qadd').onclick=()=>{const[,t]=qv();SP.forEach(s=>{const a=t*s[1]/100;addRow(s[0]+' (lump sum)',1,'lot',Math.round(a*.65),Math.round(a*.35))})};
+$('#bk').onclick=()=>copy(localStorage.getItem('bq_saved')||'[]');
+$('#rsb').onclick=()=>{try{const n=JSON.parse($('#rs').value);if(!Array.isArray(n))throw 0;const l=JSON.parse(localStorage.getItem('bq_saved')||'[]');n.forEach(q=>{if(!l.some(x=>x.id==q.id))l.push(q)});localStorage.setItem('bq_saved',JSON.stringify(l));$('#rs').value='';lst();toast('Restored ✓')}catch(e){toast('Invalid backup text')}};
+$('#qr').value=Math.round($('#qg').value*cf());qe();
+try{if(!localStorage.getItem('bq_ack'))$('#ack').style.display='flex'}catch(e){$('#ack').style.display='flex'}
+$('#ackb').onclick=()=>{try{localStorage.setItem('bq_ack','1')}catch(e){}$('#ack').style.display='none'};
+/* auto plan + Vastu */
+const CL={NW:[0,0],N:[1,0],NE:[2,0],W:[0,1],C:[1,1],E:[2,1],SW:[0,2],S:[1,2],SE:[2,2]},DN=['N','NE','E','SE','S','SW','W','NW'],ZL=[['N','North'],['NE','North-East'],['E','East'],['SE','South-East'],['S','South'],['SW','South-West'],['W','West'],['NW','North-West'],['C','Centre']],ZT=Object.fromEntries(ZL),FN=['Ground floor','First floor','Second floor','Third floor'],
+TC={bed:'#dbeafe',mb:'#c7d2fe',liv:'#fef3c7',din:'#fde68a',kit:'#fed7aa',poo:'#fbcfe8',toi:'#a5f3fc',stair:'#e5e7eb',cen:'#f1f5f9',foy:'#fef9c3',lng:'#fef3c7',stu:'#bbf7d0',bal:'#d1fae5'};
+const VR={ent:['Main entrance',15,'N NE E','W NW S','Shift the door towards the NE end of the road-side wall. South and west doors are only average; avoid SW and SE doors.'],
+kit:['Kitchen',15,'SE','NW E','Best in the SE (fire corner) with the cook facing East. Avoid NE, SW and the centre.'],
+mb:['Master bedroom',15,'SW','S W','Best in the SW, bed head towards South or West. Avoid NE, SE and the centre.'],
+poo:['Pooja room',10,'NE','N E','Keep it in the NE (or N / E), facing East or North. Never under a staircase or next to a toilet.'],
+toi:['Toilets (worst placed)',10,'NW W','N S','Best in the NW or W. Avoid NE, SE, SW and the centre.'],
+st:['Staircase',10,'S SW W','NW','Best along the S, W or SW side. Avoid NE and the centre.'],
+liv:['Living room',5,'N NE E','NW W','Best in N, NE or E so morning light enters. Avoid SW and SE.'],
+cen:['Centre (Brahmasthan)',10,'','','Keep the centre open and light (lobby or courtyard). No toilet, kitchen or staircase there.'],
+wat:['Borewell / underground tank',5,'NE','N E','Best in the NE. Avoid S, SW, SE and the centre.'],
+sep:['Septic tank',5,'NW','W N','Best in the NW or W side of the plot, away from NE and the centre.']};
+const vs=(k,v)=>k=='cen'?{o:1,l:.5,x:0}[v]:VR[k][2].split(' ').includes(v)?1:VR[k][3].split(' ').includes(v)?.55:0;
+function tmpl(b,f,u){const sc=f=='W'?'NW':'W',m=u?{NW:['Bedroom','bed'],N:['Family lounge','lng'],NE:['Study','stu'],W:['Bedroom','bed'],C:['Lobby','cen'],E:['Bedroom','bed'],SW:['Master Bedroom','mb'],S:0,SE:['Balcony','bal']}:{NW:['Bedroom','bed'],N:['Dining','din'],NE:[f=='N'||f=='E'?'Foyer & Pooja':'Pooja room','poo'],W:['Entry foyer','foy'],C:['Lobby','cen'],E:['Living','liv'],SW:['Master Bedroom','mb'],S:b>2?['Bedroom','bed']:0,SE:['Kitchen','kit']};
+m[sc]=['Stair + Toilet','st'];if(!u){if(f=='S')m.S=['Entry foyer','foy'];if(f=='W'||(f=='S'&&b>2)){m.N=['Bedroom','bed'];m.E=['Living & Dining','liv']}}
+return Object.keys(CL).filter(k=>m[k]).map(k=>[m[k][0],m[k][1],k=='SW'&&!m.S?[0,2,1,2]:[...CL[k],...CL[k]]])}
+const R=(n,t,[x,y,w,h])=>({n,t,x,y,w,h,a:w*h});
+function zone(r,g){const cx=(r.x+r.w/2-g.bx)/g.bw*2-1,cy=(r.y+r.h/2-g.by)/g.bh*2-1;if(Math.abs(cx)<.34&&Math.abs(cy)<.34)return'C';return DN[(Math.round(Math.atan2(cx,-cy)*4/Math.PI)%8+8)%8]}
+function rooms(b,f,u,g){const X=[0,1,2,3].map(i=>g.bx+g.bw*i/3),Y=[0,1,2,3].map(i=>g.by+g.bh*i/3),o=[];
+tmpl(b,f,u).forEach(([n,t,s])=>{const x=X[s[0]],y=Y[s[1]],w=X[s[2]+1]-x,h=Y[s[3]+1]-y;
+if(t=='st'){const v=h>=w;o.push(R('Toilet','toi',v?[x,y,w,h*.45]:[x,y,w*.45,h]),R('Staircase','stair',v?[x,y+h*.45,w,h*.55]:[x+w*.45,y,w*.55,h]));return}
+const r=R(n,t,[x,y,w,h]);
+if(w>12&&h>10){if(t=='mb'){const q=Math.min(6.5,w*.3),d=Math.min(8,h*.5);r.a-=q*d;o.push(r,R('Attached bath','toi',[x+w-q,y,q,d]));return}
+if(t=='bed'&&s[0]==0&&s[1]==0){const q=Math.min(6,w*.3),d=Math.min(7,h*.45);r.a-=q*d;o.push(r,R('Attached bath','toi',[x,y,q,d]));return}}
+o.push(r)});o.forEach(r=>r.z=zone(r,g));return o}
+/*UI*/
+let PL=null,ci=0;
+$('#vf').innerHTML=Object.keys(VR).map(k=>`<label>${VR[k][0]}<select id="v_${k}"><option value="">— not set —</option>${k=='cen'?'<option value="o">Open / lobby / courtyard</option><option value="l">Living or dining room</option><option value="x">Toilet, kitchen, stair or bedroom</option>':ZL.map(z=>`<option value="${z[0]}">${z[1]}</option>`).join('')}</select></label>`).join('');
+function vastu(){let tw=0,sc=0,h='';Object.keys(VR).forEach(k=>{const v=$('#v_'+k).value;if(!v)return;const r=VR[k],s=vs(k,v);tw+=r[1];sc+=r[1]*s;const vl=k=='cen'?$('#v_cen').selectedOptions[0].text:ZT[v];
+h+=`<div class="mr"><span>${s==1?'✅':s?'🟡':'❌'}</span><div style="flex:1 1 240px"><b>${r[0]}</b>: ${vl} <span class="mu">· ${s==1?'ideal':s?'acceptable':'not recommended'}</span>${s<1?`<br><span class="mu">${r[4]}</span>`:''}</div></div>`});
+if(PL){const q=Math.max(PL.L,PL.Wd)/Math.min(PL.L,PL.Wd);h+=`<div class="mr"><span>${q>2?'🟡':'✅'}</span><div><b>Plot shape</b>: 1 : ${q.toFixed(1)} <span class="mu">· ${q>2?'very long plots are less preferred':'regular rectangle, good'}</span></div></div>`}
+const p=tw?Math.round(sc/tw*100):0,lb=p>=80?'Excellent':p>=60?'Good, with small fixes':p>=40?'Average':'Needs correction';
+$('#vo').innerHTML=tw?`<p style="margin:0 0 6px"><span class="big">${p}/100</span> <b>${lb}</b></p><div style="height:6px;border-radius:3px;background:var(--ln);margin-bottom:6px"><div style="height:6px;border-radius:3px;background:var(--ac);width:${p}%"></div></div>`+h+'<p class="mu" style="font-size:12px">Vastu is traditional guidance, not a legal or structural requirement, and practitioners differ. Use the score as a checklist and consult a qualified Vastu expert for important decisions.</p>':'<p class="mu">Pick a zone for each item above (or generate a plan) to see the Vastu report.</p>'}
+function vfill(){const R0=PL.fl[0],z=t=>(R0.find(r=>r.t==t)||{}).z||'',T=R0.filter(r=>r.t=='toi').map(r=>r.z).sort((a,b)=>vs('toi',a)-vs('toi',b))[0]||'';
+Object.entries({ent:PL.f=='N'||PL.f=='E'?'NE':PL.f,kit:z('kit'),mb:z('mb'),poo:z('poo'),toi:T,st:z('stair'),liv:z('liv'),cen:'o',wat:'NE',sep:'NW'}).forEach(([k,v])=>$('#v_'+k).value=v)}
+function drawPlan(){const c=$('#cp'),x=c.getContext('2d'),{X,Y,g,f}=PL,s=Math.min(780/X,700/Y),M=64,p=v=>M+v*s;c.width=X*s+2*M;c.height=Y*s+2*M;
+x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.fillStyle='#ecfccb';x.fillRect(M,M,X*s,Y*s);
+const rd={N:[M,M-46,X*s,40],S:[M,p(Y)+6,X*s,40],E:[p(X)+6,M,40,Y*s],W:[M-46,M,40,Y*s]}[f];x.fillStyle='#cbd5e1';x.fillRect(...rd);
+x.fillStyle='#475569';x.font='bold 13px system-ui';x.textAlign='center';x.textBaseline='middle';x.save();x.translate(rd[0]+rd[2]/2,rd[1]+rd[3]/2);if(f=='E'||f=='W')x.rotate(-Math.PI/2);x.fillText('ROAD',0,0);x.restore();
+x.setLineDash([8,5]);x.strokeStyle='#65a30d';x.lineWidth=2;x.strokeRect(M,M,X*s,Y*s);x.setLineDash([]);
+const F=PL.fl[ci];F.forEach(r=>{x.fillStyle=TC[r.t]||'#fff';x.fillRect(p(r.x),p(r.y),r.w*s,r.h*s);x.strokeStyle='#334155';x.lineWidth=2;x.strokeRect(p(r.x),p(r.y),r.w*s,r.h*s)});
+F.forEach(r=>{const z=Math.max(9,Math.min(14,r.w*s/7.5)),a=p(r.x+r.w/2),b=p(r.y+r.h/2);x.fillStyle='#0f172a';x.font=`bold ${z}px system-ui`;x.fillText(r.n,a,b-z*.6);x.font=`${z-1}px system-ui`;x.fillText(`${r.w.toFixed(1)} × ${r.h.toFixed(1)} ft`,a,b+z*.7)});
+if($('#apv').checked){x.strokeStyle='#c2410c';x.setLineDash([4,4]);x.lineWidth=1;for(let i=1;i<3;i++){x.beginPath();x.moveTo(p(g.bx+g.bw*i/3),p(g.by));x.lineTo(p(g.bx+g.bw*i/3),p(g.by+g.bh));x.moveTo(p(g.bx),p(g.by+g.bh*i/3));x.lineTo(p(g.bx+g.bw),p(g.by+g.bh*i/3));x.stroke()}x.setLineDash([]);x.fillStyle='#c2410c';x.font='bold 12px system-ui';x.textAlign='left';Object.entries(CL).forEach(([k,[a,b]])=>x.fillText(k,p(g.bx+g.bw*a/3)+4,p(g.by+g.bh*b/3)+10));x.textAlign='center'}
+if(!ci){const d={N:[g.bx+g.bw*5/6,g.by],E:[g.bx+g.bw,g.by+g.bh/6],S:[g.bx+g.bw/2,g.by+g.bh],W:[g.bx,g.by+g.bh/2]}[f],h=f=='N'||f=='S',ex=f=='E'?p(X):f=='W'?M:p(d[0]),ey=f=='N'?M:f=='S'?p(Y):p(d[1]);
+x.strokeStyle=x.fillStyle='#c2410c';x.lineWidth=3;x.beginPath();x.moveTo(p(d[0]),p(d[1]));x.lineTo(ex,ey);x.stroke();h?x.fillRect(p(d[0])-2*s,p(d[1])-4,4*s,8):x.fillRect(p(d[0])-4,p(d[1])-2*s,8,4*s);x.font='bold 11px system-ui';x.fillText('MAIN ENTRY',(p(d[0])+ex)/2+(h?44:0),(p(d[1])+ey)/2+(h?0:-12))}
+x.fillStyle='#0f172a';x.beginPath();x.moveTo(30,8);x.lineTo(40,34);x.lineTo(30,28);x.lineTo(20,34);x.fill();x.font='bold 13px system-ui';x.fillText('N',30,46);
+x.fillStyle='#334155';x.fillText(`${FN[ci]} · plot ${fmt(PL.L)} × ${fmt(PL.Wd)} ft · BuildQuote India`,c.width/2,c.height-8)}
+function planUI(){const{X,Y,g,fs,fl:F}=PL,A=X*Y,fp=g.bw*g.bh,rs=F[ci],sm=rs.filter(r=>['bed','mb','liv','kit'].includes(r.t)&&Math.min(r.w,r.h)<8);
+$('#aft').innerHTML=F.map((_,i)=>`<button data-fl="${i}" class="${i==ci?'on':''}">${FN[i]}</button>`).join('');drawPlan();
+$('#aps').innerHTML=`<p style="margin:0 0 6px">Plot <b>${fmt(PL.L)} × ${fmt(PL.Wd)} ft</b> = ${fmt(A)} sq ft · Building footprint <b>${fmt(g.bw)} × ${fmt(g.bh)} ft</b> = ${fmt(fp)} sq ft (${Math.round(fp/A*100)}% of plot) · Total built-up <b>${fmt(fp*fs)} sq ft</b></p>`+(sm.length?`<p style="margin:0 0 6px;color:#b45309">⚠ Small rooms: ${sm.map(r=>`${r.n} ${fmt(r.w)}×${fmt(r.h)} ft`).join(', ')}. Try 2 BHK, smaller setbacks or a larger plot.</p>`:'')+(ci==fs-1?'<p class="mu" style="margin:0 0 6px">Roof: keep the overhead water tank on the SW / W side and the open terrace on the N / NE side.</p>':'');
+$('#apt').innerHTML='<tr><th>Room</th><th>Size (ft)</th><th class="r">Area sq ft</th><th>Vastu zone</th></tr>'+rs.map(r=>`<tr><td>${r.n}</td><td>${fmt(r.w)} × ${fmt(r.h)}</td><td class="r">${fmt(r.a)}</td><td>${ZT[r.z]}</td></tr>`).join('')}
+$('#apg').onclick=()=>{const u=+$('#pu').value,L=(+$('#pl').value||0)*u,Wd=(+$('#pw').value||0)*u,fs=+$('#pf').value,b=+$('#pb').value,f=$('#pd').value,sf=+$('#sf').value||0,sr=+$('#sr').value||0,ss=+$('#ss').value||0;
+if(L<18||Wd<18)return toast('Plot should be at least 18 × 18 ft');
+const X=f=='N'||f=='S'?Wd:L,Y=f=='N'||f=='S'?L:Wd,e={N:[sf,sr,ss,ss],S:[sr,sf,ss,ss],E:[ss,ss,sr,sf],W:[ss,ss,sf,sr]}[f],g={bx:e[2],by:e[0],bw:X-e[2]-e[3],bh:Y-e[0]-e[1]};
+if(g.bw<14||g.bh<14)return toast('Setbacks leave too little building area');
+PL={X,Y,g,f,b,fs,L,Wd,fl:[...Array(fs)].map((_,i)=>rooms(b,f,i>0,g))};ci=0;$('#apo').hidden=false;planUI();vfill();vastu();$('#apo').scrollIntoView({behavior:'smooth'})};
+$('#aft').onclick=e=>{if(e.target.dataset.fl!=null){ci=+e.target.dataset.fl;planUI()}};
+$('#apv').onchange=()=>PL&&drawPlan();$('#vf').onchange=vastu;
+$('#apn').onclick=()=>{const a=document.createElement('a');a.href=$('#cp').toDataURL('image/png');a.download='floor-plan-'+FN[ci].split(' ')[0].toLowerCase()+'.png';a.click()};
+$('#apq').onclick=()=>{$('#qa').value=Math.round(PL.g.bw*PL.g.bh);$('#qf').value=PL.fs;qe();show('qe')};
+$('#apb').onclick=()=>{const t=PL.g.bw*PL.g.bh*PL.fs;addW(5,Math.round(t));addW(2,+(t*5/12/35.3147).toFixed(2));addW(6,Math.round(t*3))};
+vastu();
+restore();cf2();draw();
+</script></body></html>
