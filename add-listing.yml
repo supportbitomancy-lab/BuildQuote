@@ -1,0 +1,33 @@
+name: Publish approved listing
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  publish:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add listing to listings.json
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: node .github/scripts/add_listing.js
+      - name: Commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add listings.json
+          git commit -m "Add listing from issue #$ISSUE"
+          git pull --rebase
+          git push
+      - name: Close issue
+        run: gh issue close "$ISSUE" --comment "Published. It will show on the site within a few minutes."
+      - name: Report failure
+        if: failure()
+        run: gh issue comment "$ISSUE" --body "Could not publish this listing. Check that the JSON block is intact and the fields are valid."
