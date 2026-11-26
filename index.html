@@ -38,7 +38,7 @@ footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color
 .affc .adt{display:inline-block}.aff a{text-decoration:none}.aff-n{font-size:11px;margin:8px 0 0}
 </style></head><body>
 <header class="np"><div class="br"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><span class="pill">100% free · no login · your quotes stay on your device</span></header>
-<nav><button data-t="tk" class="on">1 Drawing takeoff</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="pj">🏢 Project (Architect)</button><button data-t="ln">🏦 Loan &amp; EMI</button><button data-t="lw">⚖ Laws &amp; codes</button><button data-t="ad">🤝 Partners &amp; ads</button><button data-t="ca">2 Material calculators</button><button data-t="rt">₹ Material rates</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
+<nav><button data-t="tk" class="on">1 Drawing takeoff</button><button data-t="cd">📐 CAD / DXF</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="pj">🏢 Project (Architect)</button><button data-t="ln">🏦 Loan &amp; EMI</button><button data-t="lw">⚖ Laws &amp; codes</button><button data-t="ad">🤝 Partners &amp; ads</button><button data-t="ca">2 Material calculators</button><button data-t="rt">₹ Material rates</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
 <main><div id="adb" style="margin-bottom:12px"></div>
 <section id="tk">
 <div class="card"><div class="bar"><label class="btn on" style="display:inline-block;color:var(--ot)">📐 Upload drawing (JPG / PNG)<input type="file" id="file" accept="image/*" hidden></label>
@@ -54,6 +54,8 @@ footer{max-width:1100px;margin:0 auto;padding:8px 16px 28px;font-size:12px;color
 <h3 style="margin:16px 0 6px">Materials (calculators)</h3><div class="tw"><table id="rtm"></table></div>
 <h3 style="margin:16px 0 6px">Work items (catalog, takeoff and BOQ)</h3><div class="tw"><table id="rtw"></table></div>
 <div class="bar" style="margin-top:12px"><button id="rtx">Reset all to default rates</button></div></div></section>
+
+<section id="cd" hidden><div class="card"><div class="bar"><label class="btn on" style="display:inline-block;color:var(--ot)">📂 Open DXF / DWG<input type="file" id="cdf" accept=".dxf,.dwg" hidden></label><span id="cdt" class="bar" style="margin:0"><button data-k="pan" class="on">Pan</button><button data-k="line">Line</button><button data-k="poly">Polyline</button><button data-k="circ">Circle</button><button data-k="txt">Text</button><button data-k="era">Erase</button><button data-k="mea">Measure</button><button data-k="are">Area</button></span><select id="cdu" title="Drawing units"><option>mm</option><option>cm</option><option>m</option><option>ft</option><option>in</option></select><input id="cdl" value="0" title="Layer for new items" style="width:90px"><button id="cdfin">Finish ⏎</button><button id="cdun">Undo</button><button id="cdfit">Fit</button><button id="cdsv">⬇ DXF</button><button id="cdpng">⬇ PNG</button></div><p id="cdh" class="mu" style="margin:0 0 10px"></p><div class="cvw"><canvas id="cdc" width="1000" height="560" style="width:100%;height:auto;touch-action:none;cursor:crosshair"></canvas></div><div id="cdo"></div><div id="cdy" class="bar" style="margin-top:10px"></div><p class="mu" style="font-size:12px;margin:8px 0 0">Reads DXF: lines, polylines, circles, arcs, text and blocks. DWG must be converted to DXF first. Measurements depend on the unit selector, so check it and verify on site.</p></div></section>
 
 <section id="ap" hidden>
 <div class="card"><h3>Auto floor plan + Vastu (enter your plot size)</h3><div class="grid">
@@ -419,7 +421,7 @@ const AFF=[
 const MONETAG={enabled:false,src:'',attrs:{}};
 function loadMonetag(){if(!MONETAG.enabled||!MONETAG.src||loadMonetag.d)return;loadMonetag.d=1;const e=document.createElement('script');e.src=MONETAG.src;e.async=true;e.setAttribute('data-cfasync','false');Object.entries(MONETAG.attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));document.head.appendChild(e)}
 function affr(){$$('.aff').forEach(el=>{const c=el.dataset.ctx,L=AFF.filter(a=>a.u&&(c=='all'||a.x==c));el.innerHTML=L.length?`<div class="card affc"><h3>Recommended for you <span class="adt" style="margin-left:6px">Affiliate links</span></h3><div class="ads2">${L.map(a=>`<div class="card adc"><span class="adt">Sponsored</span><b>${esc(a.t)}</b><span class="mu">${esc(a.d)}</span><a href="${esc(a.u)}" target="_blank" rel="sponsored noopener noreferrer"><button class="pri">${esc(a.b||'View')}</button></a></div>`).join('')}</div><p class="mu aff-n">We may earn a commission if you buy or sign up through these links, at no extra cost to you.</p></div>`:''})}
-Object.entries({ln:'loan',ca:'mat',rt:'mat',ap:'plan',pj:'plan',qe:'plan',bq:'boq',ad:'all'}).forEach(([id,c])=>{const d=document.createElement('div');d.className='aff np';d.dataset.ctx=c;$('#'+id).appendChild(d)});affr();
+Object.entries({ln:'loan',ca:'mat',rt:'mat',ap:'plan',pj:'plan',qe:'plan',bq:'boq',cd:'boq',ad:'all'}).forEach(([id,c])=>{const d=document.createElement('div');d.className='aff np';d.dataset.ctx=c;$('#'+id).appendChild(d)});affr();
 const psum=()=>{let t='Enquiry from BuildQuote India.\n';if(PJ)t+=`Project: ${PJ.ty=='apt'?'Apartment block':'Commercial'}, plot ${fmt(Math.round(PJ.A))} sq ft, ${PJ.N} floors, built-up ${fmt(Math.round(PJ.BUA||0))} sq ft\n`;else if(PL)t+=`House plan: plot ${fmt(PL.L)} × ${fmt(PL.Wd)} ft, ${PL.fs} floors, ${PL.b} BHK\n`;if(T)t+=`Estimated cost: ₹${fmt(Math.round(T))}\n`;return t};
 const mt=(to,s,b)=>'mailto:'+to+'?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b);
 const adc=a=>a.slot?`<div class="card adc" style="border-style:dashed"><span class="adt">${a.c} · ad slot</span><b>Your ad here</b><span class="mu">${esc(a.t)}</span><button data-bk="${a.c}">Book this slot</button></div>`:`<div class="card adc"><span class="adt">Sponsored · ${esc(a.c)}</span><b>${esc(a.n)}</b><span class="mu">${esc(a.t||'')}${a.city?' · '+esc(a.city):''}</span><div class="bar">${a.ph?`<a href="tel:${esc(a.ph)}"><button>Call</button></a><a href="https://wa.me/${String(a.ph).replace(/\D/g,'')}" target="_blank" rel="noopener sponsored"><button>WhatsApp</button></a>`:''}${a.em?`<a href="${mt(a.em,'Enquiry via BuildQuote India',psum()+(a.c=='Bank / Loan'?`Loan sought: ₹${fmt(Math.round((+$('#lc').value||0)*(1-(+$('#lo').value||0)/100)))} for ${$('#ly').value} years\n`:''))}"><button>Send enquiry</button></a>`:''}${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener sponsored"><button>Website</button></a>`:''}</div></div>`;
@@ -446,4 +448,103 @@ function lwf(){const s=$('#lws').value,c=$('#lwc').value.trim(),p=(c?c+' ':'')+s
 $('#lws').innerHTML=STS.map(s=>`<option ${s=='Bihar'?'selected':''}>${s}</option>`).join('');$('#lws').onchange=$('#lwc').oninput=lwf;lwf();
 $('#lwt').innerHTML='<tr><th>Code</th><th>Used for</th><th></th></tr>'+[['IS 456:2000','Plain and reinforced concrete'],['IS 1893 (Part 1):2016','Earthquake-resistant design'],['IS 875 (Parts 1–5)','Dead, live, wind and snow loads'],['IS 13920:2016','Ductile detailing of RCC in seismic zones'],['IS 800:2007','Steel structures'],['NBC 2016 Part 3','Development control rules and general building requirements'],['NBC 2016 Part 4','Fire and life safety (high-rise, exits, refuge)'],['NBC 2016 Part 6','Structural design'],['NBC 2016 Part 8','Building services: electrical, lifts, plumbing'],['ECBC (BEE)','Energy conservation for commercial buildings'],['Harmonised Guidelines (MoHUA)','Barrier-free, accessible built environment']].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td><a href="${gs(r[0]+' India')}" target="_blank" rel="noopener">Find ↗</a></td></tr>`).join('');
 restore();cf2();draw();
+
+/* ===== CAD / DXF viewer & editor ===== */
+(()=>{
+const cv=$('#cdc'),X=cv.getContext('2d'),UF={mm:1/304.8,cm:1/30.48,m:3.28084,ft:1,in:1/12},INS={1:'in',2:'ft',4:'mm',5:'cm',6:'m'},IC={in:1,ft:2,mm:4,cm:5,m:6},AC={1:'#e11',2:'#ca0',3:'#1a1',4:'#0aa',5:'#22e',6:'#c0c'},
+HT={pan:'Drag to pan, wheel or pinch to zoom. Open a DXF or pick a drawing tool.',line:'Click two points.',poly:'Click points, then Finish (or Enter).',circ:'Click the centre, then a point on the circle.',txt:'Click where the text goes.',era:'Click an item to delete it.',mea:'Click two points to measure.',are:'Click the corners, then Finish to get the area.'};
+let E=[],B={},V={s:1,ox:0,oy:0},tool='pan',pts=[],hv=null,H=[],off=new Set(),VX=null,dn=null,mv=0;
+const ap=(M,p)=>[M[0]*p[0]+M[2]*p[1]+M[4],M[1]*p[0]+M[3]*p[1]+M[5]],
+mul=(A,C)=>[A[0]*C[0]+A[2]*C[1],A[1]*C[0]+A[3]*C[1],A[0]*C[2]+A[2]*C[3],A[1]*C[2]+A[3]*C[3],A[0]*C[4]+A[2]*C[5]+A[4],A[1]*C[4]+A[3]*C[5]+A[5]],
+W2S=p=>[p[0]*V.s+V.ox,-p[1]*V.s+V.oy],S2W=p=>[(p[0]-V.ox)/V.s,(V.oy-p[1])/V.s],
+mp=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height]},
+tx=t=>t.replace(/\\P/g,' ').replace(/\\[A-Za-z][^;]*;/g,'').replace(/[{}]/g,'').replace(/%%[cC]/g,'⌀').replace(/%%[dD]/g,'°').replace(/%%[pP]/g,'±'),
+arcP=(x,y,r,a,b)=>{if(b<=a)b+=360;const n=Math.max(8,Math.ceil((b-a)/5)),o=[];for(let i=0;i<=n;i++){const t=(a+(b-a)*i/n)*Math.PI/180;o.push([x+r*Math.cos(t),y+r*Math.sin(t)])}return o},
+sd=(p,a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],l=dx*dx+dy*dy,t=l?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/l)):0;return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy)},
+col=(e,ink)=>AC[e.col]||(e.col==7?ink:`hsl(${[...e.ly].reduce((a,c)=>a*31+c.charCodeAt(0)|0,7)%360},60%,50%)`),
+dl=(b,n)=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),999)},
+ro=t=>$('#cdo').innerHTML='<div class="card" style="margin:10px 0 0;padding:10px 12px"><b>'+t+'</b></div>',
+uf=()=>UF[$('#cdu').value];
+
+function ent(r){const g=c=>{const q=r.d.find(p=>p[0]==c);return q?q[1]:''},n=(c,d=0)=>{const q=r.d.find(p=>p[0]==c);return q?+q[1]:d},k={ly:g(8)||'0',col:n(62,null)};
+ switch(r.t){case'LINE':return{...k,t:'LINE',a:[n(10),n(20)],b:[n(11),n(21)]};
+ case'LWPOLYLINE':{const v=[];r.d.forEach(([c,s])=>{if(c==10)v.push([+s,0]);else if(c==20&&v.length)v[v.length-1][1]=+s});return{...k,t:'LWPOLYLINE',v,cl:n(70)&1}}
+ case'POLYLINE':return{...k,t:'LWPOLYLINE',v:[],cl:n(70)&1};
+ case'CIRCLE':return{...k,t:'CIRCLE',x:n(10),y:n(20),r:n(40)};
+ case'ARC':return{...k,t:'ARC',x:n(10),y:n(20),r:n(40),a0:n(50),a1:n(51)};
+ case'TEXT':case'MTEXT':return{...k,t:'TEXT',x:n(10),y:n(20),h:n(40,1),rot:n(50),s:tx(r.d.filter(p=>p[0]==3||p[0]==1).map(p=>p[1]).join(''))};
+ case'INSERT':return{...k,t:'INSERT',nm:g(2),x:n(10),y:n(20),sx:n(41,1),sy:n(42,1),rot:n(50)}}
+ return null}
+
+function flat(L,M,pl,out,d){for(const e of L){const ly=e.ly=='0'&&pl?pl:e.ly,k={ly,col:e.col};
+ if(e.t=='LINE')out.push({...k,t:'P',v:[ap(M,e.a),ap(M,e.b)]});
+ else if(e.t=='LWPOLYLINE')out.push({...k,t:'P',v:e.v.map(p=>ap(M,p)),cl:e.cl});
+ else if(e.t=='ARC')out.push({...k,t:'P',v:arcP(e.x,e.y,e.r,e.a0,e.a1).map(p=>ap(M,p))});
+ else if(e.t=='CIRCLE'){const s=Math.hypot(M[0],M[1]);if(Math.abs(s-Math.hypot(M[2],M[3]))<1e-6*s+1e-9){const c=ap(M,[e.x,e.y]);out.push({...k,t:'C',x:c[0],y:c[1],r:e.r*s})}else out.push({...k,t:'P',cl:1,v:arcP(e.x,e.y,e.r,0,360).map(p=>ap(M,p))})}
+ else if(e.t=='TEXT'){const c=ap(M,[e.x,e.y]);out.push({...k,t:'T',x:c[0],y:c[1],h:e.h*Math.hypot(M[2],M[3]),s:e.s,rot:e.rot+Math.atan2(M[1],M[0])*180/Math.PI})}
+ else if(e.t=='INSERT'){const b=B[e.nm];if(b&&d<8){const a=e.rot*Math.PI/180,c=Math.cos(a),s=Math.sin(a);flat(b.e,mul(M,mul([1,0,0,1,e.x,e.y],mul([c,s,-s,c,0,0],mul([e.sx,0,0,e.sy,0,0],[1,0,0,1,-b.bx,-b.by])))),ly,out,d+1)}}}}
+
+function parse(t){const a=t.split(/\r?\n/),P=[];for(let i=0;i+1<a.length;i+=2)P.push([+a[i].trim(),a[i+1].trim()]);
+ let u=null;for(let i=0;i<P.length-1;i++)if(P[i][0]==9&&P[i][1]=='$INSUNITS'){u=INS[P[i+1][1]];break}
+ const R=[];let cur=null;for(const p of P){if(p[0]==0){if(cur)R.push(cur);cur={t:p[1],d:[]}}else if(cur)cur.d.push(p)}if(cur)R.push(cur);
+ let sec='',blk=null,pl=null;const top=[];B={};
+ for(const r of R){const g=c=>{const q=r.d.find(p=>p[0]==c);return q?q[1]:''};
+  if(r.t=='SECTION'){sec=g(2);continue}if(r.t=='ENDSEC'){sec='';continue}
+  if(r.t=='BLOCK'){blk={bx:+g(10)||0,by:+g(20)||0,e:[]};B[g(2)]=blk;continue}if(r.t=='ENDBLK'){blk=null;continue}
+  if(sec!='BLOCKS'&&sec!='ENTITIES')continue;
+  if(r.t=='VERTEX'){if(pl)pl.v.push([+g(10),+g(20)]);continue}if(r.t=='SEQEND'){pl=null;continue}
+  const o=ent(r);if(!o)continue;if(r.t=='POLYLINE')pl=o;(blk?blk.e:top).push(o)}
+ const out=[];flat(top,[1,0,0,1,0,0],'',out,0);return{out,u}}
+
+function draw(g,ink){g.lineWidth=1;for(const e of E){if(off.has(e.ly))continue;g.strokeStyle=g.fillStyle=col(e,ink);
+ if(e.t=='P'){g.beginPath();e.v.forEach((p,i)=>{const q=W2S(p);i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])});if(e.cl)g.closePath();g.stroke()}
+ else if(e.t=='C'){const q=W2S([e.x,e.y]);g.beginPath();g.arc(q[0],q[1],Math.max(e.r*V.s,.5),0,7);g.stroke()}
+ else{const q=W2S([e.x,e.y]),h=e.h*V.s;if(h>3){g.font=h+'px sans-serif';g.save();g.translate(q[0],q[1]);g.rotate(-(e.rot||0)*Math.PI/180);g.fillText(e.s,0,0);g.restore()}}}}
+function draw2(){X.setTransform(1,0,0,1,0,0);X.clearRect(0,0,cv.width,cv.height);draw(X,getComputedStyle(document.body).color);
+ X.strokeStyle=X.fillStyle='#e11';X.lineWidth=1.5;const q=pts.map(W2S),h=hv?W2S(hv):null;
+ if(q.length){X.beginPath();q.forEach((p,i)=>i?X.lineTo(p[0],p[1]):X.moveTo(p[0],p[1]));if(h)X.lineTo(h[0],h[1]);if(tool=='are'&&q.length>1)X.closePath();X.stroke();
+  if(tool=='circ'&&h){X.beginPath();X.arc(q[0][0],q[0][1],Math.hypot(h[0]-q[0][0],h[1]-q[0][1]),0,7);X.stroke()}}
+ if(h){X.beginPath();X.arc(h[0],h[1],4,0,7);X.stroke()}X.lineWidth=1}
+function fit(){let a=1e30,b=1e30,c=-1e30,d=-1e30;const f=p=>{a=Math.min(a,p[0]);b=Math.min(b,p[1]);c=Math.max(c,p[0]);d=Math.max(d,p[1])};
+ E.forEach(e=>{if(off.has(e.ly))return;if(e.t=='P')e.v.forEach(f);else if(e.t=='C'){f([e.x-e.r,e.y-e.r]);f([e.x+e.r,e.y+e.r])}else f([e.x,e.y])});
+ if(c<a){V={s:1,ox:cv.width/2,oy:cv.height/2};return draw2()}
+ V.s=Math.min(cv.width/Math.max(c-a,1e-9),cv.height/Math.max(d-b,1e-9))*.9;V.ox=cv.width/2-(a+c)/2*V.s;V.oy=cv.height/2+(b+d)/2*V.s;draw2()}
+function lay(){const L=[...new Set(E.map(e=>e.ly))].sort();$('#cdy').innerHTML=L.length?'<b class="mu">Layers</b>'+L.map(n=>`<label style="display:flex;flex-direction:row;gap:4px;align-items:center"><input type="checkbox" data-l="${esc(n)}" ${off.has(n)?'':'checked'} style="width:auto">${esc(n)}</label>`).join(''):''}
+function snap(p){if(!VX){VX=[];E.forEach(e=>{if(off.has(e.ly))return;if(e.t=='P')e.v.forEach(v=>VX.push(v));else VX.push([e.x,e.y])})}
+ let b=null,bd=10;for(const v of VX){const q=W2S(v),d=Math.hypot(q[0]-p[0],q[1]-p[1]);if(d<bd){bd=d;b=v}}return b||S2W(p)}
+function dist(e,w){if(e.t=='P'){let m=1e30;const n=e.v.length;for(let i=0;i<n-(e.cl?0:1);i++)m=Math.min(m,sd(w,e.v[i],e.v[(i+1)%n]));return m}if(e.t=='C')return Math.abs(Math.hypot(w[0]-e.x,w[1]-e.y)-e.r);return Math.hypot(w[0]-e.x,w[1]-e.y)}
+function add(e){H.push(E.slice());if(H.length>100)H.shift();e.ly=$('#cdl').value.trim()||'0';E.push(e);VX=null;lay();draw2()}
+function fin(){if(tool=='poly'&&pts.length>1)add({t:'P',v:pts.slice()});
+ else if(tool=='are'&&pts.length>2){let a=0;pts.forEach((p,i)=>{const q=pts[(i+1)%pts.length];a+=p[0]*q[1]-q[0]*p[1]});const f=uf(),sf=Math.abs(a/2)*f*f;ro(`Area: ${fmt(sf)} sq ft = ${fmt(sf/10.7639)} sq m`)}
+ pts=[];draw2()}
+function click(w){
+ if(tool=='line'||tool=='circ'||tool=='mea'){pts.push(w);if(pts.length==2){const d=Math.hypot(pts[1][0]-pts[0][0],pts[1][1]-pts[0][1]);
+  if(tool=='line')add({t:'P',v:pts.slice()});else if(tool=='circ')add({t:'C',x:pts[0][0],y:pts[0][1],r:d});else{const ft=d*uf();ro(`Length: ${fmt(ft)} ft = ${fmt(ft/3.28084)} m`)}pts=[]}}
+ else if(tool=='poly'||tool=='are')pts.push(w);
+ else if(tool=='txt'){const s=prompt('Text');if(s)add({t:'T',x:w[0],y:w[1],h:14/V.s,s,rot:0})}
+ else if(tool=='era'){let b=null,bd=10/V.s;E.forEach(e=>{if(off.has(e.ly))return;const d=dist(e,w);if(d<bd){bd=d;b=e}});if(b){H.push(E.slice());E=E.filter(e=>e!=b);VX=null;lay()}}
+ draw2()}
+function dxf(){const L=[...new Set(E.map(e=>e.ly).concat('0'))],o=['0','SECTION','2','HEADER','9','$ACADVER','1','AC1015','9','$INSUNITS','70',IC[$('#cdu').value],'0','ENDSEC','0','SECTION','2','TABLES','0','TABLE','2','LTYPE','70','1','0','LTYPE','2','CONTINUOUS','70','0','3','Solid line','72','65','73','0','40','0','0','ENDTAB','0','TABLE','2','LAYER','70',L.length];
+ L.forEach(n=>o.push('0','LAYER','2',n,'70','0','62','7','6','CONTINUOUS'));o.push('0','ENDTAB','0','ENDSEC','0','SECTION','2','ENTITIES');
+ E.forEach(e=>{if(e.t=='P'){o.push('0','LWPOLYLINE','8',e.ly,'90',e.v.length,'70',e.cl?1:0);e.v.forEach(p=>o.push('10',p[0],'20',p[1]))}
+  else if(e.t=='C')o.push('0','CIRCLE','8',e.ly,'10',e.x,'20',e.y,'30',0,'40',e.r);
+  else o.push('0','TEXT','8',e.ly,'10',e.x,'20',e.y,'30',0,'40',e.h,'1',e.s,'50',e.rot||0)});
+ o.push('0','ENDSEC','0','EOF');return o.join('\n')}
+
+$('#cdf').onchange=async ev=>{const f=ev.target.files[0];ev.target.value='';if(!f)return;
+ if(/\.dwg$/i.test(f.name)){$('#cdh').textContent='DWG is a closed Autodesk format that a browser cannot read directly. Convert it to DXF first (free: ODA File Converter, or AutoCAD Save As → DXF), then open the DXF here.';return}
+ const t=await f.text();if(t.startsWith('AutoCAD Binary DXF')){$('#cdh').textContent='This is a binary DXF. Save it as an ASCII DXF and try again.';return}
+ try{const r=parse(t);E=r.out;H=[];off=new Set();VX=null;pts=[];if(r.u)$('#cdu').value=r.u;lay();fit();$('#cdh').textContent=`${f.name}: ${E.length} items loaded. Check the unit selector before measuring.`;if(!E.length)toast('No supported items found')}catch(err){toast('Could not read this DXF')}};
+$$('#cdt button').forEach(b=>b.onclick=()=>{tool=b.dataset.k;pts=[];$$('#cdt button').forEach(c=>c.classList.toggle('on',c==b));$('#cdh').textContent=HT[tool];draw2()});
+$('#cdy').onchange=e=>{const n=e.target.dataset.l;if(n==null)return;e.target.checked?off.delete(n):off.add(n);VX=null;draw2()};
+$('#cdfin').onclick=fin;$('#cdfit').onclick=fit;$('#cdun').onclick=()=>{if(H.length){E=H.pop();VX=null;lay();draw2()}};
+$('#cdsv').onclick=()=>dl(new Blob([dxf()],{type:'application/dxf'}),'buildquote-drawing.dxf');
+$('#cdpng').onclick=()=>{const t=document.createElement('canvas');t.width=cv.width;t.height=cv.height;const g=t.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,t.width,t.height);draw(g,'#000');t.toBlob(b=>dl(b,'buildquote-drawing.png'))};
+cv.onpointerdown=e=>{const p=mp(e);dn={p,o:[V.ox,V.oy]};mv=0;cv.setPointerCapture(e.pointerId)};
+cv.onpointermove=e=>{const p=mp(e);if(dn){const dx=p[0]-dn.p[0],dy=p[1]-dn.p[1];if(Math.hypot(dx,dy)>5)mv=1;if(mv){V.ox=dn.o[0]+dx;V.oy=dn.o[1]+dy;draw2()}}else{hv=snap(p);draw2()}};
+cv.onpointerup=e=>{if(dn&&!mv)click(snap(mp(e)));dn=null};
+cv.onwheel=e=>{e.preventDefault();const p=mp(e),w=S2W(p);V.s*=e.deltaY<0?1.2:1/1.2;V.ox=p[0]-w[0]*V.s;V.oy=p[1]+w[1]*V.s;draw2()};
+document.addEventListener('keydown',e=>{if($('#cd').hidden||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key=='Enter')fin();if(e.key=='Escape'){pts=[];draw2()}});
+$('#cdh').textContent=HT.pan;draw2();
+})();
 </script></body></html>
