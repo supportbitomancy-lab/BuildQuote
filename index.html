@@ -141,6 +141,10 @@ body.lp{background:#fff!important}body.lp main{padding:0}
 #ac .pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}
 #ac .pk div{border:1px solid var(--ln);border-radius:14px;padding:12px;background:var(--sf)}#ac .pk b{display:block;margin-bottom:2px}
 </style>
+<style id="navfix">
+@media(min-width:861px){nav{flex-wrap:wrap;overflow:visible;justify-content:center;gap:4px 6px;padding:8px 16px}nav button{padding:6px 11px}}
+@media(max-width:860px){nav{-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);mask-image:linear-gradient(90deg,#000 90%,transparent);padding-right:36px}}
+</style>
 </head><body>
 <header class="np"><div class="br" id="home" role="button" tabindex="0" title="Go to Home"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><div class="hr"><span class="pill">100% free · no login · your quotes stay on your device</span><button class="ib" id="thm" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button></div></header>
 <nav><button data-t="hm" class="on">🏠 Home</button><button data-t="mk">🏪 Marketplace</button><button data-t="ls">📏 Land survey</button><button data-t="ac">👤 Seller login</button><button data-t="tk">1 Drawing takeoff</button><button data-t="cd">📐 CAD / DXF</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="pj">🏢 Project (Architect)</button><button data-t="ln">🏦 Loan &amp; EMI</button><button data-t="lw">⚖ Laws &amp; codes</button><button data-t="ad">🤝 Partners &amp; ads</button><button data-t="ca">2 Material calculators</button><button data-t="rt">₹ Material rates</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
