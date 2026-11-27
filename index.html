@@ -1,5 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BuildQuote India by BITOMANCY – Free Contractor Estimator, Drawing Takeoff, Auto Floor Plan & Vastu</title>
-<meta name="description" content="BuildQuote India, a BITOMANCY product: free construction estimator, drawing takeoff, BOQ and quotation maker for Indian contractors, with an automatic floor plan generator and Vastu check.">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BuildQuote India by BITOMANCY – Free Contractor Estimator, Land Survey (GPS), Drawing Takeoff, Floor Plan & Vastu</title>
+<meta name="description" content="BuildQuote India, a BITOMANCY product: free construction estimator, GPS and map land measurement report with east-west-north-south boundaries, drawing takeoff, BOQ and quotation maker, floor plan generator and Vastu check.">
 <!-- MONETAG SITE VERIFICATION: if the Monetag dashboard asks for a verification meta tag, paste it on the next line -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%97%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <style>
@@ -41,20 +41,120 @@ html{-webkit-text-size-adjust:100%}nav{scrollbar-width:none;-webkit-overflow-scr
 .affc .adt{display:inline-block}.aff a{text-decoration:none}.aff-n{font-size:11px;margin:8px 0 0}
 [hidden]{display:none!important}.br{cursor:pointer}.hc{display:block;text-align:left;width:100%;padding:14px}.hc b{display:block;font-size:15px;margin-bottom:2px}.hc span{color:var(--mu);font-size:12px}.hg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
 .mc{display:flex;flex-direction:column;gap:5px;margin:0}.mp{font-size:20px;font-weight:800;color:var(--ac)}.tg{font-size:11px;border:1px solid var(--ln);border-radius:99px;padding:1px 8px;color:var(--mu);display:inline-block;margin-right:4px}.mb{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}.mb a{text-decoration:none}.mb a,.mb button{padding:6px 10px;font-size:12px;min-height:0}
-nav{flex-wrap:wrap;overflow:visible}nav button,nav select{flex:0 1 auto}
-@media(max-width:640px){nav{position:static;gap:4px;padding:6px 8px}nav button,nav select{min-height:32px;padding:4px 7px;font-size:12px}nav select{flex:1 1 100%}}
-</style></head><body>
-<header class="np"><div class="br" id="home" role="button" tabindex="0" title="Go to Home"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><span class="pill">100% free · no login · your quotes stay on your device</span></header>
-<nav><button data-t="hm" class="on">🏠 Home</button><button data-t="mk">🏪 Marketplace</button><button data-t="tk">1 Drawing takeoff</button><button data-t="cd">📐 CAD / DXF</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="pj">🏢 Project (Architect)</button><button data-t="ln">🏦 Loan &amp; EMI</button><button data-t="lw">⚖ Laws &amp; codes</button><button data-t="ad">🤝 Partners &amp; ads</button><button data-t="ca">2 Material calculators</button><button data-t="rt">₹ Material rates</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<style id="adv">
+/* ===== Advanced UI layer ===== */
+:root{--sh:0 1px 2px rgba(20,25,30,.05),0 10px 28px -14px rgba(20,25,30,.25);--g:linear-gradient(135deg,#c2410c,#f59e0b);--rd:16px}
+:root[data-theme="dark"]{--sh:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.7)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--sh:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.7)}}
+body{background:radial-gradient(900px 420px at 8% -8%,color-mix(in srgb,var(--ac) 13%,transparent),transparent 65%),radial-gradient(700px 380px at 100% 0,color-mix(in srgb,#3b82f6 8%,transparent),transparent 60%),var(--bg);background-attachment:fixed;letter-spacing:.005em}
+header{max-width:1100px;margin:0 auto;padding:16px}
+.hr{display:flex;gap:8px;align-items:center}
+.lg{background:var(--g);color:#fff;box-shadow:0 6px 16px -6px var(--ac);border-radius:12px;width:42px;height:42px}
+.br b{letter-spacing:-.01em}
+.pill{background:var(--cd)}
+.ib{width:40px;height:40px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:17px}
+nav{background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);padding:9px 16px}
+nav button{border-radius:99px;border-color:transparent;background:transparent;color:var(--mu);font-weight:600;font-size:13px;transition:background .15s,color .15s,transform .1s}
+nav button:hover{background:var(--cd);color:var(--ink)}
+nav button.on{background:var(--ink);color:var(--bg);box-shadow:0 4px 12px -6px #000a}
+nav select{border-radius:99px;background:var(--cd)}
+.card{border-radius:var(--rd);box-shadow:var(--sh);border-color:color-mix(in srgb,var(--ln) 80%,transparent)}
+.card h3{font-size:15px;letter-spacing:-.005em}
+button,.btn{border-radius:10px;transition:transform .1s,box-shadow .15s,border-color .15s,background .15s}
+button:hover:not(:disabled),.btn:hover{border-color:var(--ac)}
+button:active:not(:disabled){transform:scale(.97)}
+button:disabled{opacity:.55;cursor:wait}
+.pri,.on:not(nav button):not(#dock button){background:var(--g);border-color:transparent;color:#fff;box-shadow:0 6px 16px -8px var(--ac)}
+:root[data-theme="dark"] .pri{color:#1a1005}
+button:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 22%,transparent)}
+input,select,textarea{border-radius:10px}
+main>section:not([hidden]){animation:fi .28s ease both}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){main>section:not([hidden]){animation:none}*{transition:none!important}}
+/* home hero + tiles */
+.hero{border-radius:22px;padding:26px 22px;margin-bottom:14px;color:#fff;background:radial-gradient(500px 220px at 90% 0,#f59e0b66,transparent 70%),linear-gradient(135deg,#1f2937,#7c2d12);box-shadow:var(--sh);position:relative;overflow:hidden}
+.hero h2{margin:6px 0 6px;font-size:clamp(22px,4.4vw,32px);line-height:1.15;letter-spacing:-.02em}
+.hero p{margin:0 0 16px;color:#ffe9d6;max-width:560px}
+.kick{font-size:11px;letter-spacing:.12em;font-weight:700;color:#fdba74}
+.hero .hb{background:#ffffff1f;border:1px solid #ffffff40;color:#fff;font-weight:600;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hero .hb:first-child{background:#fff;color:#7c2d12;border-color:#fff}
+.hero .bar{margin:0}
+.hc{border-radius:14px;position:relative;padding:14px 34px 14px 14px;background:var(--cd);transition:transform .15s,box-shadow .15s,border-color .15s}
+.hc:hover{transform:translateY(-3px);box-shadow:var(--sh);border-color:var(--ac)}
+.hc::after{content:"›";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--mu)}
+.nw{font-style:normal;font-size:10px;font-weight:800;background:var(--g);color:#fff;border-radius:99px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+#hsr{max-width:420px;margin-bottom:12px}
+/* marketplace polish */
+.mc{transition:transform .15s,box-shadow .15s}.mc:hover{transform:translateY(-2px)}
+.tg{background:var(--sf)}
+/* mobile dock */
+#dock{display:none}
+@media(max-width:760px){
+#dock{display:flex;position:fixed;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom,0px));z-index:15;background:color-mix(in srgb,var(--cd) 88%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--ln);border-radius:20px;padding:6px;box-shadow:0 12px 30px -10px #000a;gap:2px}
+#dock button{flex:1;border:0;background:transparent;display:grid;gap:0;font-size:10.5px;font-weight:600;color:var(--mu);padding:4px 2px;min-height:44px;border-radius:14px}
+#dock button i{font-style:normal;font-size:18px;line-height:1.1}
+#dock button.on{background:color-mix(in srgb,var(--ac) 16%,transparent);color:var(--ac);box-shadow:none}
+main{padding-bottom:96px}footer{padding-bottom:96px}
+#toast{bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
+/* ===== Land survey ===== */
+#lmap{height:440px;border-radius:14px;border:1px solid var(--ln);isolation:isolate;z-index:0;background:var(--sf)}
+#lmap.big{height:78vh}
+.leaflet-container.dr{cursor:crosshair}
+.lpw,.llw{background:none;border:0}
+.lpin{background:var(--ac);color:var(--ot);border:2px solid #fff;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-weight:800;font-size:12px;box-shadow:0 2px 8px #0008}
+.llab{display:block;width:max-content;transform:translate(-50%,-50%);background:#111d;color:#fff;border-radius:7px;padding:1px 6px;font-size:11px;font-weight:600;white-space:nowrap;pointer-events:none}
+.lsr button{display:block;width:100%;text-align:left;margin:4px 0;font-size:13px}
+.lst{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
+.lst div{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:8px 10px}
+.lst b{display:block;font-size:16px;font-variant-numeric:tabular-nums}.lst span{font-size:11px;color:var(--mu)}
+.lbd{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.lbd small{color:var(--ac);font-weight:600}
+.wrn{background:color-mix(in srgb,#f59e0b 18%,transparent);border:1px solid #f59e0b;border-radius:10px;padding:8px 10px;margin-top:8px;font-size:13px}
+.paper{--ink:#111;--mu:#555;--ln:#d9d4c8;--sf:#faf8f3;--cd:#fff;--ac:#c2410c;background:#fff;color:#111;border:1px solid var(--ln);border-radius:16px;padding:24px;box-shadow:var(--sh);font-size:13px;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.paper h4{margin:18px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ac);border-bottom:1px solid var(--ln);padding-bottom:3px}
+.rt{width:100%;border-collapse:collapse}.rt th,.rt td{border:1px solid var(--ln);padding:5px 8px;font-size:12.5px;text-align:left;vertical-align:top;color:#111}
+.rt th{background:var(--sf);width:30%;text-transform:none;font-weight:600;color:#333;font-size:12px}.rt.c th{width:auto}
+.rph{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;border-bottom:3px solid var(--ac);padding-bottom:10px}
+.rph h2{margin:0;font-size:20px;letter-spacing:-.01em;color:#111}
+.sig{display:flex;justify-content:space-between;gap:20px;margin-top:38px}.sig div{flex:1;text-align:center;border-top:1px solid #111;padding-top:4px;font-size:12px}
+.paper svg{break-inside:avoid}.paper .rt tr{break-inside:avoid}.paper h4{break-inside:avoid-page}
+@media print{
+body.lp main>section,body.lp #adb,body.lp #toast,body.lp #dock{display:none!important}
+body.lp main>#ls{display:block!important}body.lp main>#bq{display:none!important}
+body.lp #ls .lsn{display:none!important}
+body.lp #lrep{display:block!important;border:0;box-shadow:none;padding:0;border-radius:0}
+body.lp{background:#fff!important}body.lp main{padding:0}
+}
+@media(max-width:640px){#lmap{height:380px}.paper{padding:14px}.hero{padding:20px 16px}}
+</style>
+<script>try{var _t=localStorage.getItem("bq_theme");if(_t)document.documentElement.dataset.theme=_t}catch(e){}</script>
+<style id="adv2">
+.ft{background:var(--g);color:#fff;border-color:transparent;font-weight:700}
+.mc.fe{border-color:#f59e0b;box-shadow:0 0 0 1px #f59e0b66,var(--sh)}
+.mu a[data-sel]{color:var(--ac);font-weight:600;text-decoration:none}
+#mch{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}#mch::-webkit-scrollbar{display:none}
+#mch button,#mtb button,#msf button{border-radius:99px;padding:5px 12px;font-size:12px;min-height:0;white-space:nowrap;flex:none}
+.ads2.lv{grid-template-columns:1fr}
+#ac .pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}
+#ac .pk div{border:1px solid var(--ln);border-radius:14px;padding:12px;background:var(--sf)}#ac .pk b{display:block;margin-bottom:2px}
+</style>
+</head><body>
+<header class="np"><div class="br" id="home" role="button" tabindex="0" title="Go to Home"><div class="lg">▦</div><div><b>BuildQuote India</b><small>A BITOMANCY product · Free estimator &amp; drawing takeoff</small></div></div><div class="hr"><span class="pill">100% free · no login · your quotes stay on your device</span><button class="ib" id="thm" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button></div></header>
+<nav><button data-t="hm" class="on">🏠 Home</button><button data-t="mk">🏪 Marketplace</button><button data-t="ls">📏 Land survey</button><button data-t="ac">👤 Seller login</button><button data-t="tk">1 Drawing takeoff</button><button data-t="cd">📐 CAD / DXF</button><button data-t="ap">🏠 Auto plan &amp; Vastu</button><button data-t="pj">🏢 Project (Architect)</button><button data-t="ln">🏦 Loan &amp; EMI</button><button data-t="lw">⚖ Laws &amp; codes</button><button data-t="ad">🤝 Partners &amp; ads</button><button data-t="ca">2 Material calculators</button><button data-t="rt">₹ Material rates</button><button data-t="qe">Quick estimate</button><button data-t="bq">3 BOQ &amp; quote<i id="nb">0</i></button><button data-t="sv">Saved</button><select id="city" title="Regional rate level"><option value="1.2">Rates: Metro city</option><option value="1.05">Tier‑1 city</option><option value="0.92" selected>Tier‑2 city</option><option value="0.85">Tier‑3 town</option><option value="0.75">Village / rural</option></select></nav>
 <main><div id="adb" style="margin-bottom:12px"></div>
-<section id="hm"><div class="card"><h2 style="margin:0 0 4px;font-size:22px">Plan, estimate, buy and sell. One free toolkit.</h2><p class="mu" style="margin:0 0 12px">Generate a Vastu floor plan, price the build, find materials and properties near you.</p>
-<div class="hg"><button class="hc" data-go="ap"><b>🏠 Auto plan &amp; Vastu</b><span>Enter plot size, get a floor plan</span></button><button class="hc" data-go="tk"><b>📐 Drawing takeoff</b><span>Measure a drawing into a BOQ</span></button><button class="hc" data-go="mk"><b>🏪 Material marketplace</b><span>Cement, steel, bricks, tiles and more</span></button><button class="hc" data-go="mk" data-mode="r"><b>🏡 Real estate</b><span>Plots, flats, houses, shops for sale or rent</span></button><button class="hc" data-go="pj"><b>🏢 Project planner</b><span>FAR, coverage, parking, Vastu</span></button><button class="hc" data-go="ca"><b>🧮 Material calculators</b><span>Quantities and cost</span></button><button class="hc" data-go="ln"><b>🏦 Loan &amp; EMI</b><span>Check what you can afford</span></button><button class="hc" data-go="bq"><b>📋 BOQ &amp; quote</b><span>Print a branded quotation</span></button></div></div>
+<section id="hm"><div class="hero"><span class="kick">BITOMANCY · FREE FOR INDIAN BUILDERS &amp; LAND BUYERS</span><h2>Measure, plan, estimate, buy and sell.</h2><p>Measure a plot by GPS or satellite map, generate a Vastu floor plan, price the build and find materials and properties near you.</p><div class="bar"><button class="hb" data-go="ls">📏 Measure land</button><button class="hb" data-go="ap">🏠 Auto plan</button><button class="hb" data-go="bq">📋 New quote</button></div></div>
+<div class="card"><input id="hsr" placeholder="🔎 Find a tool: loan, vastu, survey, BOQ…" aria-label="Find a tool">
+<div class="hg"><button class="hc" data-go="ls"><b>📏 Land survey &amp; report <em class="nw">NEW</em></b><span>Measure by GPS or satellite map, get E/W/N/S boundaries and a printable report</span></button><button class="hc" data-go="ac"><b>👤 Seller login</b><span>List your products and advertise your business</span></button><button class="hc" data-go="ap"><b>🏠 Auto plan &amp; Vastu</b><span>Enter plot size, get a floor plan</span></button><button class="hc" data-go="tk"><b>📐 Drawing takeoff</b><span>Measure a drawing into a BOQ</span></button><button class="hc" data-go="mk"><b>🏪 Material marketplace</b><span>Cement, steel, bricks, tiles and more</span></button><button class="hc" data-go="mk" data-mode="r"><b>🏡 Real estate</b><span>Plots, flats, houses, shops for sale or rent</span></button><button class="hc" data-go="pj"><b>🏢 Project planner</b><span>FAR, coverage, parking, Vastu</span></button><button class="hc" data-go="ca"><b>🧮 Material calculators</b><span>Quantities and cost</span></button><button class="hc" data-go="ln"><b>🏦 Loan &amp; EMI</b><span>Check what you can afford</span></button><button class="hc" data-go="bq"><b>📋 BOQ &amp; quote</b><span>Print a branded quotation</span></button></div></div>
 <div class="card"><h3>Your workspace</h3><p class="mu" id="hst" style="margin:0"></p></div></section>
 <section id="mk" hidden><div class="card"><div class="bar"><button id="mtm" class="on">🧱 Building materials</button><button id="mtr">🏡 Real estate</button><span class="mu" id="mcnt" style="margin-left:auto"></span></div>
-<div class="grid"><label>Search<input id="mq" placeholder="e.g. TMT, 2 BHK"></label><label><span id="mcl">Category</span><select id="mc"></select></label><label>City<input id="mct" placeholder="e.g. Patna"></label><label>Max price (₹)<input id="mmx" type="number" min="0"></label><label id="mdw" hidden>Deal<select id="mdl"><option value="">Sale &amp; rent</option><option>Sale</option><option>Rent</option></select></label><label>Sort<select id="mso"><option value="new">Newest</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select></label></div>
+<div class="grid"><label>Search<input id="mq" placeholder="e.g. TMT, 2 BHK"></label><label><span id="mcl">Category</span><select id="mc"></select></label><label>City<input id="mct" placeholder="e.g. Patna"></label><label>Min price (₹)<input id="mmn" type="number" min="0"></label><label>Max price (₹)<input id="mmx" type="number" min="0"></label><label id="mdw" hidden>Deal<select id="mdl"><option value="">Sale &amp; rent</option><option>Sale</option><option>Rent</option></select></label><label>Sort<select id="mso"><option value="new">Newest</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select></label></div>
 <div class="bar" id="mselb" hidden style="margin:10px 0 0"><button class="pri" id="msw">📲 Send enquiry for selected (WhatsApp)</button><button id="msb">+ Add selected to BOQ</button><button id="msx">Clear selection</button></div></div>
+<div class="bar" id="mch"></div><div class="bar" id="mtb"><button id="mfv">♡ Saved</button><button id="mvw">☰ List view</button><span id="msf"></span></div>
 <div class="ads2" id="mgrid"></div>
-<div class="card" style="margin-top:12px"><h3>Post a listing (free)</h3><div class="grid"><label>Title<input id="fT" placeholder="e.g. TMT Fe500D 12 mm"></label><label><span id="fcl">Category</span><select id="fC"></select></label><label>Price (₹)<input id="fP" type="number" min="0"></label><label id="fUw">Unit<input id="fU" value="bag"></label><label class="fr" hidden>Deal<select id="fD"><option>Sale</option><option>Rent</option></select></label><label class="fr" hidden>Area (sq ft)<input id="fA" type="number" min="0"></label><label class="fr" hidden>Bedrooms<input id="fB" type="number" min="0"></label><label>City<input id="fY"></label><label>Your / firm name<input id="fS"></label><label>Mobile (10 digits)<input id="fH" type="tel" inputmode="numeric"></label></div><label style="margin-top:8px">Details<textarea id="fN" rows="2"></textarea></label><div class="bar" style="margin-top:10px"><button class="pri" id="fG">➕ Post listing</button><button id="fW" hidden>📲 Or send to admin on WhatsApp</button></div>
+<div class="card" style="margin-top:12px"><h3>Post a listing (free)</h3><div id="fas" class="wrn" style="margin:0 0 10px"></div><div class="grid"><label>Title<input id="fT" placeholder="e.g. TMT Fe500D 12 mm"></label><label><span id="fcl">Category</span><select id="fC"></select></label><label>Price (₹)<input id="fP" type="number" min="0"></label><label id="fUw">Unit<input id="fU" value="bag"></label><label class="fr" hidden>Deal<select id="fD"><option>Sale</option><option>Rent</option></select></label><label class="fr" hidden>Area (sq ft)<input id="fA" type="number" min="0"></label><label class="fr" hidden>Bedrooms<input id="fB" type="number" min="0"></label><label>City<input id="fY"></label><label>Your / firm name<input id="fS"></label><label>Mobile (10 digits)<input id="fH" type="tel" inputmode="numeric"></label></div><label style="margin-top:8px">Details<textarea id="fN" rows="2"></textarea></label><div class="bar" style="margin-top:10px"><button class="pri" id="fG">➕ Post listing</button><button id="fW" hidden>📲 Or send to admin on WhatsApp</button></div>
 <p class="mu" style="font-size:12px;margin:6px 0 0">New listings go to the site admin for review and appear for everyone once approved. “Sample” entries are demo data. Buyers deal directly with sellers, so verify price, ownership, RERA registration and documents before paying.</p></div></section>
 <section id="tk">
 <div class="card"><div class="bar"><label class="btn on" style="display:inline-block;color:var(--ot)">📐 Upload drawing (JPG / PNG)<input type="file" id="file" accept="image/*" hidden></label>
@@ -150,15 +250,75 @@ nav{flex-wrap:wrap;overflow:visible}nav button,nav select{flex:0 1 auto}
 
 <section id="qe" hidden><div class="card"><h3>Quick house estimate (₹ per sq ft)</h3><div class="grid"><label>Built-up area per floor (sq ft)<input id="qa" type="number" value="1200"></label><label>Floors<input id="qf" type="number" value="1"></label><label>Grade<select id="qg"><option value="1450">Economy</option><option value="1800" selected>Standard</option><option value="2400">Premium</option></select></label><label>Rate ₹/sq ft (editable)<input id="qr" type="number" value="1800"></label></div><div id="qo" style="margin:14px 0"></div><button class="pri" id="qadd">Add this split to BOQ</button><p class="mu" style="font-size:12px">Typical turnkey construction rates, scaled by your regional level. Use for a first ballpark before the detailed takeoff.</p></div></section>
 <section id="sv2" hidden><div class="card"><h3>Saved quotes (this device)</h3><div id="sl"></div><div style="margin-top:14px"><button id="bk">Copy backup of all quotes</button></div><textarea id="rs" rows="2" placeholder="Paste a backup here to restore on this or another device" style="margin:8px 0"></textarea><button id="rsb">Restore</button></div></section>
+<section id="ls" hidden>
+<div class="card lsn"><h3>📏 Land survey: measure by GPS or satellite map, then print the report</h3>
+<p class="mu" style="margin:0 0 10px">Search a place, tap the plot corners on the satellite map (or stand at each corner and press the GPS button), then fill the client details. East, West, North and South boundaries and side lengths are worked out for you.</p>
+<div class="grid">
+<label>Client name *<input data-ls="cn" placeholder="e.g. Ramesh Kumar" autocomplete="off"></label>
+<label>Client mobile<input data-ls="cp" type="tel" inputmode="numeric" placeholder="10 digits"></label>
+<label>Client address<input data-ls="ca"></label>
+<label>Site / plot address<input data-ls="sn"></label>
+<label>Village / locality<input data-ls="vl"></label>
+<label>Thana / circle<input data-ls="th"></label>
+<label>District<input data-ls="di"></label>
+<label>State<input data-ls="st"></label>
+<label>Khata no.<input data-ls="kh"></label>
+<label>Khesra / plot no.<input data-ls="ks"></label>
+<label>Purpose<select data-ls="pu"><option>Land purchase / sale</option><option>House construction</option><option>Boundary verification</option><option>Registry / mutation (dakhil kharij)</option><option>Loan / valuation</option><option>Other</option></select></label>
+<label>Survey date<input data-ls="dt" type="date"></label>
+<label>Surveyor / engineer<input data-ls="sv"></label>
+<label>Surveyor mobile<input data-ls="sp" type="tel" inputmode="numeric"></label>
+<label>Road side (plot facing)<select data-ls="pf"><option value="">Not specified</option><option>North</option><option>East</option><option>South</option><option>West</option></select></label>
+<label>Katha size for conversion<select data-ls="kt"><option value="1361.25">Bihar: 1 katha = 1361.25 sq ft</option><option value="720">Jharkhand / Bengal: 1 katha = 720 sq ft</option><option value="c">Custom…</option></select></label>
+<label id="lkcw" hidden>Custom katha (sq ft)<input data-ls="kc" type="number" min="1" step="any" value="1361.25"></label>
+</div></div>
+
+<div class="card lsn"><h3>1. Find the land and mark its corners</h3>
+<div class="bar"><input id="lq" placeholder="Search village, landmark, address, or paste a Google Maps link / lat,lng" style="flex:1 1 260px;width:auto" autocomplete="off"><button class="pri" id="lsb">🔎 Search</button><button id="lgm">Open in Google Maps ↗</button></div>
+<div class="lsr" id="lsr"></div>
+<div class="bar"><button id="lgc" class="pri">📍 Add corner at my GPS position</button><button id="lloc">🧭 Show my location</button><button id="ldr" class="on">✏ Tap map to add corners: ON</button><button id="lsat">🗺 Street view</button><button id="lund">↶ Undo corner</button><button id="lclr">🗑 Clear</button><button id="lbig">⛶ Bigger map</button></div>
+<div id="lmap" class="dr"></div>
+<p class="mu" style="font-size:12px;margin:8px 0 0"><span id="lacc">GPS off</span> · Drag a corner to adjust it · Right-click a corner or use ✕ in the table to delete it · Go around the plot in order (clockwise or anticlockwise). Phone GPS is usually accurate to 3–10 m; for registry-grade work use a licensed surveyor (Amin) with a total station or DGPS.</p>
+<div id="lres"></div></div>
+
+<div class="card lsn"><h3>2. Boundaries (chauhaddi)</h3>
+<p class="mu" style="margin:0 0 8px">Write who or what is on each side of the plot. Lengths come from the map automatically.</p>
+<div class="lbd">
+<label>East (purab)<input data-ls="bE" placeholder="e.g. Plot of Shri Sinha / 20 ft road"><small id="bnE"></small></label>
+<label>West (paschim)<input data-ls="bW"><small id="bnW"></small></label>
+<label>North (uttar)<input data-ls="bN"><small id="bnN"></small></label>
+<label>South (dakshin)<input data-ls="bS"><small id="bnS"></small></label>
+</div>
+<label style="margin-top:10px">Remarks<textarea data-ls="rm" rows="2" placeholder="Encroachment, slope, nearby landmark, pending documents…"></textarea></label></div>
+
+<div class="card lsn"><h3>3. Report</h3>
+<div class="bar"><button class="pri" id="lpr">🖨 Print / Save as PDF</button><button id="lwa">📲 Share on WhatsApp</button><button id="lsv">💾 Save report</button><button id="lkml">⬇ KML (Google Earth / My Maps)</button><button id="ljs">⬇ GeoJSON</button><button id="lnew">➕ New report</button></div>
+<div id="lsl"></div></div>
+
+<div class="paper" id="lrep"></div>
+</section>
+<section id="ac" hidden>
+<div class="card" id="acOut"><h3>👤 Advertiser / seller login</h3><p class="mu" style="margin:0 0 10px">Create a free seller account to post materials or properties and promote your business. Your listings appear under your shop name.</p>
+<div class="bar"><button id="atl" class="on">Login</button><button id="atr">Create account</button></div>
+<div class="grid"><label id="anw" hidden>Business / shop name<input id="aN" autocomplete="organization"></label><label id="aEw" hidden>Email<input id="aE" type="email" autocomplete="email"></label><label id="apw">Mobile (10 digits)<input id="aP" type="tel" inputmode="numeric" autocomplete="username"></label><label>Password (6+ characters)<input id="aW" type="password" autocomplete="current-password"></label><label id="acw" hidden>City<input id="aC"></label></div>
+<div class="bar" style="margin-top:10px"><button class="pri" id="aGo">Login</button><button id="aRs" hidden>Forgot password?</button></div>
+<p class="mu" id="aNt" style="font-size:12px;margin:6px 0 0">Accounts are stored in this browser on this device only, so use the same device to log in again. There is no password reset, so note your password.</p></div>
+<div id="acIn" hidden><div class="card"><div class="bar"><div style="flex:1 1 200px"><h3 style="margin:0" id="aNm"></h3><div class="mu" id="aMeta"></div></div><button class="pri" id="aPost">➕ Post a listing</button><button id="aLo">Logout</button></div><div class="lst" id="aSt"></div></div>
+<div class="card" id="aMod" hidden><h3>🛡 Moderation (admin)</h3><div id="aMl"></div></div>
+<div class="card"><h3>My listings</h3><div id="aL"></div></div></div>
+<div class="card"><h3>🚀 Advertise with us</h3><div class="pk"><div><b>★ Featured listing</b><span class="mu">Pinned to the top of search with a Featured badge.</span></div><div><b>✔ Verified seller</b><span class="mu">Trust badge on every listing you post.</span></div><div><b>📣 Banner on Home</b><span class="mu">Show your shop to every visitor.</span></div></div><button class="pri" id="aAd">📲 Ask for rates on WhatsApp</button></div>
+</section>
 </main>
-<footer><p><b>Disclaimer.</b> BuildQuote India is a free estimation aid provided “as is”. All quantities, rates, cost splits and thumb-rule formulas are indicative approximations, not live market prices, engineering designs or a certified bill of quantities. Measurements taken from drawings depend on image quality and the scale you set, and must be verified on site. Structural, load-bearing, reinforcement and mix-design decisions must be made by a licensed structural engineer or architect as per applicable IS codes and local regulations. GST, tax and contract terms are the user’s responsibility; confirm them with a CA or lawyer. The user is solely responsible for every quotation issued using this tool. BITOMANCY gives no warranty and is not liable for any loss, dispute or damage arising from its use. Drawings and quotes are processed and stored only in your browser and are not uploaded to any server. Clearing browser data deletes saved quotes, so keep backups. Auto-generated floor plans and Vastu checks are concept-level suggestions based on commonly quoted Vastu Shastra guidelines; practitioners differ, and any plan must be verified and sanctioned by a licensed architect or engineer before construction. Not affiliated with any government body.</p>
+<footer><p><b>Disclaimer.</b> BuildQuote India is a free estimation aid provided “as is”. All quantities, rates, cost splits and thumb-rule formulas are indicative approximations, not live market prices, engineering designs or a certified bill of quantities. Measurements taken from drawings depend on image quality and the scale you set, and must be verified on site. Structural, load-bearing, reinforcement and mix-design decisions must be made by a licensed structural engineer or architect as per applicable IS codes and local regulations. GST, tax and contract terms are the user’s responsibility; confirm them with a CA or lawyer. The user is solely responsible for every quotation issued using this tool. BITOMANCY gives no warranty and is not liable for any loss, dispute or damage arising from its use. Drawings and quotes are processed and stored only in your browser and are not uploaded to any server. Clearing browser data deletes saved quotes, so keep backups. Auto-generated floor plans and Vastu checks are concept-level suggestions based on commonly quoted Vastu Shastra guidelines; practitioners differ, and any plan must be verified and sanctioned by a licensed architect or engineer before construction. Land measurements made with phone GPS or satellite maps are approximate (often 3 to 10 m per corner) and are not a legal survey, title check or boundary demarcation; verify with revenue records and a licensed surveyor before any purchase, registry or construction. Not affiliated with any government body.</p>
 <p><b>Ads &amp; affiliate disclosure.</b> BuildQuote India is free and is supported by advertisements and affiliate links. We may earn a commission when you click or buy through some links, at no extra cost to you. Advertisers and partners are not endorsed by us, and ad partners may use cookies to show relevant ads.</p>
 <p><b>BuildQuote India</b> is a <a href="https://bitomancy.in" target="_blank" rel="noopener">BITOMANCY</a> product · © 2026 BITOMANCY. All rights reserved.</p></footer>
 <div id="ack"><div><h3 style="margin:0 0 8px">Before you start</h3><p class="mu" style="margin:0">BuildQuote India is a BITOMANCY product. By continuing you agree that:</p><ul><li>All rates and quantities are <b>indicative estimates</b>, not market prices or engineering design.</li><li>Drawing measurements must be <b>verified on site</b>; structural decisions need a licensed engineer.</li><li>You are responsible for the quotations you issue, including GST and terms.</li><li>Your data stays in your browser; BITOMANCY is not liable for losses from use of this tool.</li><li>The tool is free because of <b>ads and affiliate links</b>; ad partners may use cookies.</li></ul><button class="pri" id="ackb" style="width:100%">I understand and agree</button></div></div>
+<div id="dock" class="np"><button data-t="hm"><i>🏠</i>Home</button><button data-t="mk"><i>🏪</i>Market</button><button data-t="ls"><i>📏</i>Survey</button><button data-t="qe"><i>🧮</i>Estimate</button><button data-t="bq"><i>📋</i>Quote</button></div>
 <div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script>
 /* === MARKETPLACE SETTINGS === repo: your GitHub "username/repository" (powers the "Submit via GitHub" button). admin: your WhatsApp number with country code, e.g. 919876543210 (optional). Listings are read from listings.json beside this page. */
-window.MKCFG=window.MKCFG||{repo:'',admin:''};
+window.MKCFG=window.MKCFG||{repo:'',admin:'',adminUid:'',firebase:null};
 </script>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],fmt=n=>new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(+n||0),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'),cf=()=>+$('#city').value;
@@ -600,13 +760,13 @@ const seed=[[1,'m','Cement PPC 50 kg bag','Cement',395,'bag','Patna','Sample Tra
 const CFG=window.MKCFG||{};let shared=false,L=null,mine=[];try{L=JSON.parse(localStorage.getItem(KEY));mine=JSON.parse(localStorage.getItem('bq_mine'))||[]}catch(e){}if(!Array.isArray(L))L=seed;
 const sm=()=>{try{localStorage.setItem('bq_mine',JSON.stringify(mine))}catch(e){}};
 async function pull(){try{const r=await fetch('listings.json?v='+Date.now());if(!r.ok)throw 0;const a=await r.json();if(!Array.isArray(a))throw 0;shared=true;const k=x=>x.t+'|'+x.ph+'|'+x.p;mine=mine.filter(m=>!a.some(c=>k(c)==k(m)));sm();L=[...mine,...a.map(x=>({x:0,...x}))]}catch(e){}rn()}
-function post(o,via){o.id=Date.now();const b='```json\n'+JSON.stringify(o)+'\n```',en=encodeURIComponent;if(via=='g'&&CFG.repo)window.open('https://github.com/'+CFG.repo+'/issues/new?title='+en('New listing: '+o.t)+'&body='+en('Press "Submit new issue" as it is. The admin will review and publish it.\n\n'+b),'_blank','noopener');else if(via=='w'&&CFG.admin)window.open('https://wa.me/'+CFG.admin+'?text='+en('New listing for the BuildQuote marketplace:\n'+b),'_blank','noopener');else{L.unshift(o);save();return toast('Listing posted ✓')}o.x=0;o.pend=1;mine.unshift(o);sm();L.unshift(o);rn();toast('Almost done: press Submit / Send to finish')}
+function post(o,via){if(CLOUD)return cpost(o);o.id=Date.now();const b='```json\n'+JSON.stringify(o)+'\n```',en=encodeURIComponent;if(via=='g'&&CFG.repo)window.open('https://github.com/'+CFG.repo+'/issues/new?title='+en('New listing: '+o.t)+'&body='+en('Press "Submit new issue" as it is. The admin will review and publish it.\n\n'+b),'_blank','noopener');else if(via=='w'&&CFG.admin)window.open('https://wa.me/'+CFG.admin+'?text='+en('New listing for the BuildQuote marketplace:\n'+b),'_blank','noopener');else{L.unshift(o);save();return toast('Listing posted ✓')}o.x=0;o.pend=1;mine.unshift(o);sm();L.unshift(o);rn();toast('Almost done: press Submit / Send to finish')}
 let md='m';const sel=new Set(),save=()=>{try{localStorage.setItem(KEY,JSON.stringify(L))}catch(e){toast('Could not save on this device')}},fp=n=>n>=1e7?'₹'+(n/1e7).toFixed(2)+' Cr':n>=1e5?'₹'+(n/1e5).toFixed(2)+' L':'₹'+fmt(n);
 const wl=(x,t)=>{const p=(x.ph||'').replace(/\D/g,'');return 'https://wa.me/'+(p.length==10?'91'+p:p)+'?text='+encodeURIComponent(t)};
 const price=x=>x.k=='m'?'₹'+fmt(x.p)+' / '+esc(x.u):fp(x.p)+(x.dl=='Rent'?' / month':'');
 function opts(){const l=md=='m'?CM:RT;g('mc').innerHTML='<option value="">All</option>'+l.map(c=>`<option>${c}</option>`).join('');g('fC').innerHTML=l.map(c=>`<option>${c}</option>`).join('');g('mcl').textContent=g('fcl').textContent=md=='m'?'Category':'Property type';g('mdw').hidden=md=='m';g('fUw').hidden=md!='m';document.querySelectorAll('.fr').forEach(e=>e.hidden=md=='m');g('mtm').classList.toggle('on',md=='m');g('mtr').classList.toggle('on',md=='r');sel.clear()}
-function card(x){const m=x.k=='m',e=esc;return `<div class="card mc"><div><span class="tg">${e(x.c)}</span>${x.dl?`<span class="tg">For ${e(x.dl)}</span>`:''}${x.x?'<span class="tg">Sample</span>':''}${x.pend?'<span class="tg">Pending approval</span>':''}</div><b>${e(x.t)}</b><div class="mp">${price(x)}</div><div class="mu">📍 ${e(x.city)} · ${e(x.s)}</div>${!m&&x.ar?`<div class="mu">${fmt(x.ar)} sq ft${x.bh?' · '+x.bh+' BHK':''}${x.dl=='Sale'?' · ₹'+fmt(Math.round(x.p/x.ar))+'/sq ft':''}</div>`:''}<div class="mu">${e(x.n)}</div><div class="mb">${m?`<label style="display:flex;flex-direction:row;gap:4px;align-items:center"><input type="checkbox" style="width:auto;min-height:0" data-sl="${x.id}" ${sel.has(x.id)?'checked':''}>Select</label><button data-bq="${x.id}">+ BOQ</button>`:(x.dl=='Rent'?'':`<button data-emi="${x.id}">EMI</button>`)}<a class="btn" target="_blank" rel="noopener" href="${wl(x,`Hi ${x.s}, I saw your listing on BuildQuote India: ${x.t}, ${m?'₹'+fmt(x.p)+'/'+x.u:fp(x.p)}, ${x.city}. Is it available?`)}">📲 WhatsApp</a>${x.ph?`<a class="btn" href="tel:${e(x.ph)}">📞 Call</a>`:''}<button data-del="${x.id}" title="Remove from this device">🗑</button></div></div>`}
-function rn(){const q=g('mq').value.toLowerCase(),c=g('mc').value,ct=g('mct').value.toLowerCase(),mx=+g('mmx').value||0,dl=g('mdl').value,so=g('mso').value;const a=L.filter(x=>x.k==md&&(!q||(x.t+' '+x.c+' '+x.n).toLowerCase().includes(q))&&(!c||x.c==c)&&(!ct||x.city.toLowerCase().includes(ct))&&(!mx||x.p<=mx)&&(md=='m'||!dl||x.dl==dl)).sort((p,r)=>so=='lo'?p.p-r.p:so=='hi'?r.p-p.p:r.id-p.id);g('mgrid').innerHTML=a.map(card).join('')||'<p class="mu">No listings match. Clear the filters or post your own.</p>';g('mcnt').textContent=a.length+' listing'+(a.length==1?'':'s');g('mselb').hidden=!sel.size}
+function card(x){const m=x.k=='m',e=esc;return `<div class="card mc${x.fe?' fe':''}"><div>${x.fe?'<span class="tg ft">★ Featured</span>':''}${x.vf?'<span class="tg ft">✔ Verified</span>':''}<span class="tg">${e(x.c)}</span>${x.dl?`<span class="tg">For ${e(x.dl)}</span>`:''}${x.x?'<span class="tg">Sample</span>':''}${x.pend?'<span class="tg">Pending approval</span>':''}</div><b>${e(x.t)}</b><div class="mp">${price(x)}</div><div class="mu">📍 ${e(x.city)} · <a href="#" data-sel="${e(x.s)}" title="All listings by this seller">${e(x.s)}</a></div>${!m&&x.ar?`<div class="mu">${fmt(x.ar)} sq ft${x.bh?' · '+x.bh+' BHK':''}${x.dl=='Sale'?' · ₹'+fmt(Math.round(x.p/x.ar))+'/sq ft':''}</div>`:''}<div class="mu">${e(x.n)}</div><div class="mb">${m?`<label style="display:flex;flex-direction:row;gap:4px;align-items:center"><input type="checkbox" style="width:auto;min-height:0" data-sl="${x.id}" ${sel.has(x.id)?'checked':''}>Select</label><button data-bq="${x.id}">+ BOQ</button>`:(x.dl=='Rent'?'':`<button data-emi="${x.id}">EMI</button>`)}<a class="btn" target="_blank" rel="noopener" href="${wl(x,`Hi ${x.s}, I saw your listing on BuildQuote India: ${x.t}, ${m?'₹'+fmt(x.p)+'/'+x.u:fp(x.p)}, ${x.city}. Is it available?`)}">📲 WhatsApp</a>${x.ph?`<a class="btn" href="tel:${e(x.ph)}">📞 Call</a>`:''}<button data-fav="${x.id}" title="Save" aria-label="Save">${fav.has(x.id)?'♥':'♡'}</button><button data-sh="${x.id}" title="Share" aria-label="Share">↗</button><button data-del="${x.id}" title="Remove from this device">🗑</button></div></div>`}
+function rn(){const q=g('mq').value.toLowerCase(),c=g('mc').value,ct=g('mct').value.toLowerCase(),mx=+g('mmx').value||0,dl=g('mdl').value,so=g('mso').value;const a=L.filter(x=>x.k==md&&(!SF||x.s==SF)&&(!FO||fav.has(x.id))&&(!(+g('mmn').value)||x.p>=+g('mmn').value)&&(!q||(x.t+' '+x.c+' '+x.n).toLowerCase().includes(q))&&(!c||x.c==c)&&(!ct||x.city.toLowerCase().includes(ct))&&(!mx||x.p<=mx)&&(md=='m'||!dl||x.dl==dl)).sort((p,r)=>(r.fe|0)-(p.fe|0)||(so=='lo'?p.p-r.p:so=='hi'?r.p-p.p:r.id-p.id));g('mgrid').innerHTML=a.map(card).join('')||'<p class="mu">No listings match. Clear the filters or post your own.</p>';g('mcnt').textContent=a.length+' listing'+(a.length==1?'':'s');g('msf').innerHTML=SF?'<button id="msx2">Seller: '+esc(SF)+' ✕</button>':'';g('mselb').hidden=!sel.size}
 const pick=()=>L.filter(x=>sel.has(x.id));
 function setMode(m){md=m;opts();rn()}
 g('mtm').onclick=()=>setMode('m');g('mtr').onclick=()=>setMode('r');
@@ -614,10 +774,217 @@ g('mtm').onclick=()=>setMode('m');g('mtr').onclick=()=>setMode('r');
 g('mgrid').onclick=e=>{const t=e.target,d=t.dataset;if(d.sl){const i=+d.sl;sel.has(i)?sel.delete(i):sel.add(i);g('mselb').hidden=!sel.size}else if(d.bq){const x=L.find(y=>y.id==d.bq);addRow(x.t,1,x.u,x.p,0)}else if(d.emi){const x=L.find(y=>y.id==d.emi),c=g('lc');c.value=x.p;c.dispatchEvent(new Event('input',{bubbles:true}));c.dispatchEvent(new Event('change',{bubbles:true}));show('ln')}else if(d.del){const y=L.find(z=>z.id==d.del);if(shared&&!(y&&y.pend))return toast('Ask the site admin to remove a live listing');if(confirm('Remove this listing?')){L=L.filter(z=>z.id!=d.del);if(shared){mine=mine.filter(z=>z.id!=d.del);sm()}else save();rn()}}};
 g('msb').onclick=()=>{pick().forEach(x=>addRow(x.t,1,x.u,x.p,0))};g('msx').onclick=()=>{sel.clear();rn()};
 g('msw').onclick=()=>{const p=pick(),t='Enquiry via BuildQuote India:\n'+p.map((x,i)=>`${i+1}. ${x.t} – ₹${fmt(x.p)}/${x.u} (${x.s}, ${x.city})`).join('\n')+'\nPlease share your best rate and delivery time.';window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank','noopener')};
-const sub=via=>{const m=md=='m',v=i=>g(i).value.trim(),p=+v('fP'),h=v('fH').replace(/\D/g,'');if(v('fT').length<3||!(p>0)||!v('fY')||!v('fS'))return toast('Fill title, price, city and your name');if(h.length!=10)return toast('Enter a 10-digit mobile number');post({k:md,t:v('fT'),c:v('fC'),p,u:m?v('fU')||'unit':'',city:v('fY'),s:v('fS'),ph:h,n:v('fN'),ar:m?0:+v('fA')||0,bh:m?0:+v('fB')||0,dl:m?'':v('fD')},via);['fT','fP','fN','fA','fB'].forEach(i=>g(i).value='');rn()};g('fG').onclick=()=>sub(CFG.repo?'g':CFG.admin?'w':'');g('fW').onclick=()=>sub('w');g('fW').hidden=!(CFG.repo&&CFG.admin);if(CFG.repo)g('fG').textContent='➕ Submit via GitHub';else if(CFG.admin)g('fG').textContent='📲 Send to admin on WhatsApp';
+const sub=via=>{if(!acc()){toast('Login to post a listing');return show('ac')}const m=md=='m',v=i=>g(i).value.trim(),p=+v('fP'),h=v('fH').replace(/\D/g,'');if(v('fT').length<3||!(p>0)||!v('fY')||!v('fS'))return toast('Fill title, price, city and your name');if(h.length!=10)return toast('Enter a 10-digit mobile number');post({k:md,t:v('fT'),c:v('fC'),p,u:m?v('fU')||'unit':'',city:v('fY'),s:v('fS'),ph:h,n:v('fN'),ar:m?0:+v('fA')||0,bh:m?0:+v('fB')||0,dl:m?'':v('fD')},via);['fT','fP','fN','fA','fB'].forEach(i=>g(i).value='');rn()};g('fG').onclick=()=>sub(CFG.repo?'g':CFG.admin?'w':'');g('fW').onclick=()=>sub('w');g('fW').hidden=!(CFG.repo&&CFG.admin);if(CFG.repo)g('fG').textContent='➕ Submit via GitHub';else if(CFG.admin)g('fG').textContent='📲 Send to admin on WhatsApp';
 function hmr(){let n=0;try{n=(JSON.parse(localStorage.getItem('bq_saved'))||[]).length}catch(e){}g('hst').textContent=`${S.boq.length} item(s) in the current BOQ · ${n} saved quote(s) · ${L.filter(x=>!x.x).length} listing(s) posted by you`}
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{if(b.dataset.mode)setMode(b.dataset.mode);else if(b.dataset.go=='mk')setMode('m');show(b.dataset.go)});
 const go=()=>show('hm');g('home').onclick=go;g('home').onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();go()}};
 const _s2=show;show=t=>{_s2(t);if(t=='hm')hmr();if(t=='mk')pull()};
+/* ---- seller accounts, favourites, advanced filters ---- */
+const AK='bq_acc',SK='bq_sess',FK='bq_fav';let SF='',FO=false,fav=new Set(),CU=null,CLOUD=!!(CFG.firebase&&CFG.firebase.apiKey),auth=null,db=null;try{fav=new Set(JSON.parse(localStorage.getItem(FK))||[])}catch(e){}
+async function hs(t){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('bq|'+t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){let h=5381;for(const c of 'bq|'+t)h=(h*33^c.charCodeAt(0))>>>0;return'x'+h}}
+const accs=()=>{try{return JSON.parse(localStorage.getItem(AK))||[]}catch(e){return[]}},acc=()=>{if(CLOUD)return CU;let p='';try{p=localStorage.getItem(SK)}catch(e){}return accs().find(a=>a.ph==p)||null},cl=t=>String(t||'').replace(/[<>]/g,'').trim().slice(0,60);
+function syncAcc(){const a=acc(),n=document.querySelector('nav [data-t=ac]');if(n)n.textContent=a?'👤 '+a.name.slice(0,14):'👤 Seller login';
+ if(a){g('fS').value=a.name;g('fH').value=a.ph;if(!g('fY').value)g('fY').value=a.city||''}g('fS').readOnly=g('fH').readOnly=!!a;
+ g('fas').innerHTML=a?'Posting as <b>'+esc(a.name)+'</b> ('+a.ph+'). Your listing is reviewed, then goes live for everyone.':'<a href="#" id="fli" style="color:var(--ac);font-weight:700">Login or create a seller account</a> to post and advertise.'}
+g('fas').onclick=ev=>{if(ev.target.id=='fli'){ev.preventDefault();show('ac')}};
+const wa=t=>CFG.admin?window.open('https://wa.me/'+CFG.admin+'?text='+encodeURIComponent(t),'_blank','noopener'):toast('Admin WhatsApp is not set yet');
+function dash(){const a=acc();g('acOut').hidden=!!a;g('acIn').hidden=!a;syncAcc();g('aMod').hidden=!(a&&a.admin);if(a&&a.admin)mod();if(!a)return;g('aNm').textContent=a.name;g('aMeta').textContent='📱 '+a.ph+(a.city?' · 📍 '+a.city:'');
+ const my=L.filter(x=>CLOUD?x.uid==a.uid:x.ph==a.ph);g('aSt').innerHTML=[['Listings',my.length],['Live',my.filter(x=>!x.pend&&!x.x).length],['Pending',my.filter(x=>x.pend).length],['Featured',my.filter(x=>x.fe).length]].map(z=>`<div><b>${z[1]}</b><span>${z[0]}</span></div>`).join('');
+ g('aL').innerHTML=my.map(x=>`<div class="mr"><div style="flex:1 1 200px"><b>${esc(x.t)}</b><div class="mu" style="font-size:12px">${price(x)} · ${esc(x.city)}</div></div><span class="tg">${x.pend?'Pending approval':'Live'}</span>${x.fe?'<span class="tg ft">★ Featured</span>':''}<button data-ap="${x.id}">🚀 Promote</button><button data-ad="${x.id}" title="Delete">🗑</button></div>`).join('')||'<p class="mu">No listings yet. Tap “Post a listing” to add your first one.</p>'}
+g('aL').onclick=ev=>{const t=ev.target.closest('button');if(!t)return;const d=t.dataset,id=d.ap||d.ad,y=L.find(z=>z.id==id),a=acc();if(!y||!a)return;
+ if(d.ap)return wa('Hi, I want to promote my listing on BuildQuote Marketplace:\n'+y.t+' ('+y.city+')\nSeller: '+a.name+' '+a.ph+'\nPlease share featured / banner rates.');
+ if(CLOUD&&y.cid){if(confirm('Delete this listing?'))db.doc('listings/'+y.cid).delete().then(()=>{L=L.filter(z=>z.cid!=y.cid);rn();dash()}).catch(e=>toast(e.message));return}
+ if(shared&&!y.pend)return wa('Please remove my live listing on BuildQuote Marketplace:\n'+y.t+' ('+y.city+')\nSeller: '+a.name+' '+a.ph);
+ if(confirm('Delete this listing?')){L=L.filter(z=>z.id!=id);mine=mine.filter(z=>z.id!=id);sm();if(!shared)save();rn();dash()}};
+let rg=false;const tab=r=>{rg=r;g('atl').classList.toggle('on',!r);g('atr').classList.toggle('on',r);g('anw').hidden=g('acw').hidden=!r;g('apw').hidden=CLOUD&&!r;g('aEw').hidden=!CLOUD;g('aGo').textContent=r?'Create account':'Login'};
+g('atl').onclick=()=>tab(false);g('atr').onclick=()=>tab(true);
+g('aGo').onclick=async()=>{if(CLOUD)return cauth();const ph=g('aP').value.replace(/\D/g,''),pw=g('aW').value,A=accs();if(ph.length!=10)return toast('Enter a 10-digit mobile number');if(pw.length<6)return toast('Password needs 6+ characters');const h=await hs(ph+'|'+pw);
+ if(rg){const n=cl(g('aN').value);if(n.length<2)return toast('Enter your business name');if(A.some(a=>a.ph==ph))return toast('This mobile is already registered. Login instead.');A.push({ph,name:n,city:cl(g('aC').value),h,at:Date.now()});try{localStorage.setItem(AK,JSON.stringify(A))}catch(e){return toast('Could not save on this device')}}
+ else{const a=A.find(x=>x.ph==ph);if(!a||a.h!=h)return toast('Wrong mobile or password (accounts are stored per device)')}
+ try{localStorage.setItem(SK,ph)}catch(e){}g('aW').value='';toast(rg?'Account created ✓':'Welcome back ✓');dash()};
+g('aLo').onclick=()=>{if(CLOUD&&auth)auth.signOut();try{localStorage.removeItem(SK)}catch(e){}g('fS').value=g('fH').value='';dash()};
+g('aPost').onclick=()=>{setMode('m');show('mk');setTimeout(()=>g('fT').scrollIntoView({behavior:'smooth',block:'center'}),150)};
+g('aAd').onclick=()=>wa('Hi, I want to advertise on BuildQuote India. Please share featured listing / verified seller / banner rates.'+(acc()?'\nSeller: '+acc().name+' '+acc().ph:''));
+const _o=opts;opts=()=>{_o();g('mch').innerHTML=['All',...(md=='m'?CM:RT)].map(c=>`<button data-ch="${c=='All'?'':c}">${c}</button>`).join('');chs()};
+const chs=()=>[...g('mch').children].forEach(b=>b.classList.toggle('on',b.dataset.ch==g('mc').value));
+g('mch').onclick=ev=>{const b=ev.target.closest('[data-ch]');if(!b)return;g('mc').value=b.dataset.ch;chs();rn()};g('mc').addEventListener('input',chs);g('mmn').oninput=rn;
+g('mfv').onclick=()=>{FO=!FO;g('mfv').classList.toggle('on',FO);rn()};
+g('mvw').onclick=()=>{const l=g('mgrid').classList.toggle('lv');g('mvw').textContent=l?'▦ Grid view':'☰ List view'};
+g('msf').onclick=ev=>{if(ev.target.closest('#msx2')){SF='';rn()}};
+g('mgrid').addEventListener('click',ev=>{const t=ev.target.closest('[data-fav],[data-sel],[data-sh]');if(!t)return;ev.preventDefault();const d=t.dataset;
+ if(d.fav){const i=+d.fav;fav.has(i)?fav.delete(i):fav.add(i);try{localStorage.setItem(FK,JSON.stringify([...fav]))}catch(e){}rn()}
+ else if(d.sel){SF=d.sel;rn();scrollTo(0,0)}
+ else if(d.sh){const x=L.find(y=>y.id==d.sh);if(!x)return;const tx=x.t+' – '+(x.k=='m'?'₹'+fmt(x.p)+'/'+x.u:fp(x.p))+', '+x.city+' on BuildQuote India: '+location.href.split('#')[0];if(navigator.share)navigator.share({title:x.t,text:tx}).catch(()=>{});else window.open('https://wa.me/?text='+encodeURIComponent(tx),'_blank','noopener')}});
+const _s5=show;show=t=>{_s5(t);if(t=='ac')dash();if(t=='mk')syncAcc()};syncAcc();
+/* ---- optional cloud backend (Firebase): real login on any device, moderation ---- */
+const z=(t,n)=>String(t??'').replace(/[<>]/g,'').trim().slice(0,n);
+async function cauth(){if(!auth)return toast('Connecting… try again in a moment');const em=g('aE').value.trim(),pw=g('aW').value,ph=g('aP').value.replace(/\D/g,'');if(!/^\S+@\S+\.\S+$/.test(em))return toast('Enter a valid email');if(pw.length<6)return toast('Password needs 6+ characters');
+ try{if(rg){const n=cl(g('aN').value);if(n.length<2)return toast('Enter your business name');if(ph.length!=10)return toast('Enter a 10-digit mobile number');const c=await auth.createUserWithEmailAndPassword(em,pw);await db.doc('sellers/'+c.user.uid).set({name:n,ph,city:cl(g('aC').value),at:Date.now()});CU={uid:c.user.uid,email:em,name:n,ph,city:cl(g('aC').value),admin:!!CFG.adminUid&&c.user.uid==CFG.adminUid};syncAcc();dash();toast('Account created ✓')}
+  else{await auth.signInWithEmailAndPassword(em,pw);toast('Welcome back ✓')}g('aW').value=''}
+ catch(e){toast(e.code=='auth/email-already-in-use'?'Email already registered. Login instead.':e.code&&e.code.indexOf('auth/')==0?'Login failed: '+e.code.slice(5).replace(/-/g,' '):'Error: '+e.message)}}
+async function cpost(o){if(!CU)return toast('Login first');const d={id:Date.now(),k:o.k=='r'?'r':'m',t:z(o.t,120),c:z(o.c,60),p:+o.p||0,u:z(o.u,20),city:z(o.city,60),s:z(CU.name,80),ph:CU.ph,n:z(o.n,400),ar:Math.max(0,+o.ar||0),bh:Math.max(0,parseInt(o.bh)||0),dl:['Sale','Rent'].includes(o.dl)?o.dl:'',uid:CU.uid,status:'pending',fe:0,vf:0,createdAt:Date.now()};
+ try{const r=await db.collection('listings').add(d);L.unshift({...d,cid:r.id,x:0,pend:1});rn();toast('Submitted ✓ It goes live after admin approval')}catch(e){toast('Could not post: '+e.message)}}
+async function loadCloud(){if(!CLOUD||!db)return;try{const[a,b]=await Promise.all([db.collection('listings').where('status','==','live').limit(300).get(),CU?db.collection('listings').where('uid','==',CU.uid).get():Promise.resolve(null)]),m=new Map();[a,...(b?[b]:[])].forEach(q=>q.docs.forEach(d=>{const x=d.data();m.set(d.id,{...x,id:x.id||x.createdAt||0,cid:d.id,x:0,pend:x.status=='live'?0:1})}));L=[...m.values(),...L.filter(x=>!x.cid)];shared=true;rn();if(!g('ac').hidden)dash()}catch(e){console.warn('cloud',e)}}
+async function mod(){try{const q=await db.collection('listings').where('status','==','pending').get();g('aMl').innerHTML=q.docs.map(d=>{const x=d.data();return`<div class="mr"><div style="flex:1 1 220px"><b>${esc(x.t)}</b><div class="mu" style="font-size:12px">${x.k=='m'?'₹'+fmt(x.p)+'/'+esc(x.u):fp(x.p)} · ${esc(x.city)} · ${esc(x.s)} ${esc(x.ph)}</div></div>${[['ok','Approve'],['fe','Approve ★'],['vf','Approve ✔'],['no','Reject']].map(a=>`<button data-m="${d.id}" data-a="${a[0]}">${a[1]}</button>`).join('')}</div>`}).join('')||'<p class="mu">Nothing waiting for approval.</p>'}catch(e){g('aMl').textContent=e.message}}
+g('aMl').onclick=async ev=>{const t=ev.target.closest('[data-m]');if(!t)return;const r=db.doc('listings/'+t.dataset.m),a=t.dataset.a;try{if(a=='no'){if(!confirm('Reject and delete this listing?'))return;await r.delete()}else await r.update({status:'live',fe:a=='fe'?1:0,vf:a=='vf'?1:0});toast('Done ✓');mod();loadCloud()}catch(e){toast(e.message)}};
+g('aRs').onclick=async()=>{const em=g('aE').value.trim();if(!em||!auth)return toast('Enter your email first');try{await auth.sendPasswordResetEmail(em);toast('Password reset link sent to your email')}catch(e){toast(e.message)}};
+const _p=pull;pull=async()=>{await _p();await loadCloud()};
+if(CLOUD){g('aRs').hidden=false;g('aNt').textContent='Secure cloud login: works on any device. Use “Forgot password?” to reset by email. New listings are reviewed before going live.';
+ const ld=u=>new Promise((r,j)=>{const e=document.createElement('script');e.src=u;e.onload=r;e.onerror=j;document.head.appendChild(e)});
+ (async()=>{try{const B='https://www.gstatic.com/firebasejs/10.12.5/';await ld(B+'firebase-app-compat.js');await Promise.all([ld(B+'firebase-auth-compat.js'),ld(B+'firebase-firestore-compat.js')]);firebase.initializeApp(CFG.firebase);auth=firebase.auth();db=firebase.firestore();
+  auth.onAuthStateChanged(async u=>{if(!u)CU=null;else{let p={};try{const d=await db.doc('sellers/'+u.uid).get();p=d.exists?d.data():{}}catch(e){}CU={uid:u.uid,email:u.email,name:p.name||u.email.split('@')[0],ph:p.ph||'',city:p.city||'',admin:!!CFG.adminUid&&u.uid==CFG.adminUid}}syncAcc();await loadCloud();dash()});pull()}
+  catch(e){CLOUD=false;g('aRs').hidden=true;tab(rg);toast('Cloud login unavailable, using this device only')}})()}
+tab(false);
+
 opts();rn();pull();show('hm')})();
+
+/* ===== Advanced UI: theme, dock, tool search ===== */
+(()=>{const h=document.documentElement,b=document.getElementById('thm'),dark=()=>h.dataset.theme?h.dataset.theme=='dark':matchMedia('(prefers-color-scheme: dark)').matches,ic=()=>{b.textContent=dark()?'☀️':'🌙'};ic();
+b.onclick=()=>{const t=dark()?'light':'dark';h.dataset.theme=t;try{localStorage.setItem('bq_theme',t)}catch(e){}ic()};
+document.querySelectorAll('#dock button').forEach(x=>x.onclick=()=>show(x.dataset.t));
+const hs=document.getElementById('hsr');if(hs)hs.oninput=()=>{const q=hs.value.toLowerCase().trim();document.querySelectorAll('.hg .hc').forEach(c=>c.hidden=!!q&&!c.textContent.toLowerCase().includes(q))};
+const _sd=show;show=t=>{_sd(t);document.querySelectorAll('#dock button').forEach(x=>x.classList.toggle('on',x.dataset.t==t))};
+document.querySelectorAll('#dock button').forEach(x=>x.classList.toggle('on',x.dataset.t=='hm'))})();
+
+/* ===== Land survey ===== */
+(()=>{
+const g=i=>document.getElementById(i),LF=window.L,R=6371008.8,rad=Math.PI/180,SQFT=0.09290304,KEY='bq_lsr',X=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let pts=[],map=null,poly=null,mks=[],labs=[],sat=null,street=null,satOn=true,draw=true,me=null,meC=null,watch=null,sm=null,rno='';
+const newNo=()=>{const d=new Date();rno='LMR-'+String(d.getFullYear()).slice(2)+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+Math.floor(100+Math.random()*900)};
+const LT=i=>i<26?String.fromCharCode(65+i):String.fromCharCode(65+i%26)+Math.floor(i/26);
+const c4=b=>b>=315||b<45?'N':b<135?'E':b<225?'S':'W',c8=b=>['N','NE','E','SE','S','SW','W','NW'][Math.round(b/45)%8];
+const FD={N:'North',E:'East',S:'South',W:'West'};
+const F=()=>{const o={};document.querySelectorAll('#ls [data-ls]').forEach(i=>o[i.dataset.ls]=i.value.trim());return o};
+const dfmt=s=>{if(!s)return new Date().toLocaleDateString('en-IN');const d=new Date(s+'T00:00:00');return isNaN(d)?s:d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})};
+
+/* geometry */
+function proj(){const n=pts.length;if(!n)return{P:[],la0:0,lo0:0,k:1};const la0=pts.reduce((s,p)=>s+p.lat,0)/n,lo0=pts.reduce((s,p)=>s+p.lng,0)/n,k=Math.cos(la0*rad);return{P:pts.map(p=>({x:(p.lng-lo0)*rad*R*k,y:(p.lat-la0)*rad*R})),la0,lo0,k}}
+function segX(a,b,c,d){const o=(p,q,r)=>(q.x-p.x)*(r.y-p.y)-(q.y-p.y)*(r.x-p.x);return o(a,b,c)*o(a,b,d)<0&&o(c,d,a)*o(c,d,b)<0}
+function calc(){const n=pts.length,pj=proj(),P=pj.P,r={n,area:0,per:0,sides:[],P,pj,self:false,cent:null,ns:0,ew:0};if(n<2)return r;
+ const m=n==2?1:n;let s=0;for(let i=0;i<n;i++){const a=P[i],b=P[(i+1)%n];s+=a.x*b.y-b.x*a.y}
+ const sg=s/2,ccw=sg>0;r.area=n>=3?Math.abs(sg):0;
+ for(let i=0;i<m;i++){const a=P[i],b=P[(i+1)%n],dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy),br=(Math.atan2(dx,dy)/rad+360)%360;let ob=null;if(n>=3){const nx=ccw?dy:-dy,ny=ccw?-dx:dx;ob=(Math.atan2(nx,ny)/rad+360)%360}
+  r.sides.push({i,from:LT(i),to:LT((i+1)%n),len,br,ob,face:ob==null?'':c4(ob),face8:ob==null?'':c8(ob)});r.per+=len}
+ const xs=P.map(p=>p.x),ys=P.map(p=>p.y);r.ew=Math.max(...xs)-Math.min(...xs);r.ns=Math.max(...ys)-Math.min(...ys);
+ if(n>=3&&sg!==0){let cx=0,cy=0;for(let i=0;i<n;i++){const a=P[i],b=P[(i+1)%n],cr=a.x*b.y-b.x*a.y;cx+=(a.x+b.x)*cr;cy+=(a.y+b.y)*cr}cx/=6*sg;cy/=6*sg;r.cent={x:cx,y:cy,lat:pj.la0+cy/(R*rad),lng:pj.lo0+cx/(R*rad*pj.k)}}
+ if(n>=4)for(let i=0;i<n;i++)for(let j=i+2;j<n;j++){if(i==0&&j==n-1)continue;if(segX(P[i],P[(i+1)%n],P[j],P[(j+1)%n]))r.self=true}
+ return r}
+function units(a){const ft=a/SQFT,f=F(),ks=f.kt=='c'?(+f.kc||1361.25):(+f.kt||1361.25);return{ks,rows:[['Square feet',ft],['Square metre',a],['Square yard (gaj)',ft/9],['Decimal (dismil)',ft/435.6],['Katha (1 katha = '+fmt(ks)+' sq ft)',ft/ks],['Bigha (20 katha)',ft/ks/20],['Dhur (1/20 katha)',ft/ks*20],['Acre',ft/43560],['Hectare',a/1e4]]}}
+const L2=n=>(+n).toFixed(2),fts=n=>L2(n/0.3048);
+
+/* map */
+function init(){if(map||!LF){if(!LF)g('lmap').innerHTML='<p class="mu" style="padding:16px">The map library could not load. Check your internet connection and reload.</p>';return}
+ map=LF.map('lmap',{maxZoom:20}).setView([25.5941,85.1376],11);
+ sat=LF.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:20,maxNativeZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(map);
+ street=LF.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20,maxNativeZoom:19,attribution:'© OpenStreetMap contributors'});
+ poly=LF.polygon([],{color:'#f97316',weight:3,fillColor:'#f97316',fillOpacity:.22}).addTo(map);
+ map.on('click',ev=>{if(draw)add(ev.latlng.lat,ev.latlng.lng,null)});
+ refresh()}
+function shape(){if(!map)return;labs.forEach(l=>map.removeLayer(l));labs=[];poly.setLatLngs(pts.map(p=>[p.lat,p.lng]));const n=pts.length,m=n==2?1:n;if(n>=2)for(let i=0;i<m;i++){const a=pts[i],b=pts[(i+1)%n],d=dist(a,b);labs.push(LF.marker([(a.lat+b.lat)/2,(a.lng+b.lng)/2],{icon:LF.divIcon({className:'llw',html:'<span class="llab">'+L2(d)+' m · '+fts(d)+' ft</span>',iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(map))}}
+function dist(a,b){const dl=(b.lat-a.lat)*rad,dn=(b.lng-a.lng)*rad,x=dn*Math.cos((a.lat+b.lat)/2*rad),h=Math.hypot(x,dl);return h*R}
+function markers(){if(!map)return;mks.forEach(m=>map.removeLayer(m));mks=pts.map((p,i)=>{const m=LF.marker([p.lat,p.lng],{draggable:true,icon:LF.divIcon({className:'lpw',html:'<div class="lpin">'+LT(i)+'</div>',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map);
+ m.on('drag',e=>{const q=e.target.getLatLng();pts[i]={lat:q.lat,lng:q.lng,acc:null};shape();upd()});m.on('dragend',()=>{shape();upd()});m.on('contextmenu',()=>del(i));return m})}
+function refresh(){shape();markers();upd()}
+function add(lat,lng,acc){pts.push({lat,lng,acc});refresh()}
+function del(i){pts.splice(i,1);refresh()}
+function fit(){if(map&&pts.length){map.fitBounds(LF.latLngBounds(pts.map(p=>[p.lat,p.lng])).pad(.35),{maxZoom:20})}}
+function go(lat,lng,label){init();if(!map)return;map.flyTo([lat,lng],19,{duration:.8});if(sm)map.removeLayer(sm);sm=LF.circleMarker([lat,lng],{radius:7,color:'#fff',weight:3,fillColor:'#dc2626',fillOpacity:1}).addTo(map).bindTooltip(label||'Location',{direction:'top'})}
+
+/* search (place names via OpenStreetMap, plus Google Maps links and coordinates) */
+function parseLL(s){let t=s;try{t=decodeURIComponent(s)}catch(e){}const m=t.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)||t.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/)||t.match(/[?&](?:q|query|ll|destination)=(-?\d+\.\d+)[,+ ]+(-?\d+\.\d+)/)||t.match(/^\s*(-?\d{1,2}\.\d+)\s*[, ]\s*(-?\d{1,3}\.\d+)\s*$/);return m?{lat:+m[1],lng:+m[2]}:null}
+async function srch(){const q=g('lq').value.trim(),out=g('lsr');if(!q)return;init();const ll=parseLL(q);if(ll){out.innerHTML='';return go(ll.lat,ll.lng,'Pinned location')}
+ if(/^https?:\/\/(maps\.app\.goo\.gl|goo\.gl)/i.test(q)){out.innerHTML='<p class="mu">Short Google links cannot be read here. Open the link, copy the full address-bar URL (or the lat,lng) and paste that.</p>';return}
+ out.innerHTML='<p class="mu">Searching…</p>';
+ try{const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&q='+encodeURIComponent(q));if(!r.ok)throw 0;const a=await r.json();
+  out.innerHTML=a.length?a.map((x,i)=>`<button data-r="${i}">📍 ${X(x.display_name)}</button>`).join(''):'<p class="mu">No match. Try a nearby landmark or town, or use “Open in Google Maps”, copy the coordinates and paste them here.</p>';
+  out.onclick=e=>{const b=e.target.closest('[data-r]');if(!b)return;const x=a[+b.dataset.r];go(+x.lat,+x.lon,x.display_name.split(',')[0]);out.innerHTML=''}}
+ catch(e){out.innerHTML='<p class="mu">Search is unavailable right now. Use “Open in Google Maps”, find the plot, then paste its link or lat,lng here.</p>'}}
+g('lsb').onclick=srch;g('lq').onkeydown=e=>{if(e.key=='Enter')srch()};
+g('lgm').onclick=()=>{const q=g('lq').value.trim();let u;if(q&&!parseLL(q)&&!/^https?:/i.test(q))u='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);else{init();const c=map?map.getCenter():{lat:25.5941,lng:85.1376};u='https://www.google.com/maps/search/?api=1&query='+c.lat.toFixed(6)+','+c.lng.toFixed(6)}window.open(u,'_blank','noopener')};
+
+/* GPS */
+function locate(){if(!navigator.geolocation)return toast('GPS is not available on this device');init();if(!map)return;if(watch!=null){navigator.geolocation.clearWatch(watch);watch=null;g('lloc').textContent='🧭 Show my location';g('lacc').textContent='GPS off';return}
+ g('lloc').textContent='⏹ Stop GPS';g('lacc').textContent='Waiting for GPS…';
+ watch=navigator.geolocation.watchPosition(p=>{const{latitude:la,longitude:lo,accuracy:ac}=p.coords;g('lacc').textContent='GPS accuracy ±'+Math.round(ac)+' m'+(ac>15?' (weak, move to open sky)':'');
+  if(!me){me=LF.circleMarker([la,lo],{radius:8,color:'#fff',weight:3,fillColor:'#2563eb',fillOpacity:1}).addTo(map);meC=LF.circle([la,lo],{radius:ac,color:'#2563eb',weight:1,fillOpacity:.1}).addTo(map);map.setView([la,lo],Math.max(map.getZoom(),19))}else{me.setLatLng([la,lo]);meC.setLatLng([la,lo]).setRadius(ac)}},
+  er=>{g('lacc').textContent=er.code==1?'Location permission denied. Allow location for this site.':'GPS error: '+er.message;toast('Could not get GPS')},{enableHighAccuracy:true,maximumAge:0,timeout:20000})}
+g('lloc').onclick=locate;
+g('lgc').onclick=()=>{if(!navigator.geolocation)return toast('GPS is not available on this device');init();if(!map)return;const b=g('lgc'),s=[];let t=6;b.disabled=true;b.textContent='⏳ Averaging GPS… '+t+'s';
+ const id=navigator.geolocation.watchPosition(p=>s.push(p.coords),er=>{},{enableHighAccuracy:true,maximumAge:0,timeout:15000});
+ const iv=setInterval(()=>{t--;b.textContent='⏳ Averaging GPS… '+t+'s';if(t>0)return;clearInterval(iv);navigator.geolocation.clearWatch(id);b.disabled=false;b.textContent='📍 Add corner at my GPS position';
+  if(!s.length)return toast('No GPS fix. Go outside, allow location and try again');
+  const best=Math.min(...s.map(c=>c.accuracy)),u=s.filter(c=>c.accuracy<=Math.max(best*1.5,best+3));let w=0,la=0,lo=0;u.forEach(c=>{const k=1/Math.max(c.accuracy,1)**2;w+=k;la+=k*c.latitude;lo+=k*c.longitude});
+  add(la/w,lo/w,Math.round(best*10)/10);map.setView([la/w,lo/w],Math.max(map.getZoom(),20));toast(best>15?'Corner added, but accuracy is only ±'+Math.round(best)+' m. Try open sky.':'Corner '+LT(pts.length-1)+' added (±'+Math.round(best)+' m)')},1000)};
+
+/* toolbar */
+g('ldr').onclick=()=>{draw=!draw;const b=g('ldr');b.classList.toggle('on',draw);b.textContent='✏ Tap map to add corners: '+(draw?'ON':'OFF');g('lmap').classList.toggle('dr',draw)};
+g('lsat').onclick=()=>{init();if(!map)return;satOn=!satOn;if(satOn){map.removeLayer(street);sat.addTo(map)}else{map.removeLayer(sat);street.addTo(map)}g('lsat').textContent=satOn?'🗺 Street view':'🛰 Satellite view'};
+g('lund').onclick=()=>{if(pts.length)del(pts.length-1)};
+g('lclr').onclick=()=>{if(pts.length&&confirm('Remove all corners?')){pts=[];refresh()}};
+g('lbig').onclick=()=>{const m=g('lmap');m.classList.toggle('big');if(map)setTimeout(()=>map.invalidateSize(),50)};
+document.querySelector('[data-ls="kt"]').onchange=e=>{g('lkcw').hidden=e.target.value!='c'};
+
+/* results panel */
+function upd(){const r=calc(),u=units(r.area),f=F();
+ let h='';
+ if(r.n<3)h='<p class="mu" style="margin:10px 0 0">Mark at least 3 corners to get the area. '+(r.n?r.n+' corner'+(r.n>1?'s':'')+' marked.':'')+'</p>';
+ else{h=`<div class="lst"><div><b>${fmt(u.rows[0][1])} sq ft</b><span>Area</span></div><div><b>${fmt(u.rows[1][1])} m²</b><span>Area</span></div><div><b>${L2(u.rows[4][1])}</b><span>Katha</span></div><div><b>${L2(u.rows[5][1])}</b><span>Bigha</span></div><div><b>${L2(u.rows[3][1])}</b><span>Decimal</span></div><div><b>${L2(u.rows[2][1])}</b><span>Gaj (sq yd)</span></div><div><b>${L2(r.per)} m</b><span>Perimeter (${fts(r.per)} ft)</span></div></div>`;
+  if(r.self)h+='<div class="wrn">⚠ The boundary lines cross each other. Re-order or fix the corners so the outline goes around the plot once.</div>'}
+ if(r.n>=2){h+='<div class="tw" style="margin-top:10px"><table><tr><th>Corner</th><th>Lat, Lng</th><th>GPS ±m</th><th>Side</th><th class="r">Length</th><th>Bearing</th><th>Faces</th><th></th></tr>'+pts.map((p,i)=>{const s=r.sides[i];return`<tr><td><b>${LT(i)}</b></td><td>${p.lat.toFixed(6)}, ${p.lng.toFixed(6)}</td><td>${p.acc==null?'map':p.acc}</td><td>${s?s.from+'–'+s.to:'—'}</td><td class="r">${s?L2(s.len)+' m / '+fts(s.len)+' ft':''}</td><td>${s?Math.round(s.br)+'° '+c8(s.br):''}</td><td>${s&&s.face8?s.face8:''}</td><td><button data-d="${i}" title="Delete corner" style="padding:2px 8px;min-height:0">✕</button></td></tr>`}).join('')+'</table></div>'}
+ g('lres').innerHTML=h;g('lres').onclick=e=>{const b=e.target.closest('[data-d]');if(b)del(+b.dataset.d)};
+ const D={N:[],E:[],S:[],W:[]};if(r.n>=3)r.sides.forEach(s=>D[s.face].push(s));
+ for(const k of 'ENSW')g('bn'+k).textContent=D[k].length?'Measured: '+D[k].map(s=>s.from+s.to+' '+L2(s.len)+' m').join(' + ')+' = '+L2(D[k].reduce((a,s)=>a+s.len,0))+' m ('+fts(D[k].reduce((a,s)=>a+s.len,0))+' ft)':'';
+ rep(r,u,D,f)}
+
+/* sketch */
+function sketch(r,f){if(r.n<3)return'<p class="mu">Mark at least 3 corners to draw the plot sketch.</p>';const P=r.P,W=560,H=430,pd=78,xs=P.map(p=>p.x),ys=P.map(p=>p.y),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),sc=Math.min((W-2*pd)/((x1-x0)||1),(H-2*pd)/((y1-y0)||1)),ox=(W-(x1-x0)*sc)/2,oy=(H-(y1-y0)*sc)/2,Xp=x=>ox+(x-x0)*sc,Yp=y=>H-oy-(y-y0)*sc,tr=(s,m)=>s.length>m?s.slice(0,m-1)+'…':s;
+ let s=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:640px;background:#fff;border:1px solid #d9d4c8;border-radius:8px" role="img" aria-label="Plot sketch, north at top"><polygon points="${P.map(p=>Xp(p.x).toFixed(1)+','+Yp(p.y).toFixed(1)).join(' ')}" fill="#fde7d3" stroke="#c2410c" stroke-width="2.5" stroke-linejoin="round"/>`;
+ r.sides.forEach(sd=>{const a=P[sd.i],b=P[(sd.i+1)%r.n],mx=(Xp(a.x)+Xp(b.x))/2,my=(Yp(a.y)+Yp(b.y))/2,rb=sd.ob*rad;s+=`<text x="${(mx+Math.sin(rb)*20).toFixed(1)}" y="${(my-Math.cos(rb)*20+4).toFixed(1)}" font-size="11" text-anchor="middle" fill="#111" font-weight="600">${L2(sd.len)} m</text>`});
+ const mcx=P.reduce((a,p)=>a+Xp(p.x),0)/r.n,mcy=P.reduce((a,p)=>a+Yp(p.y),0)/r.n;
+ P.forEach((p,i)=>{const px=Xp(p.x),py=Yp(p.y);let dx=px-mcx,dy=py-mcy;const d=Math.hypot(dx,dy)||1;dx/=d;dy/=d;s+=`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4.5" fill="#c2410c"/><text x="${(px+dx*13).toFixed(1)}" y="${(py+dy*13+4).toFixed(1)}" font-size="13" font-weight="800" text-anchor="middle" fill="#7c2d12">${LT(i)}</text>`});
+ s+=`<g transform="translate(${W-30},38)"><path d="M0,-24 L8,6 L0,1 L-8,6 Z" fill="#111"/><text y="22" font-size="12" font-weight="700" text-anchor="middle" fill="#111">N</text></g>`;
+ s+=`<text x="${W/2}" y="18" text-anchor="middle" font-size="11" fill="#555">NORTH: ${X(tr(f.bN||'—',38))}</text><text x="${W/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="#555">SOUTH: ${X(tr(f.bS||'—',38))}</text><text transform="rotate(-90 14 ${H/2})" x="14" y="${H/2}" text-anchor="middle" font-size="11" fill="#555">WEST: ${X(tr(f.bW||'—',30))}</text><text transform="rotate(90 ${W-12} ${H/2})" x="${W-12}" y="${H/2}" text-anchor="middle" font-size="11" fill="#555">EAST: ${X(tr(f.bE||'—',30))}</text>`;
+ if(f.pf)s+=`<text x="${W/2}" y="${H/2}" text-anchor="middle" font-size="12" fill="#7c2d12" font-weight="700" opacity=".9">${X(f.pf.toUpperCase())} FACING · ${L2(r.area/SQFT)} sq ft</text>`;
+ else s+=`<text x="${W/2}" y="${H/2}" text-anchor="middle" font-size="12" fill="#7c2d12" font-weight="700" opacity=".9">${fmt(r.area/SQFT)} sq ft</text>`;
+ return s+'</svg>'}
+
+/* report */
+function rep(r,u,D,f){let br={};try{br=BR||{}}catch(e){}
+ const kv=(k,v)=>v?`<tr><th>${k}</th><td>${X(v)}</td></tr>`:'',okp=r.n>=3;
+ const gps=pts.filter(p=>p.acc!=null).length,mp=pts.length-gps,ws=Math.max(0,...pts.map(p=>p.acc||0)),cen=r.cent;
+ let h=`<div class="rph"><div style="display:flex;gap:10px;align-items:center">${br.bx?`<img src="${X(br.bx)}" alt="" style="max-height:52px;max-width:130px">`:''}<div><h2>LAND MEASUREMENT REPORT</h2><div class="mu">${X([br.bn,br.bt].filter(Boolean).join(' · '))||'Prepared with BuildQuote India, a BITOMANCY product'}</div></div></div><div style="text-align:right"><b>No. ${X(rno)}</b><div class="mu">Date: ${X(dfmt(f.dt))}</div></div></div>`;
+ h+='<h4>Client &amp; site details</h4><table class="rt">'+kv('Client name',f.cn)+kv('Client mobile',f.cp)+kv('Client address',f.ca)+kv('Site / plot address',f.sn)+kv('Village / locality',f.vl)+kv('Thana / circle',f.th)+kv('District',f.di)+kv('State',f.st)+kv('Khata no.',f.kh)+kv('Khesra / plot no.',f.ks)+kv('Purpose',f.pu)+kv('Plot facing',f.pf?f.pf+' side road':'')+kv('Surveyor / engineer',[f.sv,f.sp].filter(Boolean).join(' · '))+'</table>';
+ if(!okp)return void(g('lrep').innerHTML=h+'<h4>Plot measurement</h4>'+sketch(r,f));
+ h+='<h4>Measured area</h4><table class="rt c"><tr><th>Unit</th><th style="text-align:right">Value</th></tr>'+u.rows.map(x=>`<tr><td>${X(x[0])}</td><td style="text-align:right"><b>${fmt(x[1])}</b></td></tr>`).join('')+`<tr><td>Perimeter</td><td style="text-align:right"><b>${L2(r.per)} m (${fts(r.per)} ft)</b></td></tr><tr><td>Overall extent (north–south × east–west)</td><td style="text-align:right">${L2(r.ns)} m × ${L2(r.ew)} m</td></tr></table>`;
+ h+='<h4>Plot sketch (north is up, not to scale for legal use)</h4>'+sketch(r,f);
+ h+='<h4>Boundaries (chauhaddi)</h4><table class="rt c"><tr><th>Direction</th><th>Boundary with</th><th style="text-align:right">Length on this side</th></tr>'+'ENSW'.split('').map(k=>{const t=D[k].reduce((a,s)=>a+s.len,0);return`<tr><td><b>${FD[k]}</b></td><td>${X(f['b'+k])||'<span class="mu">Not entered</span>'}</td><td style="text-align:right">${D[k].length?L2(t)+' m / '+fts(t)+' ft'+(D[k].length>1?' ('+D[k].map(s=>s.from+s.to).join('+')+')':''):'—'}</td></tr>`}).join('')+'</table>';
+ h+='<h4>Side lengths</h4><table class="rt c"><tr><th>Side</th><th style="text-align:right">Metres</th><th style="text-align:right">Feet</th><th>Bearing</th><th>Faces</th></tr>'+r.sides.map(s=>`<tr><td>${s.from}–${s.to}</td><td style="text-align:right">${L2(s.len)}</td><td style="text-align:right">${fts(s.len)}</td><td>${Math.round(s.br)}° ${c8(s.br)}</td><td>${s.face8}</td></tr>`).join('')+'</table>';
+ h+='<h4>Corner coordinates (WGS 84)</h4><table class="rt c"><tr><th>Corner</th><th>Latitude</th><th>Longitude</th><th>Source</th></tr>'+pts.map((p,i)=>`<tr><td><b>${LT(i)}</b></td><td>${p.lat.toFixed(7)}</td><td>${p.lng.toFixed(7)}</td><td>${p.acc==null?'Map point':'GPS ±'+p.acc+' m'}</td></tr>`).join('')+'</table>';
+ if(cen)h+=`<p style="margin:8px 0 0">Plot centre: ${cen.lat.toFixed(6)}, ${cen.lng.toFixed(6)} · <a href="https://www.google.com/maps?q=${cen.lat.toFixed(6)},${cen.lng.toFixed(6)}" target="_blank" rel="noopener" style="color:#c2410c">Open in Google Maps</a></p>`;
+ if(f.rm)h+='<h4>Remarks</h4><p style="margin:0">'+X(f.rm).replace(/\n/g,'<br>')+'</p>';
+ h+=`<h4>Method &amp; accuracy</h4><p style="margin:0">Corners were marked using ${gps?gps+' averaged GPS fix'+(gps>1?'es':''):''}${gps&&mp?' and ':''}${mp?mp+' point'+(mp>1?'s':'')+' placed on satellite imagery':''}. Area is calculated on the WGS 84 ellipsoid approximation using a local projection. ${gps?'Worst GPS accuracy reported: ±'+L2(ws)+' m. ':''}Typical phone GPS and satellite-map error is 3 to 10 m per corner, so area and side lengths can differ from the registered deed.${r.self?' <b>Note: the outline crosses itself, so the area may be wrong.</b>':''}</p>`;
+ h+='<p style="margin:10px 0 0;font-size:11px;color:#555"><b>Disclaimer.</b> This is an indicative measurement for planning and estimation, not a legal survey, title check or boundary demarcation. Verify with revenue records (khata, khesra, map), a licensed surveyor (Amin) or engineer, and the local land authority before any purchase, registry, mutation or construction. Katha, bigha and dhur sizes vary by district. Generated with BuildQuote India, a BITOMANCY product.</p>';
+ h+=`<div class="sig"><div>Client: ${X(f.cn||'')}</div><div>Surveyor: ${X(f.sv||'')}</div></div>`;
+ g('lrep').innerHTML=h}
+
+/* actions */
+const ready=()=>{const f=F();if(pts.length<3){toast('Mark at least 3 corners first');return false}if(!f.cn){toast('Enter the client name first');return false}return true};
+g('lpr').onclick=()=>{if(!ready())return;document.body.classList.add('lp');setTimeout(()=>window.print(),80)};addEventListener('afterprint',()=>document.body.classList.remove('lp'));
+function dl(name,mime,txt){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:mime}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+const fname=()=>('land-'+(F().cn||'plot')).replace(/[^\w\-]+/g,'_').slice(0,40);
+g('lkml').onclick=()=>{if(pts.length<3)return toast('Mark at least 3 corners first');const c=pts.map(p=>p.lng+','+p.lat+',0');c.push(c[0]);const nm=X((F().cn||'Plot')+' '+rno);dl(fname()+'.kml','application/vnd.google-earth.kml+xml','<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>'+nm+'</name><Placemark><name>'+nm+'</name><Style><LineStyle><color>ff166ff9</color><width>3</width></LineStyle><PolyStyle><color>55166ff9</color></PolyStyle></Style><Polygon><outerBoundaryIs><LinearRing><coordinates>'+c.join(' ')+'</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark></Document></kml>')};
+g('ljs').onclick=()=>{if(pts.length<3)return toast('Mark at least 3 corners first');const c=pts.map(p=>[+p.lng.toFixed(7),+p.lat.toFixed(7)]);c.push(c[0]);const r=calc(),f=F();dl(fname()+'.geojson','application/geo+json',JSON.stringify({type:'Feature',properties:{report:rno,client:f.cn,site:f.sn,area_sqm:+r.area.toFixed(2),area_sqft:+(r.area/SQFT).toFixed(2),perimeter_m:+r.per.toFixed(2)},geometry:{type:'Polygon',coordinates:[c]}},null,1))};
+g('lwa').onclick=()=>{if(!ready())return;const r=calc(),u=units(r.area),f=F(),D={N:[],E:[],S:[],W:[]};if(!r.cent)return toast('These corners do not enclose an area');r.sides.forEach(s=>D[s.face].push(s));const sd=k=>(f['b'+k]||'-')+(D[k].length?' ('+L2(D[k].reduce((a,s)=>a+s.len,0))+' m)':'');
+ const t=`*Land measurement report ${rno}*\nClient: ${f.cn}\nSite: ${[f.sn,f.vl,f.di].filter(Boolean).join(', ')||'-'}${f.kh||f.ks?'\nKhata/Khesra: '+[f.kh,f.ks].filter(Boolean).join(' / '):''}\nArea: ${fmt(u.rows[0][1])} sq ft | ${L2(u.rows[4][1])} katha | ${L2(u.rows[3][1])} decimal | ${fmt(u.rows[1][1])} sq m\nPerimeter: ${L2(r.per)} m\n\n*Boundaries*\nEast: ${sd('E')}\nWest: ${sd('W')}\nNorth: ${sd('N')}\nSouth: ${sd('S')}\n\nLocation: https://www.google.com/maps?q=${r.cent.lat.toFixed(6)},${r.cent.lng.toFixed(6)}\n(Indicative GPS/map measurement; verify before purchase or registry.)`,p=(f.cp||'').replace(/\D/g,'');window.open('https://wa.me/'+(p.length==10?'91'+p:'')+'?text='+encodeURIComponent(t),'_blank','noopener')};
+/* save / load */
+const getS=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}};
+function rl(){const a=getS();g('lsl').innerHTML=a.length?'<div class="mu" style="font-size:12px;margin:10px 0 4px">Saved reports (this device)</div>'+a.map(s=>`<div class="mr"><div style="flex:1 1 200px"><b>${X(s.F.cn||'Unnamed client')}</b> · ${X(s.rno)}<div class="mu" style="font-size:12px">${X(s.F.sn||'')} ${s.pts.length>=3?'· '+fmt(s.area/SQFT)+' sq ft':''}</div></div><button data-o="${s.rno}">Open</button><button data-x="${s.rno}" title="Delete">🗑</button></div>`).join(''):''}
+g('lsv').onclick=()=>{if(!ready())return;const a=getS(),s={rno,F:(()=>{const o={};document.querySelectorAll('#ls [data-ls]').forEach(i=>o[i.dataset.ls]=i.value);return o})(),pts,area:calc().area,at:Date.now()},i=a.findIndex(x=>x.rno==rno);i>=0?a[i]=s:a.unshift(s);try{localStorage.setItem(KEY,JSON.stringify(a));toast('Report saved on this device ✓')}catch(e){toast('Could not save on this device')}rl()};
+g('lsl').onclick=e=>{const o=e.target.closest('[data-o]'),x=e.target.closest('[data-x]');let a=getS();if(o){const s=a.find(z=>z.rno==o.dataset.o);if(!s)return;init();rno=s.rno;document.querySelectorAll('#ls [data-ls]').forEach(i=>{i.value=s.F[i.dataset.ls]??i.value});g('lkcw').hidden=s.F.kt!='c';pts=s.pts;refresh();fit();toast('Report opened')}else if(x&&confirm('Delete this saved report?')){a=a.filter(z=>z.rno!=x.dataset.x);try{localStorage.setItem(KEY,JSON.stringify(a))}catch(er){}rl()}};
+g('lnew').onclick=()=>{if((pts.length||F().cn)&&!confirm('Start a new report? Unsaved changes will be lost.'))return;document.querySelectorAll('#ls [data-ls]').forEach(i=>{if(i.tagName=='SELECT')i.selectedIndex=0;else if(i.dataset.ls!='kc')i.value=''});g('lkcw').hidden=true;document.querySelector('[data-ls="dt"]').value=new Date().toISOString().slice(0,10);pts=[];newNo();refresh()};
+document.getElementById('ls').addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.ls)upd()});
+document.getElementById('ls').addEventListener('change',e=>{if(e.target.dataset&&e.target.dataset.ls)upd()});
+newNo();document.querySelector('[data-ls="dt"]').value=new Date().toISOString().slice(0,10);rl();upd();
+const _s4=show;show=t=>{_s4(t);if(t=='ls'){init();if(map)setTimeout(()=>map.invalidateSize(),80)}};
+})();
 </script></body></html>
