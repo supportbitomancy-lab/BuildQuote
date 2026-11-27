@@ -1,26 +1,50 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Replace PUT_ADMIN_UID_HERE with your own Firebase user UID (Authentication > Users).
-    function isAdmin() { return request.auth != null && request.auth.uid == 'PUT_ADMIN_UID_HERE'; }
+    function seller(uid) { return /databases/$(database)/documents/sellers/$(uid); }
 
     match /listings/{id} {
       allow read: if resource.data.status == 'live'
-                  || (request.auth != null && resource.data.uid == request.auth.uid)
-                  || isAdmin();
+                  || (request.auth != null && resource.data.uid == request.auth.uid);
+
+      // Automatic publishing: live at once, but only with valid data, a verified-email flag that
+      // matches the account, no self-awarded badges, and at least 20 s between posts.
       allow create: if request.auth != null
                     && request.resource.data.uid == request.auth.uid
-                    && request.resource.data.status == 'pending'
-                    && request.resource.data.fe == 0 && request.resource.data.vf == 0
+                    && request.resource.data.status == 'live'
+                    && request.resource.data.fe == 0 && request.resource.data.vf == 0 && request.resource.data.rc == 0
+                    && request.resource.data.ev == (request.auth.token.email_verified == true)
                     && request.resource.data.t is string && request.resource.data.t.size() >= 3 && request.resource.data.t.size() <= 120
                     && request.resource.data.p is number && request.resource.data.p > 0
-                    && request.resource.data.n.size() <= 400;
-      allow update: if isAdmin();
-      allow delete: if isAdmin() || (request.auth != null && resource.data.uid == request.auth.uid);
+                    && request.resource.data.n.size() <= 400
+                    && exists(seller(request.auth.uid))
+                    && request.time > get(seller(request.auth.uid)).data.lp + duration.value(20, 's')
+                    && getAfter(seller(request.auth.uid)).data.lp == request.time;
+
+      // Anyone signed in can add one report per listing; 3 reports hide it automatically.
+      allow update: if request.auth != null
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['rc'])
+                    && request.resource.data.rc == resource.data.rc + 1
+                    && !exists(/databases/$(database)/documents/reports/$(id + '_' + request.auth.uid))
+                    && existsAfter(/databases/$(database)/documents/reports/$(id + '_' + request.auth.uid));
+
+      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
     }
+
+    match /reports/{rid} {
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid
+                    && rid == request.resource.data.lid + '_' + request.auth.uid;
+      allow read, update, delete: if false;
+    }
+
     match /sellers/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
-      allow read: if isAdmin();
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+                    && request.resource.data.lp == request.time && request.resource.data.at == request.time;
+      allow update: if request.auth != null && request.auth.uid == uid
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lp', 'name', 'city', 'ph'])
+                    && (!('lp' in request.resource.data.diff(resource.data).affectedKeys()) || request.resource.data.lp == request.time);
     }
   }
 }
